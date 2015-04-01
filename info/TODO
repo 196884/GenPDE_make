@@ -1,0 +1,2 @@
+* Add more options to GenPDETest, add option to exclude tests at compile time (macro flag)
+* Add variables to the trade representation
