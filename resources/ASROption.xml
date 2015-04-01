@@ -1,0 +1,1159 @@
+<TradeRepresentation>
+    <DatedPricingInstructions>
+        <PricingInstructions date="20020701">
+            <PricerInit uid="1">
+                <Payment date="20020701">
+                    <BinOp op="Div">
+                        <MORef uid="1"/>
+                        <BinOp op="Max">
+                            <BinOp op="Div">
+                                <BinOp op="Add">
+                                    <MORef uid="1"/>
+                                    <AVRef uid="125"/>
+                                </BinOp>
+                                <Const value="127"/>
+                            </BinOp>
+                            <Const value="90"/>
+                        </BinOp>
+                    </BinOp>
+                </Payment>
+            </PricerInit>
+        </PricingInstructions>
+        <PricingInstructions date="20020630">
+            <PricerRmAVDeps uid="1" AVs="125"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020629">
+            <PricerRmAVDeps uid="1" AVs="124"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020628">
+            <PricerRmAVDeps uid="1" AVs="123"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020625">
+            <PricerRmAVDeps uid="1" AVs="122"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020624">
+            <PricerRmAVDeps uid="1" AVs="121"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020623">
+            <PricerRmAVDeps uid="1" AVs="120"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020622">
+            <PricerRmAVDeps uid="1" AVs="119"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020621">
+            <PricerRmAVDeps uid="1" AVs="118"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020618">
+            <PricerRmAVDeps uid="1" AVs="117"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020617">
+            <PricerRmAVDeps uid="1" AVs="116"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020616">
+            <PricerRmAVDeps uid="1" AVs="115"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020615">
+            <PricerRmAVDeps uid="1" AVs="114"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020614">
+            <PricerRmAVDeps uid="1" AVs="113"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020611">
+            <PricerRmAVDeps uid="1" AVs="112"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020610">
+            <PricerRmAVDeps uid="1" AVs="111"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020609">
+            <PricerRmAVDeps uid="1" AVs="110"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020608">
+            <PricerRmAVDeps uid="1" AVs="109"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020607">
+            <PricerRmAVDeps uid="1" AVs="108"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020604">
+            <PricerRmAVDeps uid="1" AVs="107"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020603">
+            <PricerRmAVDeps uid="1" AVs="106"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020602">
+            <PricerRmAVDeps uid="1" AVs="105"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020601">
+            <PricerRmAVDeps uid="1" AVs="104"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020531">
+            <PricerRmAVDeps uid="1" AVs="103"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020528">
+            <PricerRmAVDeps uid="1" AVs="102"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020527">
+            <PricerRmAVDeps uid="1" AVs="101"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020526">
+            <PricerRmAVDeps uid="1" AVs="100"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020525">
+            <PricerRmAVDeps uid="1" AVs="99"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020524">
+            <PricerRmAVDeps uid="1" AVs="98"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020521">
+            <PricerRmAVDeps uid="1" AVs="97"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020520">
+            <PricerRmAVDeps uid="1" AVs="96"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020519">
+            <PricerRmAVDeps uid="1" AVs="95"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020518">
+            <PricerRmAVDeps uid="1" AVs="94"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020517">
+            <PricerRmAVDeps uid="1" AVs="93"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020513">
+            <PricerRmAVDeps uid="1" AVs="92"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020512">
+            <PricerRmAVDeps uid="1" AVs="91"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020511">
+            <PricerRmAVDeps uid="1" AVs="90"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020510">
+            <PricerRmAVDeps uid="1" AVs="89"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020507">
+            <PricerRmAVDeps uid="1" AVs="88"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020506">
+            <PricerRmAVDeps uid="1" AVs="87"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020505">
+            <PricerRmAVDeps uid="1" AVs="86"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020504">
+            <PricerRmAVDeps uid="1" AVs="85"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020503">
+            <PricerRmAVDeps uid="1" AVs="84"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020430">
+            <PricerRmAVDeps uid="1" AVs="83"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020429">
+            <PricerRmAVDeps uid="1" AVs="82"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020428">
+            <PricerRmAVDeps uid="1" AVs="81"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020427">
+            <PricerRmAVDeps uid="1" AVs="80"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020426">
+            <PricerRmAVDeps uid="1" AVs="79"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020423">
+            <PricerRmAVDeps uid="1" AVs="78"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020422">
+            <PricerRmAVDeps uid="1" AVs="77"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020421">
+            <PricerRmAVDeps uid="1" AVs="76"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020420">
+            <PricerRmAVDeps uid="1" AVs="75"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020419">
+            <PricerRmAVDeps uid="1" AVs="74"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020416">
+            <PricerRmAVDeps uid="1" AVs="73"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020415">
+            <PricerRmAVDeps uid="1" AVs="72"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020414">
+            <PricerRmAVDeps uid="1" AVs="71"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020413">
+            <PricerRmAVDeps uid="1" AVs="70"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020412">
+            <PricerRmAVDeps uid="1" AVs="69"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020409">
+            <PricerRmAVDeps uid="1" AVs="68"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020408">
+            <PricerRmAVDeps uid="1" AVs="67"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020407">
+            <PricerRmAVDeps uid="1" AVs="66"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020406">
+            <PricerRmAVDeps uid="1" AVs="65"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020402">
+            <PricerRmAVDeps uid="1" AVs="64"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020401">
+            <PricerRmAVDeps uid="1" AVs="63"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020331">
+            <PricerRmAVDeps uid="1" AVs="62"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020330">
+            <PricerRmAVDeps uid="1" AVs="61"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020329">
+            <PricerRmAVDeps uid="1" AVs="60"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020326">
+            <PricerRmAVDeps uid="1" AVs="59"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020325">
+            <PricerRmAVDeps uid="1" AVs="58"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020324">
+            <PricerRmAVDeps uid="1" AVs="57"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020323">
+            <PricerRmAVDeps uid="1" AVs="56"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020322">
+            <PricerRmAVDeps uid="1" AVs="55"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020319">
+            <PricerRmAVDeps uid="1" AVs="54"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020318">
+            <PricerRmAVDeps uid="1" AVs="53"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020317">
+            <PricerRmAVDeps uid="1" AVs="52"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020316">
+            <PricerRmAVDeps uid="1" AVs="51"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020315">
+            <PricerRmAVDeps uid="1" AVs="50"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020312">
+            <PricerRmAVDeps uid="1" AVs="49"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020311">
+            <PricerRmAVDeps uid="1" AVs="48"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020310">
+            <PricerRmAVDeps uid="1" AVs="47"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020309">
+            <PricerRmAVDeps uid="1" AVs="46"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020308">
+            <PricerRmAVDeps uid="1" AVs="45"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020305">
+            <PricerRmAVDeps uid="1" AVs="44"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020304">
+            <PricerRmAVDeps uid="1" AVs="43"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020303">
+            <PricerRmAVDeps uid="1" AVs="42"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020302">
+            <PricerRmAVDeps uid="1" AVs="41"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020301">
+            <PricerRmAVDeps uid="1" AVs="40"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020226">
+            <PricerRmAVDeps uid="1" AVs="39"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020225">
+            <PricerRmAVDeps uid="1" AVs="38"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020224">
+            <PricerRmAVDeps uid="1" AVs="37"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020223">
+            <PricerRmAVDeps uid="1" AVs="36"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020222">
+            <PricerRmAVDeps uid="1" AVs="35"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020219">
+            <PricerRmAVDeps uid="1" AVs="34"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020218">
+            <PricerRmAVDeps uid="1" AVs="33"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020217">
+            <PricerRmAVDeps uid="1" AVs="32"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020216">
+            <PricerRmAVDeps uid="1" AVs="31"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020215">
+            <PricerRmAVDeps uid="1" AVs="30"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020211">
+            <PricerRmAVDeps uid="1" AVs="29"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020210">
+            <PricerRmAVDeps uid="1" AVs="28"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020209">
+            <PricerRmAVDeps uid="1" AVs="27"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020208">
+            <PricerRmAVDeps uid="1" AVs="26"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020205">
+            <PricerRmAVDeps uid="1" AVs="25"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020204">
+            <PricerRmAVDeps uid="1" AVs="24"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020203">
+            <PricerRmAVDeps uid="1" AVs="23"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020202">
+            <PricerRmAVDeps uid="1" AVs="22"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020201">
+            <PricerRmAVDeps uid="1" AVs="21"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020129">
+            <PricerRmAVDeps uid="1" AVs="20"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020128">
+            <PricerRmAVDeps uid="1" AVs="19"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020127">
+            <PricerRmAVDeps uid="1" AVs="18"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020126">
+            <PricerRmAVDeps uid="1" AVs="17"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020125">
+            <PricerRmAVDeps uid="1" AVs="16"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020122">
+            <PricerRmAVDeps uid="1" AVs="15"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020121">
+            <PricerRmAVDeps uid="1" AVs="14"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020120">
+            <PricerRmAVDeps uid="1" AVs="13"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020119">
+            <PricerRmAVDeps uid="1" AVs="12"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020118">
+            <PricerRmAVDeps uid="1" AVs="11"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020115">
+            <PricerRmAVDeps uid="1" AVs="10"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020114">
+            <PricerRmAVDeps uid="1" AVs="9"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020113">
+            <PricerRmAVDeps uid="1" AVs="8"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020112">
+            <PricerRmAVDeps uid="1" AVs="7"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020111">
+            <PricerRmAVDeps uid="1" AVs="6"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020108">
+            <PricerRmAVDeps uid="1" AVs="5"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020107">
+            <PricerRmAVDeps uid="1" AVs="4"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020106">
+            <PricerRmAVDeps uid="1" AVs="3"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020105">
+            <PricerRmAVDeps uid="1" AVs="2"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020104">
+            <PricerRmAVDeps uid="1" AVs="1"/>
+        </PricingInstructions>
+        <PricingInstructions date="20020101">
+            <PricerRmAVDeps uid="1" AVs="0"/>
+        </PricingInstructions>
+    </DatedPricingInstructions>
+    <MainTradeLeg>
+        <PricerRef uid="1"/>
+    </MainTradeLeg>
+    <AuxiliaryVariables>
+        <AV uid="125" date="20020630">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="124"/>
+            </BinOp>
+        </AV>
+        <AV uid="124" date="20020629">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="123"/>
+            </BinOp>
+        </AV>
+        <AV uid="123" date="20020628">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="122"/>
+            </BinOp>
+        </AV>
+        <AV uid="122" date="20020625">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="121"/>
+            </BinOp>
+        </AV>
+        <AV uid="121" date="20020624">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="120"/>
+            </BinOp>
+        </AV>
+        <AV uid="120" date="20020623">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="119"/>
+            </BinOp>
+        </AV>
+        <AV uid="119" date="20020622">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="118"/>
+            </BinOp>
+        </AV>
+        <AV uid="118" date="20020621">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="117"/>
+            </BinOp>
+        </AV>
+        <AV uid="117" date="20020618">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="116"/>
+            </BinOp>
+        </AV>
+        <AV uid="116" date="20020617">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="115"/>
+            </BinOp>
+        </AV>
+        <AV uid="115" date="20020616">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="114"/>
+            </BinOp>
+        </AV>
+        <AV uid="114" date="20020615">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="113"/>
+            </BinOp>
+        </AV>
+        <AV uid="113" date="20020614">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="112"/>
+            </BinOp>
+        </AV>
+        <AV uid="112" date="20020611">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="111"/>
+            </BinOp>
+        </AV>
+        <AV uid="111" date="20020610">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="110"/>
+            </BinOp>
+        </AV>
+        <AV uid="110" date="20020609">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="109"/>
+            </BinOp>
+        </AV>
+        <AV uid="109" date="20020608">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="108"/>
+            </BinOp>
+        </AV>
+        <AV uid="108" date="20020607">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="107"/>
+            </BinOp>
+        </AV>
+        <AV uid="107" date="20020604">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="106"/>
+            </BinOp>
+        </AV>
+        <AV uid="106" date="20020603">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="105"/>
+            </BinOp>
+        </AV>
+        <AV uid="105" date="20020602">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="104"/>
+            </BinOp>
+        </AV>
+        <AV uid="104" date="20020601">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="103"/>
+            </BinOp>
+        </AV>
+        <AV uid="103" date="20020531">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="102"/>
+            </BinOp>
+        </AV>
+        <AV uid="102" date="20020528">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="101"/>
+            </BinOp>
+        </AV>
+        <AV uid="101" date="20020527">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="100"/>
+            </BinOp>
+        </AV>
+        <AV uid="100" date="20020526">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="99"/>
+            </BinOp>
+        </AV>
+        <AV uid="99" date="20020525">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="98"/>
+            </BinOp>
+        </AV>
+        <AV uid="98" date="20020524">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="97"/>
+            </BinOp>
+        </AV>
+        <AV uid="97" date="20020521">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="96"/>
+            </BinOp>
+        </AV>
+        <AV uid="96" date="20020520">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="95"/>
+            </BinOp>
+        </AV>
+        <AV uid="95" date="20020519">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="94"/>
+            </BinOp>
+        </AV>
+        <AV uid="94" date="20020518">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="93"/>
+            </BinOp>
+        </AV>
+        <AV uid="93" date="20020517">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="92"/>
+            </BinOp>
+        </AV>
+        <AV uid="92" date="20020513">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="91"/>
+            </BinOp>
+        </AV>
+        <AV uid="91" date="20020512">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="90"/>
+            </BinOp>
+        </AV>
+        <AV uid="90" date="20020511">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="89"/>
+            </BinOp>
+        </AV>
+        <AV uid="89" date="20020510">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="88"/>
+            </BinOp>
+        </AV>
+        <AV uid="88" date="20020507">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="87"/>
+            </BinOp>
+        </AV>
+        <AV uid="87" date="20020506">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="86"/>
+            </BinOp>
+        </AV>
+        <AV uid="86" date="20020505">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="85"/>
+            </BinOp>
+        </AV>
+        <AV uid="85" date="20020504">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="84"/>
+            </BinOp>
+        </AV>
+        <AV uid="84" date="20020503">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="83"/>
+            </BinOp>
+        </AV>
+        <AV uid="83" date="20020430">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="82"/>
+            </BinOp>
+        </AV>
+        <AV uid="82" date="20020429">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="81"/>
+            </BinOp>
+        </AV>
+        <AV uid="81" date="20020428">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="80"/>
+            </BinOp>
+        </AV>
+        <AV uid="80" date="20020427">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="79"/>
+            </BinOp>
+        </AV>
+        <AV uid="79" date="20020426">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="78"/>
+            </BinOp>
+        </AV>
+        <AV uid="78" date="20020423">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="77"/>
+            </BinOp>
+        </AV>
+        <AV uid="77" date="20020422">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="76"/>
+            </BinOp>
+        </AV>
+        <AV uid="76" date="20020421">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="75"/>
+            </BinOp>
+        </AV>
+        <AV uid="75" date="20020420">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="74"/>
+            </BinOp>
+        </AV>
+        <AV uid="74" date="20020419">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="73"/>
+            </BinOp>
+        </AV>
+        <AV uid="73" date="20020416">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="72"/>
+            </BinOp>
+        </AV>
+        <AV uid="72" date="20020415">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="71"/>
+            </BinOp>
+        </AV>
+        <AV uid="71" date="20020414">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="70"/>
+            </BinOp>
+        </AV>
+        <AV uid="70" date="20020413">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="69"/>
+            </BinOp>
+        </AV>
+        <AV uid="69" date="20020412">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="68"/>
+            </BinOp>
+        </AV>
+        <AV uid="68" date="20020409">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="67"/>
+            </BinOp>
+        </AV>
+        <AV uid="67" date="20020408">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="66"/>
+            </BinOp>
+        </AV>
+        <AV uid="66" date="20020407">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="65"/>
+            </BinOp>
+        </AV>
+        <AV uid="65" date="20020406">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="64"/>
+            </BinOp>
+        </AV>
+        <AV uid="64" date="20020402">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="63"/>
+            </BinOp>
+        </AV>
+        <AV uid="63" date="20020401">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="62"/>
+            </BinOp>
+        </AV>
+        <AV uid="62" date="20020331">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="61"/>
+            </BinOp>
+        </AV>
+        <AV uid="61" date="20020330">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="60"/>
+            </BinOp>
+        </AV>
+        <AV uid="60" date="20020329">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="59"/>
+            </BinOp>
+        </AV>
+        <AV uid="59" date="20020326">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="58"/>
+            </BinOp>
+        </AV>
+        <AV uid="58" date="20020325">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="57"/>
+            </BinOp>
+        </AV>
+        <AV uid="57" date="20020324">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="56"/>
+            </BinOp>
+        </AV>
+        <AV uid="56" date="20020323">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="55"/>
+            </BinOp>
+        </AV>
+        <AV uid="55" date="20020322">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="54"/>
+            </BinOp>
+        </AV>
+        <AV uid="54" date="20020319">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="53"/>
+            </BinOp>
+        </AV>
+        <AV uid="53" date="20020318">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="52"/>
+            </BinOp>
+        </AV>
+        <AV uid="52" date="20020317">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="51"/>
+            </BinOp>
+        </AV>
+        <AV uid="51" date="20020316">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="50"/>
+            </BinOp>
+        </AV>
+        <AV uid="50" date="20020315">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="49"/>
+            </BinOp>
+        </AV>
+        <AV uid="49" date="20020312">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="48"/>
+            </BinOp>
+        </AV>
+        <AV uid="48" date="20020311">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="47"/>
+            </BinOp>
+        </AV>
+        <AV uid="47" date="20020310">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="46"/>
+            </BinOp>
+        </AV>
+        <AV uid="46" date="20020309">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="45"/>
+            </BinOp>
+        </AV>
+        <AV uid="45" date="20020308">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="44"/>
+            </BinOp>
+        </AV>
+        <AV uid="44" date="20020305">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="43"/>
+            </BinOp>
+        </AV>
+        <AV uid="43" date="20020304">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="42"/>
+            </BinOp>
+        </AV>
+        <AV uid="42" date="20020303">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="41"/>
+            </BinOp>
+        </AV>
+        <AV uid="41" date="20020302">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="40"/>
+            </BinOp>
+        </AV>
+        <AV uid="40" date="20020301">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="39"/>
+            </BinOp>
+        </AV>
+        <AV uid="39" date="20020226">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="38"/>
+            </BinOp>
+        </AV>
+        <AV uid="38" date="20020225">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="37"/>
+            </BinOp>
+        </AV>
+        <AV uid="37" date="20020224">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="36"/>
+            </BinOp>
+        </AV>
+        <AV uid="36" date="20020223">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="35"/>
+            </BinOp>
+        </AV>
+        <AV uid="35" date="20020222">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="34"/>
+            </BinOp>
+        </AV>
+        <AV uid="34" date="20020219">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="33"/>
+            </BinOp>
+        </AV>
+        <AV uid="33" date="20020218">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="32"/>
+            </BinOp>
+        </AV>
+        <AV uid="32" date="20020217">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="31"/>
+            </BinOp>
+        </AV>
+        <AV uid="31" date="20020216">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="30"/>
+            </BinOp>
+        </AV>
+        <AV uid="30" date="20020215">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="29"/>
+            </BinOp>
+        </AV>
+        <AV uid="29" date="20020211">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="28"/>
+            </BinOp>
+        </AV>
+        <AV uid="28" date="20020210">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="27"/>
+            </BinOp>
+        </AV>
+        <AV uid="27" date="20020209">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="26"/>
+            </BinOp>
+        </AV>
+        <AV uid="26" date="20020208">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="25"/>
+            </BinOp>
+        </AV>
+        <AV uid="25" date="20020205">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="24"/>
+            </BinOp>
+        </AV>
+        <AV uid="24" date="20020204">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="23"/>
+            </BinOp>
+        </AV>
+        <AV uid="23" date="20020203">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="22"/>
+            </BinOp>
+        </AV>
+        <AV uid="22" date="20020202">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="21"/>
+            </BinOp>
+        </AV>
+        <AV uid="21" date="20020201">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="20"/>
+            </BinOp>
+        </AV>
+        <AV uid="20" date="20020129">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="19"/>
+            </BinOp>
+        </AV>
+        <AV uid="19" date="20020128">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="18"/>
+            </BinOp>
+        </AV>
+        <AV uid="18" date="20020127">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="17"/>
+            </BinOp>
+        </AV>
+        <AV uid="17" date="20020126">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="16"/>
+            </BinOp>
+        </AV>
+        <AV uid="16" date="20020125">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="15"/>
+            </BinOp>
+        </AV>
+        <AV uid="15" date="20020122">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="14"/>
+            </BinOp>
+        </AV>
+        <AV uid="14" date="20020121">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="13"/>
+            </BinOp>
+        </AV>
+        <AV uid="13" date="20020120">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="12"/>
+            </BinOp>
+        </AV>
+        <AV uid="12" date="20020119">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="11"/>
+            </BinOp>
+        </AV>
+        <AV uid="11" date="20020118">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="10"/>
+            </BinOp>
+        </AV>
+        <AV uid="10" date="20020115">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="9"/>
+            </BinOp>
+        </AV>
+        <AV uid="9" date="20020114">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="8"/>
+            </BinOp>
+        </AV>
+        <AV uid="8" date="20020113">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="7"/>
+            </BinOp>
+        </AV>
+        <AV uid="7" date="20020112">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="6"/>
+            </BinOp>
+        </AV>
+        <AV uid="6" date="20020111">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="5"/>
+            </BinOp>
+        </AV>
+        <AV uid="5" date="20020108">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="4"/>
+            </BinOp>
+        </AV>
+        <AV uid="4" date="20020107">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="3"/>
+            </BinOp>
+        </AV>
+        <AV uid="3" date="20020106">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="2"/>
+            </BinOp>
+        </AV>
+        <AV uid="2" date="20020105">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="1"/>
+            </BinOp>
+        </AV>
+        <AV uid="1" date="20020104">
+            <BinOp op="Add">
+                <MORef uid="1"/>
+                <AVRef uid="0"/>
+            </BinOp>
+        </AV>
+        <AV uid="0" date="20020101">
+            <MORef uid="0"/>
+        </AV>
+    </AuxiliaryVariables>
+</TradeRepresentation>

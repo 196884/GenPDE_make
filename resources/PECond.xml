@@ -1,0 +1,9 @@
+<Conditional>
+        <CmpOp op="GE">
+                <MORef uid="1"/>
+                <Const value="100"/>
+        </CmpOp>
+        <Const value="1"/>
+        <Const value="0"/>
+</Conditional>
+

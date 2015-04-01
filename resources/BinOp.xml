@@ -1,0 +1,4 @@
+<BinOp op="Add">
+    <MORef uid="1"/>
+    <Const value="3.14"/>
+</BinOp>

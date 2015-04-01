@@ -1,0 +1,23 @@
+<TradeRepresentation>
+    <DatedPricingInstructions>
+        <PricingInstructions date="20020101">
+            <PricerInit uid="1">
+                <Payment date="20020101">
+                    <Conditional>
+                        <CmpOp op="GT">
+                            <MORef uid="1"/>
+                            <Const value="100"/>
+                        </CmpOp>
+                        <Const value="1"/>
+                        <Const value="0"/>
+                    </Conditional>
+                </Payment>
+            </PricerInit>
+        </PricingInstructions>
+    </DatedPricingInstructions>
+    <MainTradeLeg>
+        <PricerRef uid="1"/>
+    </MainTradeLeg>
+    <AuxiliaryVariables>
+    </AuxiliaryVariables>
+</TradeRepresentation>

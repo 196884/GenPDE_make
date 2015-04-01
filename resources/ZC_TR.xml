@@ -1,0 +1,11 @@
+<TradeRepresentation>
+        <DatedPricingInstructions>
+        </DatedPricingInstructions>
+        <MainTradeLeg>
+            <Payment date="20020101">
+                <Const value="1"/>
+            </Payment>
+        </MainTradeLeg>
+        <AuxiliaryVariables>
+        </AuxiliaryVariables>
+</TradeRepresentation>
