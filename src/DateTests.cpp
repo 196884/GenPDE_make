@@ -7,7 +7,7 @@
 //
 
 #include "TestSuite.h"
-#include "Date.h"
+#include "GpDate.h"
 
 REGISTER_TEST(Date1)
 {

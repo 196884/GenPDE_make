@@ -13,7 +13,7 @@
 #include "Framework.h"
 #include "TestSuite.h"
 
-#include "Date.h"
+#include "GpDate.h"
 #include "AuxiliaryVariable.h"
 #include "PDEPricingModelBlackScholes.h"
 #include "PDETradePricer.h"

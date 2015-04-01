@@ -8,7 +8,7 @@
 
 #include "Framework.h"
 #include "TestSuite.h"
-#include "Date.h"
+#include "GpDate.h"
 
 #include "PEBinaryOperation.h"
 #include "MOContextTests.h"

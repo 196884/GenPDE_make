@@ -7,8 +7,8 @@
 //
 
 #include "TestSuite.h"
-#include "Date.h"
-#include "Time.h"
+#include "GpDate.h"
+#include "GpTime.h"
 
 REGISTER_TEST(Time1)
 {
