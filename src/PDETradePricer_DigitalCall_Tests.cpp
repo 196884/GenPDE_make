@@ -22,7 +22,7 @@ REGISTER_TEST(PDETradePricer_DigitalCall_1)
 {
     //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
     
-    std::string file("/Users/regisdupont/Documents/Code/GenPDE/GenPDE/Resources/DigitalCall_TR.xml");
+    std::string file("../resources/DigitalCall_TR.xml");
     boost::shared_ptr<TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(file, true));
     
     //boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();

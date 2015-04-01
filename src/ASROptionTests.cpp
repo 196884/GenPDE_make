@@ -31,7 +31,7 @@ REGISTER_TEST_MANUAL(ASROption1)
     
     //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
     
-    std::string file("/Users/regisdupont/Documents/Code/GenPDE/GenPDE/Resources/ASROption.xml");
+    std::string file("../resources/ASROption.xml");
     boost::shared_ptr<TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(file, true));
     
     boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
