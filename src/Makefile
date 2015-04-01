@@ -11,7 +11,7 @@ HDR_DIR = ../include
 BUILD_DIR = ../build
 BIN_DIR = ../bin
 
-#INCLUDES += -I $(BOOST_HEADERS)
+INCLUDES += -I $(BOOST_HEADERS)
 INCLUDES += -I $(HDR_DIR)
 
 CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -MMD
