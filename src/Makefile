@@ -89,7 +89,13 @@ OBJFILES = $(addprefix $(BUILD_DIR)/, $(CPPFILES:.cpp=.o))
 
 DEPSFILES = $(addprefix $(BUILD_DIR)/, $(CPPFILES:.cpp=.d))
 
-GenPDETest: $(OBJFILES)
+$(BIN_DIR):
+	mkdir $(BIN_DIR)
+
+$(BUILD_DIR):
+	mkdir $(BUILD_DIR)
+
+GenPDETest: $(OBJFILES) $(BIN_DIR)
 	$(CC) $(CPPFLAGS) $(LFLAGS) $(OBJFILES) -o $(BIN_DIR)/GenPDETest
 
 cleanobj:
