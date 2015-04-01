@@ -37,7 +37,7 @@ REGISTER_TEST(MarkovFunctionalFlatVol1)
 		boundsStepping,
 		boundsMaxIterations);
 
-	size_t nbPaths(10000000);
+	size_t nbPaths(1000000);
 	boost::mt19937 rng;
 	boost::uniform_01<> uniform;
 	boost::variate_generator<boost::mt19937&, boost::uniform_01<> > rndGen(rng, uniform);

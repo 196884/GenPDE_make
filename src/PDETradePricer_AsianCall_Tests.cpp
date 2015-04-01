@@ -18,7 +18,7 @@
 #include "BlackScholesClosedForms.h"
 #include "GenPDEParser.h"
 
-REGISTER_TEST(PDETradePricer_AsianCall_1)
+REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
 {
     //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
     

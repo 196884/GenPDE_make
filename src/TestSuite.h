@@ -44,13 +44,13 @@ public:
 
 private:
 	/// The test failures
-	std::vector<std::string> mFailures;
+	std::vector<std::string> m_failures;
 
 	/// The test exceptions
-	std::vector<std::string> mExceptions;
+	std::vector<std::string> m_exceptions;
 
 	/// The number of test successes
-	size_t                   mNbSuccesses;
+	size_t                   m_nbSuccesses;
 };
 
 /// The type definition for a single test
@@ -65,12 +65,15 @@ struct UnitTest
 		const std::string& name,
 		const std::string& file,
 		size_t             line,
-		UnitTestFn         function);
+		UnitTestFn         function,
+        bool               autorun = true
+    );
 
-	std::string mName;
-	std::string mFile;
-	size_t      mLine;
-	UnitTestFn  mFunction;
+	std::string m_name;
+	std::string m_file;
+	size_t      m_line;
+	UnitTestFn  m_function;
+    bool        m_autorun;
 };
 
 /// \brief The <c>TestSuite</c> class is a singleton factory, in which
@@ -89,7 +92,7 @@ public:
     static void printAllTestNames();
 
 	/// Running all registered tests
-	static void runAll();
+	static void runAll(bool autorun_only = false);
 
 	/// Outputting all test results
 	static void printAllResults();
@@ -109,12 +112,12 @@ private:
 	bool doRegisterPriv(const boost::shared_ptr<UnitTest>& unit_test);
 
 	/// Running a single test
-	void runPriv(const boost::shared_ptr<UnitTest>& unit_test);
+	void runPriv(UnitTest& unit_test);
 
 	void runTestPriv(const std::string& name);
 
 	/// Running all registered tests
-	void runAllPriv();
+	void runAllPriv(bool autorun_only = false);
     
     void printAllTestNamesPriv();
 
@@ -125,20 +128,26 @@ private:
 
 private:
 	/// The currently registered unit tests
-	std::map<std::string, boost::shared_ptr<UnitTest> >    mUnitTests;
+	std::map<std::string, boost::shared_ptr<UnitTest> >    m_unitTests;
 
 	/// The results
-	std::map<std::string, TestResults> mResults;
+	std::map<std::string, TestResults> m_results;
 };
 
 ////////////
 // MACROS //
 ////////////
 
-#define REGISTER_TEST(name) \
+#define REGISTER_TEST_EX(name, autorun) \
 	void TEST_##name(TestResults& _test_results); \
-	const bool _is_TEST_##name##_registered(TestSuite::doRegister(boost::shared_ptr<UnitTest>(new UnitTest(#name, __FILE__, __LINE__, &TEST_##name))));\
+	const bool _is_TEST_##name##_registered(TestSuite::doRegister(boost::shared_ptr<UnitTest>(new UnitTest(#name, __FILE__, __LINE__, &TEST_##name, autorun))));\
 	void TEST_##name(TestResults& _test_results)
+
+#define REGISTER_TEST_AUTO(name) REGISTER_TEST_EX(name, true)
+
+#define REGISTER_TEST_MANUAL(name) REGISTER_TEST_EX(name, false)
+
+#define REGISTER_TEST(name) REGISTER_TEST_AUTO(name)
 
 #define TEST(totest) \
 	if ( totest )    \

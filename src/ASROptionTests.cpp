@@ -24,7 +24,7 @@ using std::cerr;
 using std::endl;
 using namespace GenPDE;
 
-REGISTER_TEST(ASROption1)
+REGISTER_TEST_MANUAL(ASROption1)
 {
     // Payout:
     // S_T / Max( A_T, 90 )

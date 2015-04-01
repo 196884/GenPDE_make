@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Regis Dupont. All rights reserved.
 //
 
-#ifndef AVCONTEX_H_
-#define AVCONTEX_H_
+#ifndef AVCONTEXT_H
+#define AVCONTEXT_H
 
 #include "Framework.h"
 
@@ -61,4 +61,4 @@ protected:
     std::map<GenPDE::VariableUID, AVPtr> mAVs;
 };
 
-#endif // AVCONTEX_H_
+#endif // AVCONTEXT_H

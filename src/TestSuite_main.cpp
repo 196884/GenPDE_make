@@ -13,7 +13,7 @@
 
 int main(int argc, const char * argv[]) {
     try {
-        TestSuite::runAll();
+        TestSuite::runAll(true);
         TestSuite::printRecapWithFailures();
     } catch ( Exception e ) {
         e.print();
