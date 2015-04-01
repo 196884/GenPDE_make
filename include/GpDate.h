@@ -1,13 +1,13 @@
 //
-//  Date.h
+//  GpDate.h
 //  GenPDE
 //
 //  Created by Regis Dupont on 8/22/14.
 //  Copyright (c) 2014 Regis Dupont. All rights reserved.
 //
 
-#ifndef DATE_H_
-#define DATE_H_
+#ifndef GPDATE_H
+#define GPDATE_H
 
 #include "boost/date_time/gregorian/gregorian.hpp"
 
@@ -24,4 +24,4 @@ namespace GenPDE
     static double OneDayInYears(1.0 / 365.0);
 }
 
-#endif // DATE_H_
+#endif // GPDATE_H

@@ -13,6 +13,7 @@
 #include "Exceptions.h"
 #include "Double.h"
 #include "Constants.h"
+#include "Resources.h"
 //#include "Date.h"
 
 #endif /* FRAMEWORK_H_ */

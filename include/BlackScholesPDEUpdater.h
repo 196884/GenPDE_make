@@ -8,7 +8,7 @@
 #ifndef BLACKSCHOLESPDEUPDATER_H_
 #define BLACKSCHOLESPDEUPDATER_H_
 
-#include "Date.h"
+#include "GpDate.h"
 #include "PDEUpdater1D.h"
 #include "PDESolver1DInterfaces.h"
 

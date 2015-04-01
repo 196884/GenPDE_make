@@ -13,7 +13,7 @@
 
 #include "TradeLeg.h"
 
-#include "Date.h"
+#include "GpDate.h"
 #include "PayoutExpression.h"
 
 class TLPayment : public TradeLeg

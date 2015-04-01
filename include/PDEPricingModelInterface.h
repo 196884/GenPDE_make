@@ -11,7 +11,7 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include "Date.h"
+#include "GpDate.h"
 #include "CEValues.h"
 #include "PricerUid.h"
 #include "MarketObservable.h"

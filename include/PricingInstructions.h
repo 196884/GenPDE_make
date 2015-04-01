@@ -14,7 +14,7 @@
 #include <map>
 #include <iostream> 
 
-#include "Date.h"
+#include "GpDate.h"
 #include "PricingInstruction.h"
 
 class PricingInstructions

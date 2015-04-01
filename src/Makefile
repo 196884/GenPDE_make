@@ -2,17 +2,19 @@ CC = clang
 BOOST_HEADERS = /Users/regisdupont/Documents/Code/boost_1_56_0
 BOOST_LIBS = /Users/regisdupont/Documents/Code/boost_1_56_0/bin.v2/libs/date_time/build/darwin-4.2.1/release/link-static/threading-multi
 
-CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -MMD
-
 LFLAGS += -L $(BOOST_LIBS)
 LFLAGS += -lboost_date_time
 LFLAGS += -lstdc++
 
-BUILD_DIR = ../build
 SRC_DIR = ../src
+HDR_DIR = ../include
+BUILD_DIR = ../build
 BIN_DIR = ../bin
 
-INCLUDES += -I $(BOOST_HEADERS)
+#INCLUDES += -I $(BOOST_HEADERS)
+INCLUDES += -I $(HDR_DIR)
+
+CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -MMD
 
 TARGET = $(BIN_DIR)/GenPDETest
 
@@ -27,12 +29,12 @@ CPPFILES += CEValuesStored.cpp
 CPPFILES += CEValuesStoredTests.cpp
 CPPFILES += CubicSplineInterpolator.cpp
 CPPFILES += CubicSplineInterpolatorTests.cpp
-CPPFILES += Date.cpp
 CPPFILES += DateTests.cpp
 CPPFILES += DateTimeTests.cpp
 CPPFILES += FwdStartingCall.cpp
 CPPFILES += GenPDEParser.cpp
 CPPFILES += GenPDEParserTests.cpp
+CPPFILES += GpDate.cpp
 CPPFILES += IteratorsTests.cpp
 CPPFILES += MOContext1DFixed.cpp
 CPPFILES += MOContextTests.cpp
@@ -103,7 +105,7 @@ GenPDETest: $(OBJFILES) $(BIN_DIR)
 all: GenPDETest
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(BUILD_DIR)
-	$(CC) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) -I ../include -c $< -o $@
 
 cleanobj:
 	rm -fr $(BUILD_DIR)/*

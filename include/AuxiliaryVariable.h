@@ -12,7 +12,7 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
-#include "Date.h"
+#include "GpDate.h"
 #include "VariableEnums.h"
 
 class PayoutExpression;

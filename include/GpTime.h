@@ -1,18 +1,18 @@
 //
-//  Time.h
+//  GpTime.h
 //  GenPDE
 //
 //  Created by Regis Dupont on 9/17/14.
 //  Copyright (c) 2014 Regis Dupont. All rights reserved.
 //
 
-#ifndef TIME_H_
-#define TIME_H_
+#ifndef GPTIME_H
+#define GPTIME_H
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 
 #include "Exceptions.h"
-#include "Date.h"
+#include "GpDate.h"
 
 // boost::posix_time
 namespace GenPDE
@@ -51,4 +51,4 @@ namespace GenPDE
     }
 }
 
-#endif // TIME_H_
+#endif // GPTIME_H

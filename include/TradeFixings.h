@@ -12,7 +12,7 @@
 #include <boost/optional.hpp>
 #include <map>
 
-#include "Date.h"
+#include "GpDate.h"
 #include "MarketObservable.h"
 #include "ChoiceEnums.h"
 
