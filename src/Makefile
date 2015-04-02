@@ -1,9 +1,11 @@
 CC = clang
 BOOST_HEADERS = /Users/regisdupont/Documents/Code/boost_1_56_0
 BOOST_LIBS = /Users/regisdupont/Documents/Code/boost_1_56_0/bin.v2/libs/date_time/build/darwin-4.2.1/release/link-static/threading-multi
+BOOST_LIBS = /Users/regisdupont/Documents/Code/boost_1_56_0/bin.v2/libs/program_options/build/darwin-4.2.1/release/link-static/threading-multi
 
 LFLAGS += -L $(BOOST_LIBS)
 LFLAGS += -lboost_date_time
+LFLAGS += -lboost_program_options
 LFLAGS += -lstdc++
 
 SRC_DIR = ../src
@@ -103,14 +105,14 @@ $(BIN_DIR):
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
 
-$(BIN_DIR)/GenPDETest: $(SRC_DIR)/GenPDETest_main.cpp $(OBJFILES) $(BIN_DIR)
+$(BIN_DIR)/GenPDETest: $(SRC_DIR)/GenPDETest_main.cpp $(OBJFILES) | $(BIN_DIR)
 	$(CC) $(CPPFLAGS) $(LFLAGS) $(OBJFILES) $< -o $@
 
-$(BIN_DIR)/GenPDEPricer: $(SRC_DIR)/GenPDEPricer_main.cpp $(OBJFILES) $(BIN_DIR)
+$(BIN_DIR)/GenPDEPricer: $(SRC_DIR)/GenPDEPricer_main.cpp $(OBJFILES) | $(BIN_DIR)
 	$(CC) $(CPPFLAGS) $(LFLAGS) $(OBJFILES) $< -o $@
 
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(BUILD_DIR)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 cleanobj:
