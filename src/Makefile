@@ -14,7 +14,7 @@ BIN_DIR = ../bin
 INCLUDES += -I $(BOOST_HEADERS)
 INCLUDES += -I $(HDR_DIR)
 
-CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -MMD
+CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -MMD $(INCLUDES)
 
 TARGET = $(BIN_DIR)/GenPDETest
 
@@ -73,7 +73,6 @@ CPPFILES += RngTests.cpp
 CPPFILES += TLPayment.cpp
 CPPFILES += TLPricerRef.cpp
 CPPFILES += TestSuite.cpp
-CPPFILES += TestSuite_main.cpp
 CPPFILES += TimeGridFunctions.cpp
 CPPFILES += TimeGridFunctionsTests.cpp
 CPPFILES += TradeFixings.cpp
@@ -85,11 +84,16 @@ CPPFILES += VariableDependencies.cpp
 CPPFILES += VariableDependenciesTests.cpp
 CPPFILES += basicTests.cpp
 
+EXES += GenPDETest
+EXES += GenPDEPricer
+
 SRCFILES = $(addprefix $(SRC_DIR)/, $(CPPFILES))
 
 OBJFILES = $(addprefix $(BUILD_DIR)/, $(CPPFILES:.cpp=.o))
 
 DEPSFILES = $(addprefix $(BUILD_DIR)/, $(CPPFILES:.cpp=.d))
+
+all: $(addprefix $(BIN_DIR)/, $(EXES))
 
 -include $(DEPSFILES)
 
@@ -99,13 +103,15 @@ $(BIN_DIR):
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
 
-GenPDETest: $(OBJFILES) $(BIN_DIR)
-	$(CC) $(CPPFLAGS) $(LFLAGS) $(OBJFILES) -o $(BIN_DIR)/GenPDETest
+$(BIN_DIR)/GenPDETest: $(SRC_DIR)/GenPDETest_main.cpp $(OBJFILES) $(BIN_DIR)
+	$(CC) $(CPPFLAGS) $(LFLAGS) $(OBJFILES) $< -o $@
 
-all: GenPDETest
+$(BIN_DIR)/GenPDEPricer: $(SRC_DIR)/GenPDEPricer_main.cpp $(OBJFILES) $(BIN_DIR)
+	$(CC) $(CPPFLAGS) $(LFLAGS) $(OBJFILES) $< -o $@
+
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(BUILD_DIR)
-	$(CC) $(CPPFLAGS) -I ../include -c $< -o $@
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 cleanobj:
 	rm -fr $(BUILD_DIR)/*

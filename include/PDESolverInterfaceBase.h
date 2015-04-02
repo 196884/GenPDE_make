@@ -16,6 +16,8 @@ typedef size_t SolutionSetUid;
 class PDESolverInterfaceBase
 {
 public:
+    virtual                   ~PDESolverInterfaceBase() {}
+
     virtual size_t            getNbDimensions() const = 0;
     virtual size_t            getStateGridSize(size_t dimension) const = 0;
     

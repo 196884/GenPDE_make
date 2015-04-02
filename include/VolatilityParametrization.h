@@ -14,6 +14,7 @@
 class VolatilityParametrization
 {
 public:
+    virtual ~VolatilityParametrization() {}
 	virtual double evaluateVolatility(double moneyness) const = 0;
 	virtual double evaluateVolatilityDerivative(double moneyness) const = 0;
 };

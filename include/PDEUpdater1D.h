@@ -19,6 +19,8 @@ class Solver1DInterface;
 class PDEUpdater1D
 {
 public:
+    virtual ~PDEUpdater1D() {}
+
 	virtual void update(Solver1DInterface& solver) = 0;
 };
 
