@@ -43,6 +43,7 @@ public:
 protected:
     DPISConstPtr mDPIs;
     TLConstPtr   mMainTradeLeg;
+    // FIXME: Rigorously, this should be the definition of the AVs, not their discretization...
     AVCPtr       mAVContext;
 };
 
