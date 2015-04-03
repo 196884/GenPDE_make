@@ -54,7 +54,8 @@ public:
 
     AVConstPtr getAuxiliaryVariable(GenPDE::VariableUID uid) const;
 
-    // Returns the vector of all UIDs, in increasing order
+    // Returns the vector of all UIDs, ordered such that if AV_a appears before AV_b,
+    // Then AV_a cannot depend (even indirectly) on AV_b
     void getUids(std::vector<GenPDE::VariableUID>& uids) const;
 
     size_t getNbAVs() const;

@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "Framework.h"
 #include "AuxiliaryVariable.h"
 
@@ -17,12 +19,38 @@ AuxiliaryVariables::AVConstPtr AuxiliaryVariables::getAuxiliaryVariable(GenPDE::
 
 void AuxiliaryVariables::getUids(std::vector<GenPDE::VariableUID>& uids) const
 {
-    uids.resize(m_avMap.size());
-    size_t currIdx = 0;
+    // For now, we assume that there are no 2 AVs with the same date
+    // (throwing if it's not the case).
+    // For the more general case, this is just topological sorting (though
+    // for now we don't even have a query on hte AV definitions to infer the
+    // graph topology...)
+    size_t nbAVs = m_avMap.size();
+
+    // We create a vector of AVs that we're going to sort by date:
+    std::vector<AVConstPtr> avs(nbAVs);
     AVMap::const_iterator itCurr;
     AVMap::const_iterator itEnd = m_avMap.end();
+    size_t currIdx = 0;
     for( itCurr = m_avMap.begin(); itEnd != itCurr; ++itCurr )
-        uids[currIdx++] = itCurr->first;
+        avs[currIdx++] = itCurr->second;
+
+    std::sort(
+        avs.begin(),
+        avs.end(),
+        [](AVConstPtr a, AVConstPtr b) { return a->getDate() < b->getDate(); }
+    );
+
+    // We check for multiple AVs with the same date:
+    for(size_t i = 1; i < nbAVs; ++i)
+        Exception::check(
+            avs[i-1]->getDate() < avs[i]->getDate(),
+            "AuxiliaryVariables::getUids",
+            "Could not order AVs by dependencies"
+        );
+
+    uids.resize(nbAVs);
+    for(currIdx = 0; currIdx < nbAVs; ++currIdx)
+        uids[currIdx] = avs[currIdx]->getUid();
 }
 
 size_t AuxiliaryVariables::getNbAVs() const
