@@ -1,12 +1,5 @@
-/*
- * TridiagonalRoutines.h
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
-
-#ifndef TRIDIAGONALROUTINES_H_
-#define TRIDIAGONALROUTINES_H_
+#ifndef TRIDIAGONAL_ROUTINES_H
+#define TRIDIAGONAL_ROUTINES_H
 
 /// \brief A collection of tridiagonal matrix handling routines
 /// (matrix-vector multiplication, and tridiagonal system inversion)
@@ -232,4 +225,4 @@ public:
     }
 };
 
-#endif /* TRIDIAGONALROUTINES_H_ */
+#endif // TRIDIAGONAL_ROUTINES_H

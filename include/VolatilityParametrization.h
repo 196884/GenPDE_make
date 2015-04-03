@@ -1,12 +1,5 @@
-/*
- * VolatilityParametrization.h
- *
- *  Created on: Nov 17, 2009
- *      Author: dupontr
- */
-
-#ifndef VOLATILITYPARAMETRIZATION_H_
-#define VOLATILITYPARAMETRIZATION_H_
+#ifndef VOLATILITY_PARAMETRIZATION_H
+#define VOLATILITY_PARAMETRIZATION_H
 
 /// \brief An abstract class to represent a parametrization
 /// as a function of (forward) moneyness, the moneyness being
@@ -49,4 +42,4 @@ private:
 	double mSmile;
 };
 
-#endif /* VOLATILITYPARAMETRIZATION_H_ */
+#endif // VOLATILITY_PARAMETRIZATION_H

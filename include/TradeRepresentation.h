@@ -1,13 +1,5 @@
-//
-//  TradeRepresentation.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/27/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef TRADEREPRESENTATION_H_
-#define TRADEREPRESENTATION_H_
+#ifndef TRADE_REPRESENTATION_H
+#define TRADE_REPRESENTATION_H
 
 #include <boost/shared_ptr.hpp> 
 #include "AuxiliaryVariable.h"
@@ -44,4 +36,4 @@ protected:
     AVsConstPtr  mAVs;
 };
 
-#endif // TRADEREPRESENTATION_H_
+#endif // TRADE_REPRESENTATION_H

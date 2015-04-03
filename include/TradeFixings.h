@@ -1,13 +1,5 @@
-//
-//  TradeFixings.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/28/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef TRADEFIXINGS_H_
-#define TRADEFIXINGS_H_
+#ifndef TRADE_FIXINGS_H
+#define TRADE_FIXINGS_H
 
 #include <boost/optional.hpp>
 #include <map>
@@ -19,17 +11,10 @@
 class MOFixings
 {
 public:
-    boost::optional<double> getFixing(MOUid mo_uid, const GenPDE::Date& date) const
-    {
-        std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator it = mFixings.find(mo_uid);
-        if( it == mFixings.end() )
-            return boost::optional<double>();
-        std::map<GenPDE::Date, double>::const_iterator it2 = it->second.find(date);
-        if( it2 == it->second.end() )
-            return boost::optional<double>();
-        return it2->second;
-    }
-    
+    void                    addFixing(MOUid mo_uid, const GenPDE::Date& date, double value);
+
+    boost::optional<double> getFixing(MOUid mo_uid, const GenPDE::Date& date) const;
+   
 protected:
     std::map<MOUid, std::map<GenPDE::Date, double> > mFixings;
 };
@@ -37,20 +22,17 @@ protected:
 class ChoiceFixings
 {
 public:
+    void                            addFixing(
+        const Choice::Uid&  uid, 
+        const GenPDE::Date& date, 
+        Choice::Choice      choice
+    );
+
     boost::optional<Choice::Choice> getFixing(
         const Choice::Uid&  uid,
         const GenPDE::Date& date
-    ) const
-    {
-        std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> >::const_iterator it = mFixings.find(uid);
-        if( it == mFixings.end() )
-            return boost::optional<Choice::Choice>();
-        std::map<GenPDE::Date, Choice::Choice>::const_iterator it2 = it->second.find(date);
-        if( it2 == it->second.end() )
-            return boost::optional<Choice::Choice>();
-        return it2->second;
-    }
-    
+    ) const;
+   
 protected:
     std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> > mFixings;
 };
@@ -58,36 +40,29 @@ protected:
 class TradeFixings
 {
 protected:
-    typedef boost::shared_ptr<const MOFixings>     MOFixingsPtr;
-    typedef boost::shared_ptr<const ChoiceFixings> ChoiceFixingsPtr;
+    typedef boost::shared_ptr<MOFixings>     MOFixingsPtr;
+    typedef boost::shared_ptr<ChoiceFixings> ChoiceFixingsPtr;
     
 public:
-    TradeFixings()
-    {
-        mMOFixings = boost::shared_ptr<MOFixings>(new MOFixings());
-        mChoiceFixings = boost::shared_ptr<ChoiceFixings>(new ChoiceFixings());
-    }
-    
+    TradeFixings();
+
     TradeFixings(
         const MOFixingsPtr&     mo_fixings,
         const ChoiceFixingsPtr& choice_fixings
-    )
-    :mMOFixings(mo_fixings)
-    ,mChoiceFixings(choice_fixings)
-    {}
+    );
     
-    boost::optional<double> getMOFixing(MOUid mo_uid, const GenPDE::Date& date) const
-    {
-        return mMOFixings->getFixing(mo_uid, date);
-    }
+    void                    addMOFixing(MOUid mo_uid, const GenPDE::Date& date, double value);
+    boost::optional<double> getMOFixing(MOUid mo_uid, const GenPDE::Date& date) const;
     
+    void                            addChoiceFixing(
+        const Choice::Uid&  uid,
+        const GenPDE::Date& date,
+        Choice::Choice      choice
+    );
     boost::optional<Choice::Choice> getChoiceFixing(
         const Choice::Uid&  uid,
         const GenPDE::Date& date
-    ) const
-    {
-        return mChoiceFixings->getFixing(uid, date);
-    }
+    ) const;
     
     static boost::shared_ptr<const TradeFixings> NoFixings;
     
@@ -96,4 +71,4 @@ protected:
     ChoiceFixingsPtr mChoiceFixings;
 };
 
-#endif // TRADEFIXINGS_H_
+#endif // TRADE FIXINGS_H

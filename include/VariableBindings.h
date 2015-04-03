@@ -1,13 +1,5 @@
-//
-//  VariableBindings.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef VARIABLEBINDINGS_H_
-#define VARIABLEBINDINGS_H_
+#ifndef VARIABLE_BINDINGS_H
+#define VARIABLE_BINDINGS_H
 
 #include <map> 
 
@@ -52,4 +44,4 @@ private:
     std::map<GenPDE::VariableUID, size_t> mAVBindings;
 };
 
-#endif // VARIABLEBINDINGS_H_
+#endif // VARIABLE_BINDINGS_H

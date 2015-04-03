@@ -1,13 +1,5 @@
-//
-//  TLPayment.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef TLPAYMENT_H_
-#define TLPAYMENT_H_
+#ifndef TL_PAYMENT_H
+#define TL_PAYMENT_H
 
 #include <boost/shared_ptr.hpp>
 
@@ -43,4 +35,4 @@ protected:
     PEConstPtr   mPE;
 };
 
-#endif // TLPAYMENT_H_
+#endif // TL_PAYMENT_H

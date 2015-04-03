@@ -1,12 +1,5 @@
-/*
- * TestSuite.h
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
-
-#ifndef TESTSUITE_H_
-#define TESTSUITE_H_
+#ifndef TEST_SUITE_H
+#define TEST_SUITE_H
 
 #include <string>
 #include <vector>
@@ -178,4 +171,4 @@ private:
 	_test_results.pushFailure(o.str()); \
 	}
 
-#endif /* TESTSUITE_H_ */
+#endif // TEST_SUITE_H

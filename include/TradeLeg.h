@@ -1,13 +1,5 @@
-//
-//  TradeLeg.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef TRADELEG_H_
-#define TRADELEG_H_
+#ifndef TRADE_LEG_H
+#define TRADE_LEG_H
 
 #include <iostream>
 #include <boost/shared_ptr.hpp>
@@ -34,4 +26,4 @@ protected:
     virtual void print(std::ostream& stream) const = 0;
 };
 
-#endif // TRADELEG_H_
+#endif // TRADE_LEG_H

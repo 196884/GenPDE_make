@@ -1,13 +1,5 @@
-//
-//  TLPricerRef.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef TLPRICERREF_H_
-#define TLPRICERREF_H_
+#ifndef TL_PRICER_REF_H
+#define TL_PRICER_REF_H
 
 #include "TradeLeg.h"
 #include "PricerUid.h"
@@ -35,4 +27,4 @@ protected:
     PricerUid          mUid;
 };
 
-#endif // TLPRICERREF_H_
+#endif // TL_PRICER_REF_H

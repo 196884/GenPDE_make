@@ -1,13 +1,5 @@
-//
-//  TimeGridFunctions.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/25/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef TIMEGRIDFUNCTIONS_H_
-#define TIMEGRIDFUNCTIONS_H_
+#ifndef TIME_GRID_FUNCTIONS_H
+#define TIME_GRID_FUNCTIONS_H
 
 #include <vector>
 
@@ -25,4 +17,4 @@ namespace GenPDE
     );
 }
 
-#endif // TIMEGRIDFUNCTIONS_H_
+#endif // TIME_GRID_FUNCTIONS_H

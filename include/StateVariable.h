@@ -1,13 +1,5 @@
-//
-//  StateVariable.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef STATEVARIABLE_H_
-#define STATEVARIABLE_H_
+#ifndef STATE_VARIABLE_H
+#define STATE_VARIABLE_H
 
 class StateVariable
 {
@@ -17,4 +9,4 @@ public:
 
 typedef StateVariable::Uid SVUid;
 
-#endif // STATEVARIABLE_H_
+#endif // STATE_VARIABLE_H

@@ -1,13 +1,5 @@
-//
-//  VariableEnums.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/9/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef VARIABLEENUMS_H_
-#define VARIABLEENUMS_H_
+#ifndef VARIABLE_ENUMS_H
+#define VARIABLE_ENUMS_H
 
 namespace GenPDE
 {
@@ -19,4 +11,4 @@ namespace GenPDE
     typedef size_t VariableUID;
 }
 
-#endif // VARIABLEENUMS_H_
+#endif // VARIABLE_ENUMS_H

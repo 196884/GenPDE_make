@@ -1,13 +1,5 @@
-//
-//  VariableDependencies.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/24/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef VARIABLEDEPENDENCIES_H_
-#define VARIABLEDEPENDENCIES_H_
+#ifndef VARIABLE_DEPENDENCIES_H
+#define VARIABLE_DEPENDENCIES_H
 
 #include <utility>
 #include <vector>
@@ -410,4 +402,4 @@ protected:
     size_t* mSVStrides;
 };
 
-#endif // VARIABLEDEPENDENCIES_H_
+#endif // VARIABLE_DEPENDENCIES_H
