@@ -18,11 +18,5 @@ AVReference::CEVConstPtr AVReference::evalCE(
     const AVContext& av_context
 ) const
 {
-    boost::shared_ptr<const AuxiliaryVariable> avDef = av_context.getAuxiliaryVariable(mUid);
-    const std::vector<double>& avValues = avDef->getDiscretizationValues();
-    VarDependencies varDeps(GenPDE::VT_AuxiliaryVariable, mUid, avValues.size());
-    boost::shared_ptr<CEValues> result(new CEValuesStored(varDeps));
-    double* ptr = result->getDataPtr();
-    std::copy(avValues.begin(), avValues.end(), ptr);
-    return result;
+    return av_context.evalCE(mUid);
 }

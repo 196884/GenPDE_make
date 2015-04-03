@@ -29,9 +29,11 @@ public:
         double                           max_rannacher_step_length,
         
         size_t                           space_grid_size,
-        double                           space_grid_nb_std_devs
+        double                           space_grid_nb_std_devs,
+
+        AVDiscretizationPolicy*          av_disc_policy = NULL
     )
-    :PDEPricingModelBase(pricing_date, max_timestep_length, nb_rannacher_steps, max_rannacher_step_length)
+    :PDEPricingModelBase(pricing_date, max_timestep_length, nb_rannacher_steps, max_rannacher_step_length, av_disc_policy)
     ,mSpot(spot)
     ,mRiskFreeRate(risk_free_rate)
     ,mVolatility(volatility)
@@ -43,28 +45,14 @@ public:
     ,mCoeffsSet(false)
     {}
     
-    void setupForTrade(
+    virtual void setupForTrade(
         const std::vector<GenPDE::Date>& trade_dates,
-        const AVCPtr&                    av_context,
+        const AuxiliaryVariables&        auxiliary_variables,
         const FixingsPtr&                fixings
-    )
-    {
-        mFixings   = fixings;
-        mAVContext = av_context;
-        std::vector<double> timeGrid;
-        setupTimeGrid(mPricingDate, trade_dates, timeGrid);
-        setupSpaceGrid(timeGrid);
-        mSolver                 = boost::shared_ptr<PDESolverInterfaceBase>(new PDESolver1D(
-            mLogSpotGrid,
-            timeGrid,
-            this
-        ));
-    }
-    
+    );
+   
     virtual CEVConstPtr   discountFactorCE(const GenPDE::Date& to_date) const;
     virtual CEVConstPtr   marketObservableCE(MOUid uid) const;
-    virtual CEVConstPtr   auxiliaryVariableCE(GenPDE::VariableUID av_uid) const;
-    virtual AVConstPtr    getAuxiliaryVariable(GenPDE::VariableUID av_uid) const;
     virtual double        getCollapsedPricerValue(PricerUid uid) const;
     
     void update(Solver1DInterface& solver);
@@ -77,8 +65,6 @@ protected:
     virtual boost::shared_ptr<PDESolverInterfaceBase> getSolver() { return mSolver; }
     
     virtual boost::shared_ptr<const PDESolverInterfaceBase> getSolver() const { return mSolver; }
-    
-    virtual void discretizeAVs();
     
 protected:
     double              mSpot;

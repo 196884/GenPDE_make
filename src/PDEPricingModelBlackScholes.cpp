@@ -25,7 +25,30 @@ void PDEPricingModelBlackScholes::setupSpaceGrid(const std::vector<double>& time
     	mSpotGrid[i]    = Double::exp(mLogSpotGrid[i]);
     }
 }
-    
+
+void PDEPricingModelBlackScholes::setupForTrade(
+    const std::vector<GenPDE::Date>& trade_dates,
+    const AuxiliaryVariables&        auxiliary_variables,
+    const FixingsPtr&                fixings
+)
+{
+    mFixings   = fixings;
+    if( NULL != m_avDiscretizationPolicy )
+    {
+        mAVContext = m_avDiscretizationPolicy->discretizeAVs(*this, auxiliary_variables);
+    } else {
+        mAVContext = new AVContext();
+    }
+    std::vector<double> timeGrid;
+    setupTimeGrid(mPricingDate, trade_dates, timeGrid);
+    setupSpaceGrid(timeGrid);
+    mSolver                 = boost::shared_ptr<PDESolverInterfaceBase>(new PDESolver1D(
+        mLogSpotGrid,
+        timeGrid,
+        this
+    ));
+}
+     
 PDEPricingModelBlackScholes::CEVConstPtr   PDEPricingModelBlackScholes::discountFactorCE(const GenPDE::Date& to_date) const
 {
     double df = 0;
@@ -67,26 +90,6 @@ PDEPricingModelBlackScholes::CEVConstPtr   PDEPricingModelBlackScholes::marketOb
     return result;
 }
 
-PDEPricingModelBlackScholes::CEVConstPtr   PDEPricingModelBlackScholes::auxiliaryVariableCE(GenPDE::VariableUID uid) const
-{
-    const std::vector<double>& avValues(mAVContext->getAuxiliaryVariable(uid)->getDiscretizationValues());
-    VarDependencies avDeps(GenPDE::VT_AuxiliaryVariable, uid, avValues.size());
-    if( mCurrentDate <= mPricingDate )
-        Exception::check(
-            1 == avDeps.getNbAVConfigurations(),
-            "PDEPricingModelBlackScholes::auxiliaryVariableCE",
-            "AV dependency should be entirely determined"
-        );
-    CEVPtr result(boost::shared_ptr<CEValues>(new CEValuesStored(avDeps)));
-    std::copy(avValues.begin(), avValues.end(), result->getDataPtr());
-    return result;
-}
-
-PDEPricingModelBlackScholes::AVConstPtr    PDEPricingModelBlackScholes::getAuxiliaryVariable(GenPDE::VariableUID uid) const
-{
-    return mAVContext->getAuxiliaryVariable(uid);
-}
-
 double PDEPricingModelBlackScholes::getCollapsedPricerValue(PricerUid uid) const
 {
     Exception::check(
@@ -124,10 +127,4 @@ void PDEPricingModelBlackScholes::update(Solver1DInterface &solver)
     convectionCoefs.front() = -mRiskFreeRate;
     convectionCoefs.back()  = -mRiskFreeRate;
     mCoeffsSet = true;
-}
-
-void PDEPricingModelBlackScholes::discretizeAVs()
-{
-    if( mAVContext->AVBegin() != mAVContext->AVEnd() )
-        Exception::notImplemented("PDEPricingModelBlackScholes::discretizeAVs");
 }

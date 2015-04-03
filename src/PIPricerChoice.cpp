@@ -24,7 +24,7 @@ PIPricerChoice::PIPricerChoice(
 ,mTL1(trade_leg_1)
 {}
 
-void PIPricerChoice::apply(const ModelPtr& model) const
+void PIPricerChoice::apply(const ModelPtr& model, const TradePtr& trade) const
 {
     CEVConstPtr     leg0Val(mTL0->evalCE(model));
     CEVConstPtr     leg1Val(mTL1->evalCE(model));

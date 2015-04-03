@@ -14,6 +14,8 @@
 
 #include "PDEPricingModelInterface.h"
 #include "PDESolverInterfaceBase.h"
+#include "AVContext.h"
+#include "AVDiscretizationPolicy.h"
 
 class PDEPricingModelBase : public PDEPricingModelInterface
 {
@@ -27,15 +29,17 @@ public:
         const GenPDE::Date&                              pricing_date,
         double                                           max_timestep_length,
         size_t                                           nb_rannacher_steps,
-        double                                           max_rannacher_step_length
+        double                                           max_rannacher_step_length,
+        AVDiscretizationPolicy*                          av_disc_policy            = NULL
     )
     :mMaxTimestepLength(max_timestep_length)
     ,mNbRannacherSteps(nb_rannacher_steps)
     ,mMaxRannacherStepLength(max_rannacher_step_length)
+    ,m_avDiscretizationPolicy( av_disc_policy )
     ,mPricingDate(pricing_date)
     {}
     
-    virtual ~PDEPricingModelBase() {}
+    virtual ~PDEPricingModelBase();
     
     virtual GenPDE::Date  getPricingDate() const { return mPricingDate; }
     virtual GenPDE::Date  getCurrentDate() const { return mCurrentDate; }
@@ -51,6 +55,7 @@ public:
     virtual CEVPtr        addTempPricer(const VarDependencies& av_deps, PricerUid& uid);
     /// The following obliterates the existing PricerUid, if any.
     virtual void          renamePricer(PricerUid current_uid, PricerUid new_uid);
+    virtual CEVConstPtr   auxiliaryVariableCE(GenPDE::VariableUID av_uid) const;
 
 protected:
     /// Helper routine, also sets the members used to keep track of date...
@@ -72,9 +77,11 @@ protected:
     double                                          mMaxTimestepLength;
     size_t                                          mNbRannacherSteps;
     double                                          mMaxRannacherStepLength;
+
+    AVDiscretizationPolicy*                         m_avDiscretizationPolicy;
     
     FixingsPtr                                      mFixings;
-    AVCPtr                                          mAVContext;
+    AVContext*                                      mAVContext;
     
     std::vector<GenPDE::Date>                       mAllDates; // trade dates and pricing date
     size_t                                          mCurrentDateIndex; // in mAllDates;

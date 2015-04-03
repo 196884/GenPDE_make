@@ -23,7 +23,7 @@ REGISTER_TEST(PDETradePricer_DigitalCall_1)
     //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
     
     std::string file("../resources/DigitalCall_TR.xml");
-    boost::shared_ptr<TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(file, true));
+    boost::shared_ptr<const TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(file, true));
     
     //boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
     //std::cout << "Finished parsing trade representation (" << (mst1 - mst0).total_microseconds() << ")" << std::endl;

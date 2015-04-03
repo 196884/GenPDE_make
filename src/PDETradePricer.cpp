@@ -71,7 +71,7 @@ void PDETradePricer::removeAVDependency(PricerUid uid, GenPDE::VariableUID av_ui
     const VarMemoryLayout& oldDeps(oldPricer->getVarMemoryLayout());
     if( av_uid != oldDeps.getInnerAV() )
         Exception::raise("PDESolverTradePricer::removeAVDependency", "Can only remove innermost AV");
-    boost::shared_ptr<const AuxiliaryVariable> avDetails = mPDEModel->getAuxiliaryVariable(av_uid);
+    boost::shared_ptr<const AuxiliaryVariable> avDetails = mTradeRepresentation->getAuxiliaryVariables()->getAuxiliaryVariable(av_uid);
     CEVConstPtr     avValues(avDetails->getDefinition()->evalCE(mPDEModel));
     VarDependencies newDeps(oldDeps.removeAVDependency(av_uid), avValues->getVarMemoryLayout());
     
@@ -81,7 +81,7 @@ void PDETradePricer::removeAVDependency(PricerUid uid, GenPDE::VariableUID av_ui
         tmpPricer,
         oldPricer,
         avValues,
-        avDetails->getDiscretizationValues()
+        mPDEModel->auxiliaryVariableCE(av_uid)
     );
     mPDEModel->renamePricer(tmpUid, uid);
 }
@@ -95,16 +95,16 @@ double PDETradePricer::price()
 {
     boost::shared_ptr<const DatedPricingInstructions> datedPricingInstructions(mTradeRepresentation->getDatedPricingInstructions());
     std::vector<GenPDE::Date>                         tradeDates(datedPricingInstructions->getInstructionDates());
-    mPDEModel->setupForTrade(tradeDates, mTradeRepresentation->getAVContext());
+    mPDEModel->setupForTrade(tradeDates, *mTradeRepresentation->getAuxiliaryVariables());
     GenPDE::Date                                      currentDate(mPDEModel->getCurrentDate());
     std::vector<PIPtr> instructions(datedPricingInstructions->getPricingInstructions(currentDate));
     for(const PIPtr& instruction : instructions )
-        instruction->apply(mPDEModel);
+        instruction->apply(mPDEModel, mTradeRepresentation);
     while( mPDEModel->timeStepToNextDate() )
     {
         instructions = datedPricingInstructions->getPricingInstructions(mPDEModel->getCurrentDate());
         for(const PIPtr& instruction : instructions)
-            instruction->apply(mPDEModel);
+            instruction->apply(mPDEModel, mTradeRepresentation);
     }
     
     boost::shared_ptr<const TradeLeg>                 mainTradeLeg(mTradeRepresentation->getMainTradeLeg());

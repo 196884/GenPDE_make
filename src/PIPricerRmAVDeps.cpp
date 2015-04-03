@@ -9,6 +9,7 @@
 #include "Framework.h"
 #include "PIPricerRmAVDeps.h"
 #include "PayoutExpression.h"
+#include "TradeRepresentation.h"
 
 PIPricerRmAVDeps::PIPricerRmAVDeps(
     PricerUid                               pricer_uid,
@@ -18,7 +19,7 @@ PIPricerRmAVDeps::PIPricerRmAVDeps(
 ,mAVUids(av_uids)
 {}
 
-void PIPricerRmAVDeps::apply(const ModelPtr& model) const
+void PIPricerRmAVDeps::apply(const ModelPtr& model, const TradePtr& trade) const
 {
     for(GenPDE::VariableUID avUid : mAVUids)
     {
@@ -28,7 +29,7 @@ void PIPricerRmAVDeps::apply(const ModelPtr& model) const
             return; // Nothing to be done: there really isn't a dependency!
         if( avUid != oldAVDeps.getInnerAV() )
             Exception::raise("PIPricerRmAVDeps::apply", "Can only remove innermost AV");
-        boost::shared_ptr<const AuxiliaryVariable> avDetails = model->getAuxiliaryVariable(avUid);
+        boost::shared_ptr<const AuxiliaryVariable> avDetails = trade->getAuxiliaryVariables()->getAuxiliaryVariable(avUid);
         CEVConstPtr     avValues(avDetails->getDefinition()->evalCE(model));
         VarDependencies newAVDeps(oldAVDeps.removeAVDependency(avUid), avValues->getVarMemoryLayout());
         
@@ -38,7 +39,7 @@ void PIPricerRmAVDeps::apply(const ModelPtr& model) const
             tmpPricer,
             oldPricer,
             avValues,
-            avDetails->getDiscretizationValues()
+            model->auxiliaryVariableCE(avUid)
         );
         model->renamePricer(tmpUid, mPricerUid);
     }

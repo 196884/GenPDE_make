@@ -30,18 +30,6 @@ public:
     ,mDate(date)
     {}
     
-    void setDiscretizationValues(const std::vector<double>& values)
-    {
-        mDiscretizationValues = values;
-    }
-    
-    const std::vector<double>& getDiscretizationValues() const
-    {
-        return mDiscretizationValues;
-    }
-    
-    size_t getNbDiscretizationValues() const { return mDiscretizationValues.size(); }
-    
     boost::shared_ptr<const PayoutExpression> getDefinition() const { return mDefinition; }
     
     GenPDE::Date getDate() const { return mDate; }
@@ -50,10 +38,29 @@ public:
     
 protected:
     GenPDE::VariableUID                       mUid;
-    std::vector<double>                       mDiscretizationValues;
     boost::shared_ptr<const PayoutExpression> mDefinition;
     GenPDE::Date                              mDate;
 };
 
+class AuxiliaryVariables
+{
+public:
+    typedef boost::shared_ptr< const AuxiliaryVariable > AVConstPtr;
+    typedef std::map< GenPDE::VariableUID, AVConstPtr >  AVMap;
+
+public:
+    AuxiliaryVariables() {}
+    AuxiliaryVariables(const std::vector<AVConstPtr>& avs);
+
+    AVConstPtr getAuxiliaryVariable(GenPDE::VariableUID uid) const;
+
+    // Returns the vector of all UIDs, in increasing order
+    void getUids(std::vector<GenPDE::VariableUID>& uids) const;
+
+    size_t getNbAVs() const;
+
+protected:
+    AVMap m_avMap;
+};
 
 #endif // AUXILIARYVARIABLE_H_

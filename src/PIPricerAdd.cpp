@@ -18,7 +18,7 @@ PIPricerAdd::PIPricerAdd(
 ,mTL2(trade_leg_2)
 {}
 
-void PIPricerAdd::apply(const ModelPtr& model) const
+void PIPricerAdd::apply(const ModelPtr& model, const TradePtr& trade) const
 {
     CEVConstPtr     leg1Val(mTL1->evalCE(model));
     CEVConstPtr     leg2Val(mTL2->evalCE(model));

@@ -23,7 +23,7 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
     //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
     
     std::string file("../resources/AsianCall_TR.xml");
-    boost::shared_ptr<TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(file, true));
+    boost::shared_ptr<const TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(file, true));
     
     boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
     //std::cout << "Finished parsing trade representation (" << (mst1 - mst0).total_microseconds() << ")" << std::endl;
@@ -38,10 +38,9 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
     const size_t nbRannacher(4);
     
     // For now, we hardcode the discretization of the AVs:
-    boost::shared_ptr<AVContext> avContext = tradeRepresentation->getAVContext();
+    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
     for(size_t i=1; i<365; ++i)
     {
-        boost::shared_ptr<AuxiliaryVariable> av = avContext->getAuxiliaryVariable(i);
         double tenor      = ((double) i) / ((double) 365);
         double stdDev     = volatility * Double::sqrt(tenor);
         double width      = 2 * stdDevMultiple * stdDev;
@@ -50,7 +49,7 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
         std::vector<double> avValues(nbPlanes);
         for(size_t j=0; j<nbPlanes; ++j)
             avValues[j] = Double::exp(lowerBound + j * ds);
-        av->setDiscretizationValues(avValues);
+        avDisc->setAVDiscretizationValues(i, avValues);
     }
     
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
@@ -62,7 +61,8 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
         nbRannacher,
         0.3,
         nbSpaceNodes,
-        stdDevMultiple
+        stdDevMultiple,
+        avDisc
     ));
     
     boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation));

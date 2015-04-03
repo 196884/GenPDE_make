@@ -65,7 +65,7 @@ GenPDEParser::TRPtr  GenPDEParser::parseTradeRepresentation(const std::string& t
         return mParserString.parseTR(tr.begin(), tr.end());
 }
 
-GenPDEParser::AVCPtr GenPDEParser::parseAVContext(const std::string& avc, bool is_file)
+GenPDEParser::AVsPtr GenPDEParser::parseAuxiliaryVariables(const std::string& avc, bool is_file)
 {
     if( is_file )
     {
@@ -73,9 +73,9 @@ GenPDEParser::AVCPtr GenPDEParser::parseAVContext(const std::string& avc, bool i
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return mParserFile.parseAVC(begin, end);
+        return mParserFile.parseAVs(begin, end);
     } else
-        return mParserString.parseAVC(avc.begin(), avc.end());
+        return mParserString.parseAVs(avc.begin(), avc.end());
 }
 
 

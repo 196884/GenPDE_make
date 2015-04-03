@@ -16,15 +16,19 @@ BIN_DIR = ../bin
 INCLUDES += -I $(BOOST_HEADERS)
 INCLUDES += -I $(HDR_DIR)
 
-CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -MMD $(INCLUDES)
+CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -g-MMD $(INCLUDES)
+#CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -g -MMD $(INCLUDES)
 
 TARGET = $(BIN_DIR)/GenPDETest
 
 CPPFILES += ASROptionTests.cpp
 CPPFILES += ASRRawTests.cpp
 CPPFILES += ASRTests.cpp
+CPPFILES += AVContext.cpp
+CPPFILES += AVDiscretizationPolicy.cpp
 CPPFILES += AVInterpolatorTests.cpp
 CPPFILES += AVReference.cpp
+CPPFILES += AuxiliaryVariable.cpp
 CPPFILES += CEValues.cpp
 CPPFILES += CEValuesFunctionsTests.cpp
 CPPFILES += CEValuesStored.cpp

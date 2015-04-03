@@ -1,6 +1,5 @@
-* Add more options to GenPDETest, add option to exclude tests at compile time (macro flag)
+* Add more options to GenPDETest (auto tests, all tests, specified tests,...)
 * Add variables to the trade representation
-* Remove AV discretization data from the TradeRepresentation
 * Enable auto-discretization of AVs (naive for now, but need to use fixings though)
 * Write parser to build a model from an XML specification
 * Get a flexible GenPDEPricer executable

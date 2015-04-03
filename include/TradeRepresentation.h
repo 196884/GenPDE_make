@@ -10,14 +10,14 @@
 #define TRADEREPRESENTATION_H_
 
 #include <boost/shared_ptr.hpp> 
-#include "AVContext.h"
+#include "AuxiliaryVariable.h"
 #include "TradeLeg.h"
 #include "PricingInstructions.h"
 
 class TradeRepresentation
 {
 protected:
-    typedef boost::shared_ptr<AVContext>                      AVCPtr;
+    typedef boost::shared_ptr<const AuxiliaryVariables>       AVsConstPtr;
     typedef boost::shared_ptr<const TradeLeg>                 TLConstPtr;
     typedef boost::shared_ptr<const DatedPricingInstructions> DPISConstPtr;
     
@@ -27,24 +27,21 @@ public:
     TradeRepresentation(
         const DPISConstPtr& dated_pricing_instructions,
         const TLConstPtr&   main_trade_leg,
-        const AVCPtr&       av_context
+        const AVsConstPtr&  auxiliary_variables
     )
     :mDPIs(dated_pricing_instructions)
     ,mMainTradeLeg(main_trade_leg)
-    ,mAVContext(av_context)
+    ,mAVs(auxiliary_variables)
     {}
     
-    AVCPtr       getAVContext() { return mAVContext; }
-    
-    DPISConstPtr getDatedPricingInstructions() const { return mDPIs; }
-    
-    TLConstPtr   getMainTradeLeg() const { return mMainTradeLeg; }
+    AVsConstPtr  getAuxiliaryVariables()       const { return mAVs;          }
+    DPISConstPtr getDatedPricingInstructions() const { return mDPIs;         }
+    TLConstPtr   getMainTradeLeg()             const { return mMainTradeLeg; }
     
 protected:
     DPISConstPtr mDPIs;
     TLConstPtr   mMainTradeLeg;
-    // FIXME: Rigorously, this should be the definition of the AVs, not their discretization...
-    AVCPtr       mAVContext;
+    AVsConstPtr  mAVs;
 };
 
 #endif // TRADEREPRESENTATION_H_

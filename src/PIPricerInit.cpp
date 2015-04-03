@@ -16,7 +16,7 @@ PIPricerInit::PIPricerInit(
 ,mTL(trade_leg)
 {}
 
-void PIPricerInit::apply(const ModelPtr& model) const
+void PIPricerInit::apply(const ModelPtr& model, const TradePtr& trade) const
 {
     CEVConstPtr tlValue(mTL->evalCE(model));
     CEVPtr      pricer(model->addPricer(mPricerUid, tlValue->getVarMemoryLayout()));

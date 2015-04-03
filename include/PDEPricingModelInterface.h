@@ -15,7 +15,6 @@
 #include "CEValues.h"
 #include "PricerUid.h"
 #include "MarketObservable.h"
-#include "AVContext.h"
 #include "TradeFixings.h"
 
 class PDEPricingModelInterface
@@ -24,7 +23,6 @@ protected:
     typedef boost::shared_ptr<const CEValues>          CEVConstPtr;
     typedef boost::shared_ptr<CEValues>                CEVPtr;
     typedef boost::shared_ptr<const AuxiliaryVariable> AVConstPtr;
-    typedef boost::shared_ptr<AVContext>               AVCPtr;
     typedef boost::shared_ptr<const TradeFixings>      FixingsPtr;
     
 public:
@@ -32,7 +30,7 @@ public:
     
     virtual void setupForTrade(
         const std::vector<GenPDE::Date>& trade_dates,
-        const AVCPtr&                    av_context,
+        const AuxiliaryVariables&        auxiliary_variables,
         const FixingsPtr&                fixings = TradeFixings::NoFixings
     ) = 0;
     
@@ -48,9 +46,8 @@ public:
     virtual bool          timeStepToNextDate() = 0;
     
     virtual CEVConstPtr   discountFactorCE(const GenPDE::Date& to_date) const = 0;
-    virtual CEVConstPtr   marketObservableCE(MOUid uid) const = 0;    
     virtual CEVConstPtr   auxiliaryVariableCE(GenPDE::VariableUID av_uid) const = 0;
-    virtual AVConstPtr    getAuxiliaryVariable(GenPDE::VariableUID av_uid) const = 0;
+    virtual CEVConstPtr   marketObservableCE(MOUid uid) const = 0;    
     
     virtual CEVPtr        addPricer(PricerUid uid, const VarDependencies& av_deps) = 0;
     virtual CEVPtr        getPricer(PricerUid uid) = 0;

@@ -18,7 +18,7 @@ PIPricerMult::PIPricerMult(
 ,mTL(trade_leg)
 {}
 
-void PIPricerMult::apply(const ModelPtr& model) const
+void PIPricerMult::apply(const ModelPtr& model, const TradePtr& trade) const
 {
     CEVConstPtr     peVal(mPE->evalCE(model));
     CEVConstPtr     legVal(mTL->evalCE(model));

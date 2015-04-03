@@ -9,13 +9,13 @@
 #include "Framework.h"
 #include "TestSuite.h"
 
-#include "AVContext.h"
+#include "AuxiliaryVariable.h"
 #include "GenPDEParser.h"
 
-REGISTER_TEST(AVContextParsing1)
+REGISTER_TEST(AVsParsing1)
 {
     std::string s0("<AuxiliaryVariables></AuxiliaryVariables>");
-    boost::shared_ptr<AVContext> avc0 = GenPDEParser::parseAVContext(s0);
+    boost::shared_ptr<const AuxiliaryVariables> avs0 = GenPDEParser::parseAuxiliaryVariables(s0);
     
     std::stringstream ss;
     ss << "<AuxiliaryVariables>";
@@ -27,10 +27,10 @@ REGISTER_TEST(AVContextParsing1)
     ss << "<AV uid=\"13\" date=\"20120105\"><MORef uid=\"2\"/></AV>";
     ss << "</AuxiliaryVariables>";
     std::string s(ss.str());
-    boost::shared_ptr<AVContext> avc = GenPDEParser::parseAVContext(s);
+    boost::shared_ptr<const AuxiliaryVariables> avs1 = GenPDEParser::parseAuxiliaryVariables(s);
     std::vector<GenPDE::VariableUID> avUids = {1, 3, 5, 7, 11, 13};
     for(GenPDE::VariableUID avUid : avUids)
-        TEST_EQ(avc->getAuxiliaryVariable(avUid)->getUid(), avUid);
+        TEST_EQ(avs1->getAuxiliaryVariable(avUid)->getUid(), avUid);
 }
 
 REGISTER_TEST(TradeRepresentationParsing1)
@@ -49,7 +49,7 @@ REGISTER_TEST(TradeRepresentationParsing1)
     ss << "</AuxiliaryVariables>";
     ss << "</TradeRepresentation>";
     std::string s0(ss.str());
-    boost::shared_ptr<TradeRepresentation> tr0 = GenPDEParser::parseTradeRepresentation(s0);
+    boost::shared_ptr<const TradeRepresentation> tr0 = GenPDEParser::parseTradeRepresentation(s0);
     TEST( true );
     
     // A forward starting call
@@ -92,6 +92,6 @@ REGISTER_TEST(TradeRepresentationParsing1)
     
     ss1 << "</TradeRepresentation>";
     std::string s1(ss1.str());
-    boost::shared_ptr<TradeRepresentation> tr1 = GenPDEParser::parseTradeRepresentation(s1);
+    boost::shared_ptr<const TradeRepresentation> tr1 = GenPDEParser::parseTradeRepresentation(s1);
     TEST( true );
 }

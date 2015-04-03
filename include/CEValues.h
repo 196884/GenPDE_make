@@ -108,8 +108,8 @@ public:
     static void rmAVDependency(
         CEVPtr                  result,
         CEVConstPtr             arg,
-        CEVConstPtr             av_values, // of the AV to remove
-        const std::vector<double>& av_disc_values
+        CEVConstPtr             av_values,      // New values (evaluted at current time) of AV to remove
+        CEVConstPtr             av_disc_values  // Discretized values of AV to remove
     );
     
     /// The format is as follows:
@@ -149,7 +149,7 @@ protected:
         CEVPtr                  result,
         CEVConstPtr             arg,
         CEVConstPtr             av_values, // of the AV to remove
-        const std::vector<double>& av_disc_values
+        CEVConstPtr             av_disc_values
     );
 
 protected:

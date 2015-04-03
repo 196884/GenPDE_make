@@ -20,7 +20,7 @@ PIPricerCond::PIPricerCond(
 ,mTL2(trade_leg_2)
 {}
 
-void PIPricerCond::apply(const ModelPtr& model) const
+void PIPricerCond::apply(const ModelPtr& model, const TradePtr& trade) const
 {
     Exception::notImplemented("PIPricerCond::apply");
 }

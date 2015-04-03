@@ -94,7 +94,7 @@ void CEValues::rmAVDependency(
     CEVPtr                     res,
     CEVConstPtr                arg,
     CEVConstPtr                av_values, // of the AV to remove
-    const std::vector<double>& av_disc_values
+    CEVConstPtr                av_disc_values
 )
 {
     const VarMemoryLayout& varMemLayoutNew(res->getVarMemoryLayout());
@@ -132,10 +132,11 @@ void CEValues::rmAVDependency(
     
     // WARNING: the code below is specialized when there's exactly one (new) AV dependency in res.
     size_t nbSVDeps = varMemLayoutNew.getNbDeps() - 1; // the 1 is for the AV...
-    const VarMemoryLayout& varMemLayoutAV = av_values->getVarMemoryLayout();
+    const VarMemoryLayout& varMemLayoutAV  = av_values->getVarMemoryLayout();
+    const VarMemoryLayout& varMemLayoutAVD = av_disc_values->getVarMemoryLayout();
     int newLoopStrides[MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
     int oldLoopStrides[MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
-    int avLoopStrides[MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
+    int avLoopStrides[ MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
     varMemLayoutNew.getLoopStrides(varMemLayoutNew, newLoopStrides);
     varMemLayoutOld.getLoopStrides(varMemLayoutNew, oldLoopStrides);
     varMemLayoutAV.getLoopStrides(varMemLayoutNew, avLoopStrides);
@@ -152,7 +153,11 @@ void CEValues::rmAVDependency(
     //AVInterpolatorNaturalCubic                     interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
     //AVInterpolatorLinear                           interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
     //AVInterpolatorLinearUniform<GenPDE::Log>       interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
-    AVInterpolatorNaturalCubicUniform<GenPDE::Log> interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
+    AVInterpolatorNaturalCubicUniform<GenPDE::Log> interp(
+        av_disc_values->getDataPtr(),
+        varMemLayoutAVD.getSize(),
+        GenPDE::ExtrapolationType_Linear
+    );
     switch (nbSVDeps)
     {
     case 1:
@@ -189,7 +194,7 @@ void CEValues::rmAVDependency_noAVDepsResult(
     CEVPtr                     res,
     CEVConstPtr                arg,
     CEVConstPtr                av_values, // of the AV to remove
-    const std::vector<double>& av_disc_values
+    CEVConstPtr                av_disc_values
 )
 {
     /// We know that:
@@ -201,12 +206,13 @@ void CEValues::rmAVDependency_noAVDepsResult(
     const VarMemoryLayout& varMemLayoutNew = res->getVarMemoryLayout();
     const VarMemoryLayout& varMemLayoutOld = arg->getVarMemoryLayout();
     const VarMemoryLayout& varMemLayoutAV  = av_values->getVarMemoryLayout();
+    const VarMemoryLayout& varMemLayoutAVD = av_disc_values->getVarMemoryLayout();
     int newLoopStrides[MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
     int oldLoopStrides[MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
-    int avLoopStrides[MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
+    int avLoopStrides[ MAX_NB_SV_DEPS + MAX_NB_AV_DEPS];
     varMemLayoutNew.getLoopStrides(varMemLayoutNew, newLoopStrides);
     varMemLayoutOld.getLoopStrides(varMemLayoutNew, oldLoopStrides);
-    varMemLayoutAV.getLoopStrides(varMemLayoutNew, avLoopStrides);
+    varMemLayoutAV.getLoopStrides( varMemLayoutNew, avLoopStrides);
     size_t nbSVDeps = varMemLayoutNew.getNbDeps();
     double*       newPtr = res->getDataPtr();
     const double* oldPtr = arg->getDataPtr();
@@ -215,7 +221,12 @@ void CEValues::rmAVDependency_noAVDepsResult(
     //AVInterpolatorNaturalCubic                   interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
     //AVInterpolatorLinear                           interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
     //AVInterpolatorLinearUniform<GenPDE::Log>       interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
-    AVInterpolatorNaturalCubicUniform<GenPDE::Log> interp(&av_disc_values[0], av_disc_values.size(), GenPDE::ExtrapolationType_Linear);
+    AVInterpolatorNaturalCubicUniform<GenPDE::Log> interp(
+        av_disc_values->getDataPtr(),
+        varMemLayoutAVD.getSize(),
+        GenPDE::ExtrapolationType_Linear
+    );
+
     switch (nbSVDeps)
     {
     case 1:

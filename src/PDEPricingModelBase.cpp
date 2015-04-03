@@ -9,6 +9,12 @@
 #include "PDEPricingModelBase.h"
 #include "CEValuesReference.h"
 
+PDEPricingModelBase::~PDEPricingModelBase()
+{
+    delete mAVContext;
+    delete m_avDiscretizationPolicy;
+}
+
 void PDEPricingModelBase::setupTimeGrid(
     const GenPDE::Date&              pricing_date,
     const std::vector<GenPDE::Date>& trade_dates,
@@ -195,6 +201,11 @@ PDEPricingModelBase::CEVPtr PDEPricingModelBase::addTempPricer(const VarDependen
     PricerUid maxUid(mPricerToDetails.rbegin()->first);
     uid = maxUid+1;
     return addPricer(uid, av_deps);
+}
+
+PDEPricingModelBase::CEVConstPtr   PDEPricingModelBase::auxiliaryVariableCE(GenPDE::VariableUID av_uid) const
+{
+    return mAVContext->evalCE(av_uid);
 }
 
 void PDEPricingModelBase::renamePricer(PricerUid current_uid, PricerUid new_uid)

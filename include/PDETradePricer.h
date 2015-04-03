@@ -22,15 +22,15 @@
 class PDETradePricer
 {
 protected:
-    typedef boost::shared_ptr<PDEPricingModelInterface> PDEModelPtr;
-    typedef boost::shared_ptr<const PayoutExpression>   PEPtr;
-    typedef boost::shared_ptr<const PricingInstruction> PIPtr;
-    typedef boost::shared_ptr<MOContext>                MOCPtr;
-    typedef boost::shared_ptr<AVContext>                AVCPtr;
-    typedef boost::shared_ptr<CEValues>                 CEVPtr;
-    typedef boost::shared_ptr<const CEValues>           CEVConstPtr;
-    typedef boost::shared_ptr<const TradeLeg>           TLPtr;
-    typedef boost::shared_ptr<TradeRepresentation>      TRPtr;
+    typedef boost::shared_ptr<PDEPricingModelInterface>  PDEModelPtr;
+    typedef boost::shared_ptr<const PayoutExpression>    PEPtr;
+    typedef boost::shared_ptr<const PricingInstruction>  PIPtr;
+    typedef boost::shared_ptr<MOContext>                 MOCPtr;
+    typedef boost::shared_ptr<AVContext>                 AVCPtr;
+    typedef boost::shared_ptr<CEValues>                  CEVPtr;
+    typedef boost::shared_ptr<const CEValues>            CEVConstPtr;
+    typedef boost::shared_ptr<const TradeLeg>            TLPtr;
+    typedef boost::shared_ptr<const TradeRepresentation> TRPtr;
     
 public:
     PDETradePricer(
@@ -39,13 +39,6 @@ public:
     )
     :mPDEModel(pde_model)
     ,mTradeRepresentation(trade_representation)
-    {}
-    
-    // FIXME: legacy, to remove!
-    PDETradePricer(
-        const PDEModelPtr& pde_model
-    )
-    :mPDEModel(pde_model)
     {}
     
     double price();

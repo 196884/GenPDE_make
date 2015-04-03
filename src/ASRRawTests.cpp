@@ -84,11 +84,12 @@ REGISTER_TEST(ASRRaw1)
         nbSpaceNodes,
         stdDevMultiple
     ));
+    AuxiliaryVariables avs; // Dummy
     boost::shared_ptr<TradeFixings> noFixings(new TradeFixings());
-    model->setupForTrade(dates, avc, noFixings);
+    model->setupForTrade(dates, avs, noFixings);
     boost::shared_ptr<const CEValues> moValues(model->marketObservableCE(1));
     const double* const spaceGridPtrBegin(moValues->getDataPtr());
-    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model));
+    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, boost::shared_ptr<TradeRepresentation>()));
     
     VarDependencies avDepsPlanes(GenPDE::VT_AuxiliaryVariable, 1, nbPlanes);
     double* solPtr(model->addPricer(1, avDepsPlanes)->getDataPtr());

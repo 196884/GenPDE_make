@@ -15,21 +15,27 @@
 
 #include "TRParserBase.h"
 
+class PayoutExpression;
+class TradeLeg;
+class PricingInstruction;
+class TradeRepresentation;
+class AuxiliaryVariables;
+
 class GenPDEParser
 {
 protected:
     typedef boost::shared_ptr<const PayoutExpression>    PEPtr;
     typedef boost::shared_ptr<const TradeLeg>            TLPtr;
     typedef boost::shared_ptr<const PricingInstruction>  PIPtr;
-    typedef boost::shared_ptr<TradeRepresentation>       TRPtr;
-    typedef boost::shared_ptr<AVContext>                 AVCPtr;
+    typedef boost::shared_ptr<const TradeRepresentation> TRPtr;
+    typedef boost::shared_ptr<const AuxiliaryVariables>  AVsPtr;
     
 public:
-    static PEPtr  parsePayoutExpression(const std::string& s, bool is_file = false);
-    static TLPtr  parseTradeLeg(const std::string& s, bool is_file = false);
-    static PIPtr  parsePricingInstruction(const std::string& s, bool is_file = false);
+    static PEPtr  parsePayoutExpression(   const std::string& s, bool is_file = false);
+    static TLPtr  parseTradeLeg(           const std::string& s, bool is_file = false);
+    static PIPtr  parsePricingInstruction( const std::string& s, bool is_file = false);
     static TRPtr  parseTradeRepresentation(const std::string& s, bool is_file = false);
-    static AVCPtr parseAVContext(const std::string& s, bool is_file = false);
+    static AVsPtr parseAuxiliaryVariables( const std::string& s, bool is_file = false);
     
 private:
     static TRParserBase<std::string::const_iterator>     mParserString;

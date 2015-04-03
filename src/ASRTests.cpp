@@ -48,18 +48,19 @@ REGISTER_TEST(ASR1)
     for(long i=0; i<366; ++i)
         dates[i] = dateAddDays(d0, i);
     
-    boost::shared_ptr<AVContext> avc(new AVContext());;
     std::string sAV1("<MORef uid=\"1\"/>");
     boost::shared_ptr<const PayoutExpression> av1Def = GenPDEParser::parsePayoutExpression(sAV1);
-    boost::shared_ptr<AuxiliaryVariable> av1(new AuxiliaryVariable(1, dates[1], av1Def));
+    std::vector<boost::shared_ptr<const AuxiliaryVariable> > avs;
+    boost::shared_ptr<const AuxiliaryVariable> av1(new AuxiliaryVariable(1, dates[1], av1Def));
+    avs.push_back(av1);
     vector<double> av1Values(nbPlanes);
     double stdDev1  = volatility * Double::sqrt(dateDifferenceInDays(dates[1], dates[0]) / NbDaysPerYear);
     double av1Lower = logSpot - avStdDevMultiple * stdDev1;
     double av1Step  = 2 * avStdDevMultiple * stdDev1 / (nbPlanes - 1);
     for(size_t i=0; i<nbPlanes; ++i)
         av1Values[i] = Double::exp(av1Lower + i * av1Step);
-    av1->setDiscretizationValues(av1Values);
-    avc->setAuxiliaryVariable(av1);
+    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
+    avDisc->setAVDiscretizationValues(1, av1Values);
     for(size_t i=2; i<dates.size()-1; ++i)
     {
         std::stringstream ss;
@@ -68,15 +69,15 @@ REGISTER_TEST(ASR1)
         ss << "\"/></BinOp>";
         std::string sAVi(ss.str());
         boost::shared_ptr<const PayoutExpression> aviDef = GenPDEParser::parsePayoutExpression(sAVi);
-        boost::shared_ptr<AuxiliaryVariable> avi(new AuxiliaryVariable((unsigned int) i, dates[i], aviDef));
+        boost::shared_ptr<const AuxiliaryVariable> avi(new AuxiliaryVariable((unsigned int) i, dates[i], aviDef));
+        avs.push_back(avi);
         vector<double> aviValues(nbPlanes);
         double stdDevi  = volatility * Double::sqrt(dateDifferenceInDays(dates[i], dates[0]) / NbDaysPerYear);
         double aviLower = logSpot - avStdDevMultiple * stdDevi;
         double aviStep = 2 * avStdDevMultiple * stdDevi / (nbPlanes - 1);
         for(size_t j=0; j<nbPlanes; ++j)
             aviValues[j] = ((double) i) * Double::exp(aviLower + j * aviStep);
-        avi->setDiscretizationValues(aviValues);
-        avc->setAuxiliaryVariable(avi);
+        avDisc->setAVDiscretizationValues(i, aviValues);
     }
     
     /// The final payout
@@ -122,12 +123,18 @@ REGISTER_TEST(ASR1)
         nbRannacher,
         0.3,
         nbSpaceNodes,
-        stdDevMultiple
+        stdDevMultiple,
+        avDisc
     ));
-    model->setupForTrade(dates, avc, TradeFixings::NoFixings);
-    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model));
+    boost::shared_ptr<AuxiliaryVariables> avsPtr(new AuxiliaryVariables(avs));
+    model->setupForTrade(dates, *avsPtr, TradeFixings::NoFixings);
+    boost::shared_ptr<TradeRepresentation> trade(new TradeRepresentation(
+        boost::shared_ptr<DatedPricingInstructions>(),
+        boost::shared_ptr<TradeLeg>(),
+        avsPtr
+    ));
+    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, trade));
     
-    avc->setAuxiliaryVariable(av1);
     solverTradePricer->pricerInit(1, payoutLeg);
     
     for(size_t i=dates.size()-2; i>0; --i)
@@ -173,18 +180,21 @@ REGISTER_TEST(ASR2)
         dates[i] = dateAddDays(d0, i);
     Date firstERDate(GenPDE::dateAddDays(d0, nbDaysERStart));
     
+    std::vector<boost::shared_ptr<const AuxiliaryVariable> > avs;
     boost::shared_ptr<AVContext> avc(new AVContext());;
     std::string sAV1("<MORef uid=\"1\"/>");
     boost::shared_ptr<const PayoutExpression> av1Def = GenPDEParser::parsePayoutExpression(sAV1);
-    boost::shared_ptr<AuxiliaryVariable> av1(new AuxiliaryVariable(1, dates[1], av1Def));
+    boost::shared_ptr<const AuxiliaryVariable> av1(new AuxiliaryVariable(1, dates[1], av1Def));
+    avs.push_back(av1);
     vector<double> av1Values(nbPlanes);
     double stdDev1  = volatility * Double::sqrt(dateDifferenceInDays(dates[1], dates[0]) / NbDaysPerYear);
     double av1Lower = logSpot - avStdDevMultiple * stdDev1;
     double av1Step = 2 * avStdDevMultiple * stdDev1 / (nbPlanes - 1);
     for(size_t i=0; i<nbPlanes; ++i)
         av1Values[i] = Double::exp(av1Lower + i * av1Step);
-    av1->setDiscretizationValues(av1Values);
-    avc->setAuxiliaryVariable(av1);
+
+    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
+    avDisc->setAVDiscretizationValues(1, av1Values);
     for(size_t i=2; i<dates.size()-1; ++i)
     {
         std::stringstream ss;
@@ -193,15 +203,15 @@ REGISTER_TEST(ASR2)
         ss << "\"/></BinOp>";
         std::string sAVi(ss.str());
         boost::shared_ptr<const PayoutExpression> aviDef = GenPDEParser::parsePayoutExpression(sAVi);
-        boost::shared_ptr<AuxiliaryVariable> avi(new AuxiliaryVariable((unsigned int) i, dates[i], aviDef));
+        boost::shared_ptr<const AuxiliaryVariable> avi(new AuxiliaryVariable((unsigned int) i, dates[i], aviDef));
+        avs.push_back(avi);
         vector<double> aviValues(nbPlanes);
         double stdDevi  = volatility * Double::sqrt(dateDifferenceInDays(dates[i], dates[0]) / NbDaysPerYear);
         double aviLower = logSpot - avStdDevMultiple * stdDevi;
         double aviStep = 2 * avStdDevMultiple * stdDevi / (nbPlanes - 1);
         for(size_t j=0; j<nbPlanes; ++j)
             aviValues[j] = ((double) i) * Double::exp(aviLower + j * aviStep);
-        avi->setDiscretizationValues(aviValues);
-        avc->setAuxiliaryVariable(avi);
+        avDisc->setAVDiscretizationValues(i, aviValues);
     }
     
     /// The final payout
@@ -290,12 +300,18 @@ REGISTER_TEST(ASR2)
         nbRannacher,
         0.3,
         nbSpaceNodes,
-        stdDevMultiple
+        stdDevMultiple,
+        avDisc
     ));
-    model->setupForTrade(dates, avc);
-    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model));
+    boost::shared_ptr<AuxiliaryVariables> avsPtr(new AuxiliaryVariables(avs));
+    model->setupForTrade(dates, *avsPtr);
+    boost::shared_ptr<TradeRepresentation> trade(new TradeRepresentation(
+        boost::shared_ptr<DatedPricingInstructions>(),
+        boost::shared_ptr<TradeLeg>(),
+        avsPtr
+    ));
+    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, trade));
     
-    avc->setAuxiliaryVariable(av1);
     solverTradePricer->pricerInit(nbDaysTotal, payoutLeg);
     size_t currentPricer(nbDaysTotal);
     

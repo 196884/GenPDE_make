@@ -31,7 +31,7 @@ public:
         const TLConstPtr& trade_leg
     );
     
-    void apply(const ModelPtr& model) const;
+    void apply(const ModelPtr& model, const TradePtr& trade) const;
     
     friend std::ostream& operator<<(std::ostream& stream, const PIPricerMult& pi);
     

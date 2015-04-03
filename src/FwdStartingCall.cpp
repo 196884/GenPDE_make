@@ -73,10 +73,11 @@ REGISTER_TEST(FwdStartingCall1)
     
     std::vector<GenPDE::Date> dates = {d0, d1, d2};
     
-    boost::shared_ptr<AVContext> avc(new AVContext());
+    std::vector<boost::shared_ptr<const AuxiliaryVariable> > avs;
     boost::shared_ptr<AuxiliaryVariable> av1(new AuxiliaryVariable(1, d1, peAV));
-    av1->setDiscretizationValues(av1Values);
-    avc->setAuxiliaryVariable(av1);
+    avs.push_back(av1);
+    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
+    avDisc->setAVDiscretizationValues(1, av1Values);
     
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
@@ -87,10 +88,17 @@ REGISTER_TEST(FwdStartingCall1)
         nbRannacher,
         0.25,
         nbSpaceNodes,
-        stdDevMultiple
+        stdDevMultiple,
+        avDisc
     ));
-    model->setupForTrade(dates, avc);
-    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model));
+    boost::shared_ptr<const AuxiliaryVariables> avsPtr(new AuxiliaryVariables(avs));
+    model->setupForTrade(dates, *avsPtr);
+    boost::shared_ptr<TradeRepresentation> trade(new TradeRepresentation(
+        boost::shared_ptr<DatedPricingInstructions>(),
+        boost::shared_ptr<TradeLeg>(),
+        avsPtr
+    ));
+    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, trade));
     
     solverTradePricer->pricerInit(1, pePayout);
     solverTradePricer->timeStepToNextDate();

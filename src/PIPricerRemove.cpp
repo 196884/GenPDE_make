@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Regis Dupont. All rights reserved.
 //
 
+#include "PDEPricingModelInterface.h"
 #include "PIPricerRemove.h"
 
 PIPricerRemove::PIPricerRemove(
@@ -14,7 +15,7 @@ PIPricerRemove::PIPricerRemove(
 :mPricerUid(pricer_uid)
 {}
 
-void PIPricerRemove::apply(const ModelPtr& model) const
+void PIPricerRemove::apply(const ModelPtr& model, const TradePtr& trade) const
 {
     model->removePricer(mPricerUid);
 }

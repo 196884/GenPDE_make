@@ -29,7 +29,6 @@
 #include "AVReference.h"
 #include "MOReference.h"
 #include "AuxiliaryVariable.h"
-#include "AVContext.h"
 
 #include "TradeLeg.h"
 #include "TLPayment.h"
@@ -61,11 +60,11 @@ protected:
     typedef boost::shared_ptr<PayoutExpression>               PEPtr;
     typedef boost::shared_ptr<TradeLeg>                       TLPtr;
     typedef boost::shared_ptr<const PricingInstruction>       PIPtr;
-    typedef boost::shared_ptr<AuxiliaryVariable>              AVPtr;
-    typedef boost::shared_ptr<AVContext>                      AVCPtr;
+    typedef boost::shared_ptr<const AuxiliaryVariable>        AVPtr;
+    typedef boost::shared_ptr<const AuxiliaryVariables>       AVsPtr;
     typedef boost::shared_ptr<const PricingInstructions>      PISPtr;
     typedef boost::shared_ptr<const DatedPricingInstructions> DPISPtr;
-    typedef boost::shared_ptr<TradeRepresentation>            TRPtr;
+    typedef boost::shared_ptr<const TradeRepresentation>      TRPtr;
     
 public:
     TRParserBase()
@@ -214,11 +213,11 @@ public:
             "</AV>"
         )[qi::_val = phx::construct<AVPtr>(phx::new_<AuxiliaryVariable>(qi::_1, qi::_2, qi::_3))];
         
-        mAVC     = (
+        mAVs     = (
             "<AuxiliaryVariables>" >>
             *mAV >>
             "</AuxiliaryVariables>"
-        )[qi::_val = phx::construct<AVCPtr>(phx::new_<AVContext>(qi::_1))];
+        )[qi::_val = phx::construct<AVsPtr>(phx::new_<AuxiliaryVariables>(qi::_1))];
         
         mPIS     = (
             qi::lexeme["<PricingInstructions date=\"" >> mDate >> "\">"] >>
@@ -238,7 +237,7 @@ public:
             "<MainTradeLeg>" >>
             mTL >>
             "</MainTradeLeg>" >>
-            mAVC >>
+            mAVs >>
             "</TradeRepresentation>"
         )[qi::_val = phx::construct<TRPtr>(phx::new_<TradeRepresentation>(qi::_1, qi::_2, qi::_3))];
     }
@@ -294,18 +293,18 @@ public:
         return result;
     }
     
-    AVCPtr parseAVC(Iterator first, Iterator last)
+    AVsPtr parseAVs(Iterator first, Iterator last)
     {
-        AVCPtr result;
+        AVsPtr result;
         bool r = qi::phrase_parse(
             first,
             last,
-            mAVC,
+            mAVs,
             qi::space,
             result
         );
         if( !r )
-            Exception::raise("GenPDEParser::parseAVC", "Could not parse AVContext");
+            Exception::raise("GenPDEParser::parseAVs", "Could not parse AVContext");
         return result;
     }
     
@@ -361,7 +360,7 @@ protected:
     qi::rule<Iterator, PIPtr(),   qi::space_type> mPI;
     
     qi::rule<Iterator, AVPtr(),   qi::space_type> mAV;
-    qi::rule<Iterator, AVCPtr(),  qi::space_type> mAVC;
+    qi::rule<Iterator, AVsPtr(),  qi::space_type> mAVs;
     
     qi::rule<Iterator, PISPtr(),  qi::space_type> mPIS;
     qi::rule<Iterator, DPISPtr(), qi::space_type> mDPIS;

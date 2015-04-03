@@ -26,17 +26,6 @@ REGISTER_TEST(CEValuesStored1)
 // TODO: fix CEValuesStored2
 REGISTER_TEST(CEValuesStored2)
 {
-    std::vector<double> v1 = {0, 1, 2};
-    std::vector<double> v2 = {0, 1, 2, 3, 4};
-    std::vector<double> v3 = {0, 1};
-    boost::shared_ptr<PayoutExpression> noPE;
-    GenPDE::Date noDate = GenPDE::dateFromString("20000101");
-    boost::shared_ptr<AuxiliaryVariable> av1(new AuxiliaryVariable(1, noDate, noPE));
-    av1->setDiscretizationValues(v1);
-    boost::shared_ptr<AuxiliaryVariable> av2(new AuxiliaryVariable(2, noDate, noPE));
-    av2->setDiscretizationValues(v2);
-    boost::shared_ptr<AuxiliaryVariable> av3(new AuxiliaryVariable(3, noDate, noPE));
-    av3->setDiscretizationValues(v3);
     VarDependencies avd1(GenPDE::VT_AuxiliaryVariable, 1, 3);
     VarDependencies avd2(GenPDE::VT_AuxiliaryVariable, 2, 5);
     VarDependencies avd3(GenPDE::VT_AuxiliaryVariable, 3, 2);

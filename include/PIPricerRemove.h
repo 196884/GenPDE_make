@@ -21,7 +21,7 @@ public:
     
     PIPricerRemove(PricerUid         pricer_uid);
     
-    void apply(const ModelPtr& model) const;
+    void apply(const ModelPtr& model, const TradePtr& trade) const;
     
     friend std::ostream& operator<<(std::ostream& stream, const PIPricerRemove& pi);
     

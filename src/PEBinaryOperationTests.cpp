@@ -19,24 +19,14 @@ REGISTER_TEST(PEBinaryOperation1)
     MOContextTest moContext;
     AVContext     avContext;
     VarBindings   vb;
-    GenPDE::Date  noDate = GenPDE::dateFromString("20000101");
-    boost::shared_ptr<PayoutExpression> noPE;
-    boost::shared_ptr<AuxiliaryVariable> av1(new AuxiliaryVariable(1, noDate, noPE));
-    boost::shared_ptr<AuxiliaryVariable> av2(new AuxiliaryVariable(2, noDate, noPE));
-    boost::shared_ptr<AuxiliaryVariable> av3(new AuxiliaryVariable(3, noDate, noPE));
-    boost::shared_ptr<AuxiliaryVariable> av4(new AuxiliaryVariable(4, noDate, noPE));
     std::vector<double> v1 = { 2, 3, 5, 7, 11 };
     std::vector<double> v2 = { 0, 1 };
     std::vector<double> v3 = { 10, 11, 12, 13 };
     std::vector<double> v4 = { 42 };
-    av1->setDiscretizationValues(v1);
-    av2->setDiscretizationValues(v2);
-    av3->setDiscretizationValues(v3);
-    av4->setDiscretizationValues(v4);
-    avContext.setAuxiliaryVariable(av1);
-    avContext.setAuxiliaryVariable(av2);
-    avContext.setAuxiliaryVariable(av3);
-    avContext.setAuxiliaryVariable(av4);
+    avContext.setAVDiscretizationValues(1, v1);
+    avContext.setAVDiscretizationValues(2, v2);
+    avContext.setAVDiscretizationValues(3, v3);
+    avContext.setAVDiscretizationValues(4, v4);
     
     std::string s1("<BinOp op=\"Add\"><Const value=\"3\"/><Const value=\"5\"/></BinOp>");
     boost::shared_ptr<const PayoutExpression> pe1 = GenPDEParser::parsePayoutExpression(s1);

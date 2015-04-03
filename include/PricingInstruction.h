@@ -10,22 +10,24 @@
 #define PRICINGINSTRUCTION_H_
 
 #include <iostream>
-#include <boost//shared_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 
-#include "PDEPricingModelInterface.h"
-#include "CEValues.h"
+class PDEPricingModelInterface;
+class TradeRepresentation;
+class CEValues;
 
 class PricingInstruction
 {
 protected:
-    typedef boost::shared_ptr<PDEPricingModelInterface> ModelPtr;
-    typedef boost::shared_ptr<CEValues>                 CEVPtr;
-    typedef boost::shared_ptr<const CEValues>           CEVConstPtr;
+    typedef boost::shared_ptr<PDEPricingModelInterface>  ModelPtr;
+    typedef boost::shared_ptr<const TradeRepresentation> TradePtr;
+    typedef boost::shared_ptr<CEValues>                  CEVPtr;
+    typedef boost::shared_ptr<const CEValues>            CEVConstPtr;
     
 public:
     virtual ~PricingInstruction() {}
     
-    virtual void apply(const ModelPtr& model) const = 0;
+    virtual void apply(const ModelPtr& model, const TradePtr& trade) const = 0;
     
     friend std::ostream& operator<<(std::ostream& stream, const PricingInstruction&);
     
