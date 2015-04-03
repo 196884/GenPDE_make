@@ -8,7 +8,8 @@
 #include "Framework.h"
 #include "TestSuite.h"
 
-/*
+// Test examples/tests
+
 namespace {
 	void AATest(TestResults& _test_results);
 	const bool is_mOwnTest_registered(TestSuite::doRegister(boost::shared_ptr<UnitTest>(new UnitTest("AATest", "basicTests.cpp", 13, &AATest))));
@@ -51,5 +52,4 @@ REGISTER_TEST(Test3)
 	TEST_EQ_DBL(x, z, 0.0100001)
 	TEST_EQ_DBL(x, z, 0.001)
 }
-*/
 

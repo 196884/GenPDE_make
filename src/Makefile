@@ -16,7 +16,7 @@ BIN_DIR = ../bin
 INCLUDES += -I $(BOOST_HEADERS)
 INCLUDES += -I $(HDR_DIR)
 
-CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -g-MMD $(INCLUDES)
+CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -O3 -MMD $(INCLUDES)
 #CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -g -MMD $(INCLUDES)
 
 TARGET = $(BIN_DIR)/GenPDETest
@@ -76,6 +76,7 @@ CPPFILES += PayoutExpressionTests.cpp
 CPPFILES += PricingInstruction.cpp
 CPPFILES += PricingInstructionTests.cpp
 CPPFILES += RngTests.cpp
+CPPFILES += SampleTests.cpp
 CPPFILES += TLPayment.cpp
 CPPFILES += TLPricerRef.cpp
 CPPFILES += TestSuite.cpp
@@ -88,7 +89,6 @@ CPPFILES += TradeRepresentationTests.cpp
 CPPFILES += TridiagonalRoutinesTests.cpp
 CPPFILES += VariableDependencies.cpp
 CPPFILES += VariableDependenciesTests.cpp
-CPPFILES += basicTests.cpp
 
 EXES += GenPDETest
 EXES += GenPDEPricer
