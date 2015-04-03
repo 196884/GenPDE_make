@@ -1,11 +1,3 @@
-//
-//  AVContext.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/24/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #ifndef AVCONTEXT_H
 #define AVCONTEXT_H
 
@@ -13,7 +5,6 @@
 #include <map>
 
 #include "Framework.h"
-
 #include "AuxiliaryVariable.h"
 
 class CEValues;

@@ -2,8 +2,8 @@
 * Add variables to the trade representation
 * Enable auto-discretization of AVs (naive for now, but need to use fixings though)
 * Implement AVDiscretization policies for most of the usual cases (well, running sum for one)
-* Write parser to build a model from an XML specification
-* Get a flexible GenPDEPricer executable
 * Decrease use of boost::shared_ptr!
 * Implement conditional pricers
 * Implement 1D linear smoothing for discontinuities
+* Visualization for solutions / dependencies on variables
+* Clean deps on headers

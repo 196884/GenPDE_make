@@ -16,7 +16,6 @@
 #include "PDETradePricer.h"
 #include "PDEPricingModelBlackScholes.h"
 #include "GenPDEParser.h"
-#include "ModelParser.h"
 
 REGISTER_TEST(PDETradePricer_Call_1)
 {
@@ -102,7 +101,7 @@ REGISTER_TEST(PDETradePricer_Call_3)
     std::string tradeFile("../resources/Call_TR.xml");
     boost::shared_ptr<const TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(tradeFile, true));
     std::string modelFile("../resources/PDE_BS_Model_1.xml");
-    boost::shared_ptr<PDEPricingModelInterface> model(ModelParser::parsePDEModel(modelFile, true));
+    boost::shared_ptr<PDEPricingModelInterface> model(GenPDEParser::parsePDEModel(modelFile, true));
 
     //boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
     //std::cout << "Finished parsing trade representation (" << (mst1 - mst0).total_microseconds() << ")" << std::endl;

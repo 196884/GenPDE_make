@@ -10,8 +10,10 @@
 
 #include "GenPDEParser.h"
 
-TRParserBase<std::string::const_iterator>     GenPDEParser::mParserString;
-TRParserBase<boost::spirit::istream_iterator> GenPDEParser::mParserFile;
+TRParserBase<std::string::const_iterator>        GenPDEParser::mParserString;
+TRParserBase<boost::spirit::istream_iterator>    GenPDEParser::mParserFile;
+ModelParserBase<std::string::const_iterator>     GenPDEParser::m_parserString;
+ModelParserBase<boost::spirit::istream_iterator> GenPDEParser::m_parserFile;
 
 GenPDEParser::PEPtr  GenPDEParser::parsePayoutExpression(const std::string& pe, bool is_file)
 {
@@ -76,6 +78,19 @@ GenPDEParser::AVsPtr GenPDEParser::parseAuxiliaryVariables(const std::string& av
         return mParserFile.parseAVs(begin, end);
     } else
         return mParserString.parseAVs(avc.begin(), avc.end());
+}
+
+GenPDEParser::ModelIfcPtr GenPDEParser::parsePDEModel(const std::string& model, bool is_file)
+{
+    if( is_file )
+    {
+        std::ifstream in(model);
+        in.unsetf(std::ios::skipws);
+        boost::spirit::istream_iterator begin(in);
+        boost::spirit::istream_iterator end;
+        return m_parserFile.parseModel(begin, end);
+    } else
+        return m_parserString.parseModel(model.begin(), model.end());
 }
 
 

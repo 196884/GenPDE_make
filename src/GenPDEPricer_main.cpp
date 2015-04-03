@@ -10,7 +10,6 @@
 #include "Framework.h"
 
 #include "GenPDEParser.h"
-#include "ModelParser.h"
 #include "PDETradePricer.h"
 
 void usage(boost::program_options::options_description& desc)
@@ -45,7 +44,7 @@ int main(int argc, char* argv[])
 
         boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
         boost::shared_ptr<const TradeRepresentation> trade(GenPDEParser::parseTradeRepresentation(payoutFile, true));
-        boost::shared_ptr<PDEPricingModelInterface>  model(ModelParser::parsePDEModel(modelFile, true));
+        boost::shared_ptr<PDEPricingModelInterface>  model(GenPDEParser::parsePDEModel(modelFile, true));
         boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
         boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, trade));
         boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
