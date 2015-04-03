@@ -1,0 +1,20 @@
+*** Installation ***
+
+1. You need to have the boost library installed (and to compile date_time and program_options).
+2. Go to the 'src' directory, and edit the Makefile to set the variables BOOST_HEADERS and BOOST_LIBS
+   to point to the location of your boost install.
+3. Run 'make all' from 'src'.
+4. Run 'make test' to check that everything runs.
+
+
+*** Quick overview/intro ***
+
+* Tests: run GenPDETest
+* Pricer: try running GenPDEPricer -p ../resources/Call_TR.xml -m ../resources/PDE_BS_Model_1.xml -t
+
+
+*** Feedback/questions ***
+
+Reach out to regis.dupont+genpde@m4x.org
+
+
