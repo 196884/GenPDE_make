@@ -16,6 +16,7 @@
 #include "PDETradePricer.h"
 #include "PDEPricingModelBlackScholes.h"
 #include "GenPDEParser.h"
+#include "ModelParser.h"
 
 REGISTER_TEST(PDETradePricer_Call_1)
 {
@@ -55,7 +56,6 @@ REGISTER_TEST(PDETradePricer_Call_1)
     TEST_EQ_DBL(price, 12.3355, 1e-4);
 }
 
-
 REGISTER_TEST(PDETradePricer_Call_2)
 {
     // We price on the only instruction date...
@@ -93,6 +93,26 @@ REGISTER_TEST(PDETradePricer_Call_2)
     //std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;
     //std::cout << "Price: " << price << std::endl;
     TEST_EQ_DBL(price, 0.123, 1e-4);
+}
+
+REGISTER_TEST(PDETradePricer_Call_3)
+{
+    //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
+    
+    std::string tradeFile("../resources/Call_TR.xml");
+    boost::shared_ptr<const TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(tradeFile, true));
+    std::string modelFile("../resources/PDE_BS_Model_1.xml");
+    boost::shared_ptr<PDEPricingModelInterface> model(ModelParser::parsePDEModel(modelFile, true));
+
+    //boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
+    //std::cout << "Finished parsing trade representation (" << (mst1 - mst0).total_microseconds() << ")" << std::endl;
+   
+    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation));
+    double price(pricer->price());
+    //boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
+    //std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;
+    //std::cout << "Price: " << price << std::endl;
+    TEST_EQ_DBL(price, 12.3355, 1e-4);
 }
 
 REGISTER_TEST(PDETradePricer_ZC_1)
