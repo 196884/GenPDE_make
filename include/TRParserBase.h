@@ -1,15 +1,6 @@
-//
-//  ParserBase.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
+#ifndef TR_PARSER_BASE_H
+#define TR_PARSER_BASE_H
 
-#ifndef TRPARSERBASE_H_
-#define TRPARSERBASE_H_
-
-#include <stack>
 #include <string>
 
 #include <boost/shared_ptr.hpp>
@@ -368,4 +359,4 @@ protected:
     qi::rule<Iterator, TRPtr(),   qi::space_type> mTR;
 };
 
-#endif // TRPARSERBASE_H_
+#endif //  TR_PARSER_BASE_H

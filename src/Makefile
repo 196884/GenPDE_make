@@ -47,6 +47,7 @@ CPPFILES += MOContextTests.cpp
 CPPFILES += MOReference.cpp
 CPPFILES += MarkovFunctionalDistribution.cpp
 CPPFILES += MarkovFunctionalTests.cpp
+CPPFILES += ModelParser.cpp
 CPPFILES += PDECallPricingTests.cpp
 CPPFILES += PDEPricerSolutionStorage.cpp
 CPPFILES += PDEPricingModelBase.cpp
