@@ -120,11 +120,14 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 cleanobj:
-	rm -fr $(BUILD_DIR)/*
+	rm -fr $(BUILD_DIR)/*.o
+
+cleandeps:
+	rm -fr $(BUILD_DIR)/*.d
 
 cleanbin:
 	rm -fr $(BIN_DIR)/*
 
-clean: cleanobj cleanbin
+cleanall: cleanobj cleanbin cleandeps
 
 
