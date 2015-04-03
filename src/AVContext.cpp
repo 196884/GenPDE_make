@@ -20,6 +20,6 @@ AVContext::CEVConstPtr AVContext::evalCE(GenPDE::VariableUID av_uid) const
 {
     AVValuesMap::const_iterator it = m_avValuesMap.find(av_uid);
     if( m_avValuesMap.end() == it )
-        Exception::raise("AVContext::evalCE", "Could not find values for specified AV");
+        return CEVConstPtr();
     return it->second;
 }

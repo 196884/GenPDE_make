@@ -7,6 +7,8 @@
 //
 
 #include "MOReference.h"
+#include "MOContext.h"
+#include "PDEPricingModelInterface.h"
 
 void MOReference::print(std::ostream& stream) const
 {
@@ -21,3 +23,22 @@ MOReference::CEVConstPtr MOReference::evalCE(
     return mo_context.evalCE(mUid);
 }
 
+MOReference::CEVConstPtr MOReference::evalCE(
+    const PDEModelPtr& model
+) const
+{
+    return model->marketObservableCE(mUid);
+}
+
+MOReference::CEVConstPtr MOReference::evalFromFixings(
+    const GenPDE::Date&       date,
+    const TradeFixings&       fixings,
+    const AuxiliaryVariables& av_defs,
+    AVContext&                av_context // updated by the call
+) const
+{
+    boost::optional<double> fixing = fixings.getMOFixing(mUid, date);
+    if( !fixing )
+        return CEVConstPtr();
+    return boost::shared_ptr<CEValues>(new CEValuesStored(*fixing));
+}

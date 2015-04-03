@@ -35,3 +35,18 @@ PEUnaryOperation::CEVConstPtr PEUnaryOperation::evalCE(
     result->evalUnaryOperation(mOperator, arg1);
     return result;
 }
+
+PEUnaryOperation::CEVConstPtr PEUnaryOperation::evalFromFixings(
+    const GenPDE::Date&       date,
+    const TradeFixings&       fixings,
+    const AuxiliaryVariables& av_defs,
+    AVContext&                av_context
+) const
+{
+    CEVConstPtr arg1 = mPE->evalFromFixings(date, fixings, av_defs, av_context);
+    if( !arg1 )
+        return arg1;
+    boost::shared_ptr<CEValues> result(new CEValuesStored(arg1));
+    result->evalUnaryOperation(mOperator, arg1);
+    return result;
+} 

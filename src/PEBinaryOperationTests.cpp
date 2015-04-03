@@ -13,6 +13,7 @@
 #include "PEBinaryOperation.h"
 #include "MOContextTests.h"
 #include "GenPDEParser.h"
+#include "AVContext.h"
 
 REGISTER_TEST(PEBinaryOperation1)
 {

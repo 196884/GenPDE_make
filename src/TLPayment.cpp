@@ -7,6 +7,7 @@
 //
 
 #include "TLPayment.h"
+#include "CEValuesStored.h"
 
 TLPayment::TLPayment(
     const GenPDE::Date& payment_date,

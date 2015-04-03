@@ -37,6 +37,13 @@ public:
     virtual CEVConstPtr evalCE(
         const PDEModelPtr& model
     ) const;
+
+    virtual CEVConstPtr evalFromFixings(
+        const GenPDE::Date&       date,
+        const TradeFixings&       fixings,
+        const AuxiliaryVariables& av_defs,
+        AVContext&                av_context // updated by the call
+    ) const;
     
 protected:
     virtual void print(std::ostream& stream) const;
