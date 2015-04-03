@@ -72,7 +72,6 @@ REGISTER_TEST(ASRRaw1)
             values[j] = ((double) (i+1)) * Double::exp(avLower + j * avStep);
         }
     }
-    boost::shared_ptr<AVContext> avc;
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
         spot,

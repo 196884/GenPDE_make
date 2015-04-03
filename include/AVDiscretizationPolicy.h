@@ -14,13 +14,14 @@ public:
     virtual AVContext* discretizeAVs(
         PDEPricingModelInterface&  model,
         const AuxiliaryVariables&  avs
-    ) = 0;
+    );
 };
 
 class AVDiscretizationPolicyHardcoded : public AVDiscretizationPolicy
 {
 public:
     AVDiscretizationPolicyHardcoded();
+    ~AVDiscretizationPolicyHardcoded();
 
     virtual AVContext* discretizeAVs(
         PDEPricingModelInterface&  model,

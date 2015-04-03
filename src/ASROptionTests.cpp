@@ -47,13 +47,13 @@ REGISTER_TEST_MANUAL(ASROption1)
     const size_t nbRannacher(4);
     
     // For now, we hardcode the discretization of the AVs:
-    boost::shared_ptr<AVContext> avContext(new AVContext());
+    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
     boost::shared_ptr<const AuxiliaryVariables> avs = tradeRepresentation->getAuxiliaryVariables();
     boost::shared_ptr<const AuxiliaryVariable>  av0 = avs->getAuxiliaryVariable(0);
     std::vector<double> avValues0(1, 100.0);
     GenPDE::Date        prevDate   = av0->getDate();
     double              totalTenor = 0;
-    avContext->setAVDiscretizationValues(0, avValues0);
+    avDisc->setAVDiscretizationValues(0, avValues0);
     for(size_t i=1; i<126; ++i)
     {
         boost::shared_ptr<const AuxiliaryVariable> av = avs->getAuxiliaryVariable(i);
@@ -66,7 +66,7 @@ REGISTER_TEST_MANUAL(ASROption1)
         std::vector<double> avValues(nbPlanes);
         for(size_t j=0; j<nbPlanes; ++j)
             avValues[j] = Double::exp(lowerBound + j * ds);
-        avContext->setAVDiscretizationValues(i, avValues);
+        avDisc->setAVDiscretizationValues(i, avValues);
         prevDate              = thisDate;
     }
     
@@ -79,7 +79,8 @@ REGISTER_TEST_MANUAL(ASROption1)
         nbRannacher,
         0.3,
         nbSpaceNodes,
-        stdDevMultiple
+        stdDevMultiple,
+        avDisc
     ));
     
     boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation));

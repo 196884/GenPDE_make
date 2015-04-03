@@ -36,6 +36,7 @@ public:
     ,mNbRannacherSteps(nb_rannacher_steps)
     ,mMaxRannacherStepLength(max_rannacher_step_length)
     ,m_avDiscretizationPolicy( av_disc_policy )
+    ,mAVContext(NULL)
     ,mPricingDate(pricing_date)
     {}
     

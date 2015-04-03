@@ -1,7 +1,18 @@
 #include "AVDiscretizationPolicy.h"
 
+AVContext* AVDiscretizationPolicy::discretizeAVs(
+    PDEPricingModelInterface&  model,
+    const AuxiliaryVariables&  avs
+)
+{
+    return new AVContext();
+}
+
 AVDiscretizationPolicyHardcoded::AVDiscretizationPolicyHardcoded()
 :m_avContext(new AVContext())
+{}
+
+AVDiscretizationPolicyHardcoded::~AVDiscretizationPolicyHardcoded()
 {}
 
 AVContext* AVDiscretizationPolicyHardcoded::discretizeAVs(

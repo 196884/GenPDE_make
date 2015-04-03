@@ -2,6 +2,12 @@
 #include "CEValuesStored.h"
 #include "AVContext.h"
 
+AVContext::AVContext()
+{}
+
+AVContext::~AVContext()
+{}
+
 void AVContext::setAVDiscretizationValues(GenPDE::VariableUID av_uid, const std::vector<double>& values)
 {
     VarDependencies avDep(GenPDE::VT_AuxiliaryVariable, av_uid, values.size());

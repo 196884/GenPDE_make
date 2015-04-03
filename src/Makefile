@@ -48,6 +48,7 @@ CPPFILES += MOReference.cpp
 CPPFILES += MarkovFunctionalDistribution.cpp
 CPPFILES += MarkovFunctionalTests.cpp
 CPPFILES += ModelParser.cpp
+CPPFILES += ModelParserTests.cpp
 CPPFILES += PDECallPricingTests.cpp
 CPPFILES += PDEPricerSolutionStorage.cpp
 CPPFILES += PDEPricingModelBase.cpp
@@ -101,6 +102,9 @@ OBJFILES = $(addprefix $(BUILD_DIR)/, $(CPPFILES:.cpp=.o))
 DEPSFILES = $(addprefix $(BUILD_DIR)/, $(CPPFILES:.cpp=.d))
 
 all: $(addprefix $(BIN_DIR)/, $(EXES))
+
+test: all
+	$(BIN_DIR)/GenPDETest
 
 -include $(DEPSFILES)
 

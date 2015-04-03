@@ -181,7 +181,6 @@ REGISTER_TEST(ASR2)
     Date firstERDate(GenPDE::dateAddDays(d0, nbDaysERStart));
     
     std::vector<boost::shared_ptr<const AuxiliaryVariable> > avs;
-    boost::shared_ptr<AVContext> avc(new AVContext());;
     std::string sAV1("<MORef uid=\"1\"/>");
     boost::shared_ptr<const PayoutExpression> av1Def = GenPDEParser::parsePayoutExpression(sAV1);
     boost::shared_ptr<const AuxiliaryVariable> av1(new AuxiliaryVariable(1, dates[1], av1Def));

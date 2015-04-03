@@ -25,6 +25,8 @@ protected:
     typedef std::map< GenPDE::VariableUID, CEVConstPtr > AVValuesMap;
 
 public:
+    AVContext();
+    ~AVContext();
     void setAVDiscretizationValues(GenPDE::VariableUID av_uid, const std::vector<double>& values);
     CEVConstPtr evalCE(GenPDE::VariableUID uid) const;
 
