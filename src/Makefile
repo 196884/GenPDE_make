@@ -37,6 +37,7 @@ CPPFILES += CubicSplineInterpolator.cpp
 CPPFILES += CubicSplineInterpolatorTests.cpp
 CPPFILES += DateTests.cpp
 CPPFILES += DateTimeTests.cpp
+CPPFILES += FixingsParserTests.cpp
 CPPFILES += FwdStartingCall.cpp
 CPPFILES += GenPDEParser.cpp
 CPPFILES += GenPDEParserTests.cpp
@@ -104,6 +105,12 @@ all: $(addprefix $(BIN_DIR)/, $(EXES))
 
 test: all
 	$(BIN_DIR)/GenPDETest
+
+$(BIN_DIR)/Sandbox: $(SRC_DIR)/Sandbox.cpp
+	$(CC) $(CPPFLAGS) $(LFLAGS) -o $(BIN_DIR)/Sandbox $(SRC_DIR)/Sandbox.cpp
+
+sb: $(BIN_DIR)/Sandbox
+	$(BIN_DIR)/Sandbox
 
 -include $(DEPSFILES)
 

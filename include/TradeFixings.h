@@ -15,6 +15,8 @@ public:
 
     boost::optional<double> getFixing(MOUid mo_uid, const GenPDE::Date& date) const;
    
+    friend std::ostream& operator<<(std::ostream& stream, const MOFixings& fixings);
+
 protected:
     std::map<MOUid, std::map<GenPDE::Date, double> > mFixings;
 };
@@ -24,17 +26,21 @@ class ChoiceFixings
 public:
     void                            addFixing(
         const Choice::Uid&  uid, 
+        Choice::Chooser     chooser,
         const GenPDE::Date& date, 
         Choice::Choice      choice
     );
 
     boost::optional<Choice::Choice> getFixing(
         const Choice::Uid&  uid,
+        Choice::Chooser     chooser,
         const GenPDE::Date& date
     ) const;
+
+    friend std::ostream& operator<<(std::ostream& stream, const ChoiceFixings& fixings);
    
 protected:
-    std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> > mFixings;
+    std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> > mFixings[2];
 };
 
 class TradeFixings
@@ -56,15 +62,19 @@ public:
     
     void                            addChoiceFixing(
         const Choice::Uid&  uid,
+        Choice::Chooser     chooser,
         const GenPDE::Date& date,
         Choice::Choice      choice
     );
     boost::optional<Choice::Choice> getChoiceFixing(
         const Choice::Uid&  uid,
+        Choice::Chooser     chooser,
         const GenPDE::Date& date
     ) const;
     
     static boost::shared_ptr<const TradeFixings> NoFixings;
+
+    friend std::ostream& operator<<(std::ostream& stream, const TradeFixings& fixings);
     
 protected:
     MOFixingsPtr     mMOFixings;

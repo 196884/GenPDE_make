@@ -1,5 +1,5 @@
-#ifndef TR_PARSER_BASE_H
-#define TR_PARSER_BASE_H
+#ifndef TRADE_PARSER_BASE_H
+#define TRADE_PARSER_BASE_H
 
 #include <string>
 
@@ -359,4 +359,4 @@ protected:
     qi::rule<Iterator, TRPtr(),   qi::space_type> mTR;
 };
 
-#endif //  TR_PARSER_BASE_H
+#endif // TRADE_PARSER_BASE_H

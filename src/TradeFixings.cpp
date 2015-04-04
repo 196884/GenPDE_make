@@ -26,27 +26,60 @@ boost::optional<double> MOFixings::getFixing(MOUid mo_uid, const GenPDE::Date& d
     return it2->second;
 }
 
+std::ostream& operator<<(std::ostream& os, const MOFixings& fixings)
+{
+    os << "<MOFixings>" << std::endl;
+    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itCurr = fixings.mFixings.begin();
+    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itEnd  = fixings.mFixings.end();
+    for(; itEnd != itCurr; ++itCurr )
+    {
+        MOUid uid = itCurr->first;
+        const std::map<GenPDE::Date, double>& datedFixings = itCurr->second;
+        std::map<GenPDE::Date, double>::const_iterator itCurr2 = datedFixings.begin();
+        std::map<GenPDE::Date, double>::const_iterator itEnd2  = datedFixings.end();
+        for(; itCurr2 != itEnd2; ++itCurr2)
+            os << "<MOFixing uid=\""
+               << uid
+               << "\" date=\""
+               << GenPDE::dateToString(itCurr2->first)
+               << "\" value=\""
+               << itCurr2->second
+               << "\"/>"
+               << std::endl;
+    }
+    os << "</MOFixings>" << std::endl;
+    return os;
+}
+
 void ChoiceFixings::addFixing(
     const Choice::Uid&  uid,
+    Choice::Chooser     chooser,
     const GenPDE::Date& date,
     Choice::Choice      choice
 ) 
 {
-    mFixings[uid][date] = choice;
+    mFixings[chooser][uid][date] = choice;
 }
 
 boost::optional<Choice::Choice> ChoiceFixings::getFixing(
     const Choice::Uid&  uid,
+    Choice::Chooser     chooser,
     const GenPDE::Date& date
 ) const
 {
-    std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> >::const_iterator it = mFixings.find(uid);
-    if( it == mFixings.end() )
+    std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> >::const_iterator it = mFixings[chooser].find(uid);
+    if( it == mFixings[chooser].end() )
         return boost::optional<Choice::Choice>();
     std::map<GenPDE::Date, Choice::Choice>::const_iterator it2 = it->second.find(date);
     if( it2 == it->second.end() )
         return boost::optional<Choice::Choice>();
     return it2->second;
+}
+
+std::ostream& operator<<(std::ostream& os, const ChoiceFixings& fixings)
+{
+    os << "Not implemented" << std::endl;
+    return os;
 }
 
 TradeFixings::TradeFixings()
@@ -75,18 +108,28 @@ boost::optional<double> TradeFixings::getMOFixing(MOUid mo_uid, const GenPDE::Da
     
 void TradeFixings::addChoiceFixing(
     const Choice::Uid&  uid,
+    Choice::Chooser     chooser,
     const GenPDE::Date& date,
     Choice::Choice      choice
 )
 {
-    mChoiceFixings->addFixing(uid, date, choice);
+    mChoiceFixings->addFixing(uid, chooser, date, choice);
 }
 
 boost::optional<Choice::Choice> TradeFixings::getChoiceFixing(
     const Choice::Uid&  uid,
+    Choice::Chooser     chooser,
     const GenPDE::Date& date
 ) const
 {
-    return mChoiceFixings->getFixing(uid, date);
+    return mChoiceFixings->getFixing(uid, chooser, date);
 }
 
+std::ostream& operator<<(std::ostream& os, const TradeFixings& fixings)
+{
+    os << "<TradeFixings>" << std::endl
+       << *(fixings.mMOFixings)
+       << *(fixings.mChoiceFixings)
+       << "</TradeFixings>" << std::endl;
+    return os;
+}

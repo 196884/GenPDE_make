@@ -10,10 +10,12 @@
 
 #include "GenPDEParser.h"
 
-TRParserBase<std::string::const_iterator>        GenPDEParser::mParserString;
-TRParserBase<boost::spirit::istream_iterator>    GenPDEParser::mParserFile;
-ModelParserBase<std::string::const_iterator>     GenPDEParser::m_parserString;
-ModelParserBase<boost::spirit::istream_iterator> GenPDEParser::m_parserFile;
+TRParserBase<std::string::const_iterator>          GenPDEParser::m_tradeParserString;
+TRParserBase<boost::spirit::istream_iterator>      GenPDEParser::m_tradeParserFile;
+ModelParserBase<std::string::const_iterator>       GenPDEParser::m_modelParserString;
+ModelParserBase<boost::spirit::istream_iterator>   GenPDEParser::m_modelParserFile;
+FixingsParserBase<std::string::const_iterator>     GenPDEParser::m_fixingsParserString;
+FixingsParserBase<boost::spirit::istream_iterator> GenPDEParser::m_fixingsParserFile;
 
 GenPDEParser::PEPtr  GenPDEParser::parsePayoutExpression(const std::string& pe, bool is_file)
 {
@@ -23,9 +25,9 @@ GenPDEParser::PEPtr  GenPDEParser::parsePayoutExpression(const std::string& pe, 
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return mParserFile.parsePE(begin, end);
+        return m_tradeParserFile.parsePE(begin, end);
     } else
-        return mParserString.parsePE(pe.begin(), pe.end());
+        return m_tradeParserString.parsePE(pe.begin(), pe.end());
 }
 
 GenPDEParser::TLPtr  GenPDEParser::parseTradeLeg(const std::string& tl, bool is_file)
@@ -36,9 +38,9 @@ GenPDEParser::TLPtr  GenPDEParser::parseTradeLeg(const std::string& tl, bool is_
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return mParserFile.parseTL(begin, end);
+        return m_tradeParserFile.parseTL(begin, end);
     } else
-        return mParserString.parseTL(tl.begin(), tl.end());
+        return m_tradeParserString.parseTL(tl.begin(), tl.end());
 }
 
 GenPDEParser::PIPtr  GenPDEParser::parsePricingInstruction(const std::string& pi, bool is_file)
@@ -49,9 +51,9 @@ GenPDEParser::PIPtr  GenPDEParser::parsePricingInstruction(const std::string& pi
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return mParserFile.parsePI(begin, end);
+        return m_tradeParserFile.parsePI(begin, end);
     } else
-        return mParserString.parsePI(pi.begin(), pi.end());
+        return m_tradeParserString.parsePI(pi.begin(), pi.end());
 }
 
 GenPDEParser::TRPtr  GenPDEParser::parseTradeRepresentation(const std::string& tr, bool is_file)
@@ -62,9 +64,9 @@ GenPDEParser::TRPtr  GenPDEParser::parseTradeRepresentation(const std::string& t
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return mParserFile.parseTR(begin, end);
+        return m_tradeParserFile.parseTR(begin, end);
     } else
-        return mParserString.parseTR(tr.begin(), tr.end());
+        return m_tradeParserString.parseTR(tr.begin(), tr.end());
 }
 
 GenPDEParser::AVsPtr GenPDEParser::parseAuxiliaryVariables(const std::string& avc, bool is_file)
@@ -75,9 +77,9 @@ GenPDEParser::AVsPtr GenPDEParser::parseAuxiliaryVariables(const std::string& av
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return mParserFile.parseAVs(begin, end);
+        return m_tradeParserFile.parseAVs(begin, end);
     } else
-        return mParserString.parseAVs(avc.begin(), avc.end());
+        return m_tradeParserString.parseAVs(avc.begin(), avc.end());
 }
 
 GenPDEParser::ModelIfcPtr GenPDEParser::parsePDEModel(const std::string& model, bool is_file)
@@ -88,9 +90,22 @@ GenPDEParser::ModelIfcPtr GenPDEParser::parsePDEModel(const std::string& model, 
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return m_parserFile.parseModel(begin, end);
+        return m_modelParserFile.parseModel(begin, end);
     } else
-        return m_parserString.parseModel(model.begin(), model.end());
+        return m_modelParserString.parseModel(model.begin(), model.end());
+}
+
+GenPDEParser::FixingsPtr GenPDEParser::parseFixings(const std::string& model, bool is_file)
+{
+    if( is_file )
+    {
+        std::ifstream in(model);
+        in.unsetf(std::ios::skipws);
+        boost::spirit::istream_iterator begin(in);
+        boost::spirit::istream_iterator end;
+        return m_fixingsParserFile.parseFixings(begin, end);
+    } else
+        return m_fixingsParserString.parseFixings(model.begin(), model.end());
 }
 
 

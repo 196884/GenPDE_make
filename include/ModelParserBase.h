@@ -31,16 +31,16 @@ public:
         mDate      = mDateAsStr[qi::_val = phx::bind(&GenPDE::dateFromString, qi::_1)];
 
         mBSModel   = (
-            "<PDEPricingModelBlackScholes>" >>
-            qi::lexeme["<PricingDate value=\"" >> mDate >> "\"/>"] >>
-            qi::lexeme["<Spot value=\"" >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<RiskFreeRate value=\"" >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<Volatility value=\"" >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<MaxTimestepLength value=\"" >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<NbRannacherSteps value=\"" >> qi::double_ >> "\"/>" ] >>
+            "<PDEPricingModelBlackScholes>"                                          >>
+            qi::lexeme["<PricingDate value=\""            >> mDate       >> "\"/>" ] >>
+            qi::lexeme["<Spot value=\""                   >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<RiskFreeRate value=\""           >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<Volatility value=\""             >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<MaxTimestepLength value=\""      >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<NbRannacherSteps value=\""       >> qi::double_ >> "\"/>" ] >>
             qi::lexeme["<MaxRannacherStepLength value=\"" >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<SpaceGridSize value=\"" >> qi::ulong_ >> "\"/>" ] >>
-            qi::lexeme["<SpaceGridNbStdDevs value=\"" >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<SpaceGridSize value=\""          >> qi::ulong_  >> "\"/>" ] >>
+            qi::lexeme["<SpaceGridNbStdDevs value=\""     >> qi::double_ >> "\"/>" ] >>
             "</PDEPricingModelBlackScholes>"
         )[qi::_val = phx::construct<ModelIfcPtr>(phx::new_<PDEPricingModelBlackScholes>(qi::_1, qi::_2, qi::_3, qi::_4, qi::_5, qi::_6, qi::_7, qi::_8, qi::_9))];
 
