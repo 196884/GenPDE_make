@@ -1,13 +1,7 @@
-//
-//  ChoiceEnums.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/31/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
+#ifndef CHOICE_ENUMS_H
+#define CHOICE_ENUMS_H
 
-#ifndef CHOICEENUMS_H_
-#define CHOICEENUMS_H_
+#include <string>
 
 namespace Choice
 {
@@ -23,4 +17,4 @@ namespace Choice
     };
 }
 
-#endif // CHOICEENUMS_H_
+#endif // CHOICE_ENUMS_H

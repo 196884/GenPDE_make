@@ -1,10 +1,3 @@
-/*
- * basicTests.cpp
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
-
 #include "Framework.h"
 #include "TestSuite.h"
 

@@ -1,12 +1,5 @@
-/*
- * PDEUpdater1D.h
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
-
-#ifndef PDEUPDATER1D_H_
-#define PDEUPDATER1D_H_
+#ifndef PDEUPDATER_1D_H
+#define PDEUPDATER_1D_H
 
 // Forward declaration
 class Solver1DInterface;
@@ -24,4 +17,4 @@ public:
 	virtual void update(Solver1DInterface& solver) = 0;
 };
 
-#endif /* PDEUPDATER1D_H_ */
+#endif // PDEUPDATER_1D_H

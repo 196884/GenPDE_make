@@ -1,13 +1,5 @@
-//
-//  PIPricerChoice.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PIPRICERCHOICE_H_
-#define PIPRICERCHOICE_H_
+#ifndef PI_PRICER_CHOICE_H
+#define PI_PRICER_CHOICE_H
 
 #include <boost/shared_ptr.hpp>
 
@@ -49,5 +41,4 @@ protected:
     TLConstPtr         mTL1;
 };
 
-#endif // PIPRICERCHOICE_H_
-
+#endif // PI_PRICER_CHOICE_H

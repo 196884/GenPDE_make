@@ -1,13 +1,5 @@
-//
-//  InterpolationEnums.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/30/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef INTERPOLATIONENUMS_H_
-#define INTERPOLATIONENUMS_H_
+#ifndef INTERPOLATION_ENUMS_H
+#define INTERPOLATION_ENUMS_H
 
 namespace GenPDE
 {
@@ -26,4 +18,4 @@ namespace GenPDE
     };
 }
 
-#endif // INTERPOLATIONENUMS_H_
+#endif // INTERPOLATION_ENUMS_H

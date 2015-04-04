@@ -1,12 +1,7 @@
-//
-//  PIPricerCond.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "PIPricerCond.h"
+#include "Framework.h"
+#include "PayoutExpression.h"
+#include "TradeLeg.h"
 
 PIPricerCond::PIPricerCond(
     PricerUid         pricer_uid,

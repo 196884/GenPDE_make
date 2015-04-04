@@ -1,16 +1,11 @@
-/*
- * PDESolver1D.cpp
- *
- *  Created on: Oct 30, 2009
- *      Author: dupontr
- */
-
 #include "Framework.h"
 
 #include "PDESolver1D.h"
 
 #include <sstream>
 #include "TridiagonalRoutines.h"
+#include "PlanesSolution1D.h"
+#include "PDEUpdater1D.h"
 
 #include <iostream>
 

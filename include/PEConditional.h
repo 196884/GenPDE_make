@@ -1,16 +1,7 @@
-//
-//  PEConditional.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PECONDITIONAL_H_
-#define PECONDITIONAL_H_
+#ifndef PE_CONDITIONAL_H
+#define PE_CONDITIONAL_H
 
 #include <iostream>
-
 #include <boost/shared_ptr.hpp>
 
 #include "PayoutExpression.h"
@@ -55,6 +46,4 @@ protected:
     PEPtr mPE2;
 };
 
-
-
-#endif // PECONDITIONAL_H_
+#endif // PE_CONDITIONAL_H

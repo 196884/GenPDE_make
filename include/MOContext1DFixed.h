@@ -1,16 +1,9 @@
-//
-//  MOContext1DFixed.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/25/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef MOCONTEXT1DFIXED_H_
-#define MOCONTEXT1DFIXED_H_
+#ifndef MO_CONTEXT_1D_FIXED_H
+#define MO_CONTEXT_1D_FIXED_H
 
 #include <vector>
 
+#include "Framework.h"
 #include "MOContext.h"
 
 class MOContext1DFixed : public MOContext
@@ -30,4 +23,4 @@ protected:
     boost::shared_ptr<CEValues> mValues;
 };
 
-#endif // MOCONTEXT1DFIXED_H_
+#endif // MO_CONTEXT_1D_FIXED_H

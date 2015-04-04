@@ -1,12 +1,5 @@
-/*
- * CubicSplineInterpolator.h
- *
- *  Created on: Nov 1, 2009
- *      Author: dupontr
- */
-
-#ifndef CUBICSPLINEINTERPOLATOR_H_
-#define CUBICSPLINEINTERPOLATOR_H_
+#ifndef CUBIC_SPLINE_INTERPOLATOR_H
+#define CUBIC_SPLINE_INTERPOLATOR_H
 
 /// \brief The kind of extrapolation to use
 enum ExtrapolationType
@@ -108,4 +101,4 @@ private:
     double                    mXUpper;
 };
 
-#endif /* CUBICSPLINEINTERPOLATOR_H_ */
+#endif // CUBIC_SPLINE_INTERPOLATOR_H

@@ -1,13 +1,5 @@
-//
-//  PricingInstruction.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PRICINGINSTRUCTION_H_
-#define PRICINGINSTRUCTION_H_
+#ifndef PRICING_INSTRUCTION_H
+#define PRICING_INSTRUCTION_H
 
 #include <iostream>
 #include <boost/shared_ptr.hpp>
@@ -35,4 +27,4 @@ protected:
     virtual void print(std::ostream& stream) const = 0;
 };
 
-#endif // PRICINGINSTRUCTION_H_
+#endif // PRICING_INSTRUCTION_H

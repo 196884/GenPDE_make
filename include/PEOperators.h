@@ -1,13 +1,5 @@
-//
-//  PEOperators.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PEOPERATORS_H_
-#define PEOPERATORS_H_
+#ifndef PE_OPERATORS_H
+#define PE_OPERATORS_H
 
 #include <iostream>
 
@@ -122,5 +114,4 @@ std::ostream& operator<<(std::ostream& stream, const GenPDE::BinaryOperator& op)
     
 std::ostream& operator<<(std::ostream& stream, const GenPDE::UnaryOperator& op);
 
-
-#endif // PEOPERATORS_H_
+#endif // PE_OPERATORS_H

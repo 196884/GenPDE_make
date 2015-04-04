@@ -1,11 +1,3 @@
-//
-//  PEConditional.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "PEConditional.h"
 
 #include "CEValuesStored.h"

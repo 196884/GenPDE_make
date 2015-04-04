@@ -1,13 +1,5 @@
-//
-//  MOReference.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef MOREFERENCE_H_
-#define MOREFERENCE_H_
+#ifndef MO_REFERENCE_H
+#define MO_REFERENCE_H
 
 #include <iostream>
 
@@ -44,5 +36,4 @@ protected:
     MOUid mUid;
 };
 
-#endif // MOREFERENCE_H_
-
+#endif // MO_REFERENCE_H

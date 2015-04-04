@@ -1,13 +1,5 @@
-//
-//  PDEPricingModelBase.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/30/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PDEPRICINGMODELBASE_H_
-#define PDEPRICINGMODELBASE_H_
+#ifndef PDE_PRICING_MODEL_BASE_H
+#define PDE_PRICING_MODEL_BASE_H
 
 #include <map> 
 #include <boost/shared_ptr.hpp>
@@ -16,6 +8,7 @@
 #include "PDESolverInterfaceBase.h"
 #include "AVContext.h"
 #include "AVDiscretizationPolicy.h"
+#include "VariableDependencies.h"
 
 class PDEPricingModelBase : public PDEPricingModelInterface
 {
@@ -96,4 +89,4 @@ protected:
     std::map<PricerUid, double>                     mCollapsedPricerValues;
 };
 
-#endif // PDEPRICINGMODELBASE_H_
+#endif // PDE_PRICING_MODEL_BASE_H

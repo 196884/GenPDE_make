@@ -1,10 +1,3 @@
-/*
- * MarkovFunctionalDistribution.cpp
- *
- *  Created on: Nov 17, 2009
- *      Author: dupontr
- */
-
 #include "Framework.h"
 
 #include "MarkovFunctionalDistribution.h"

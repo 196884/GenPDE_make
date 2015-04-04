@@ -1,9 +1,3 @@
-/*
- * TestSuite.cpp
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
 #include <iostream>
 
 #include "Framework.h"

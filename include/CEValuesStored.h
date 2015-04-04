@@ -1,13 +1,5 @@
-//
-//  CEValuesStored.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef CEVALUESSTORED_H_
-#define CEVALUESSTORED_H_
+#ifndef CE_VALUES_STORED_H
+#define CE_VALUES_STORED_H
 
 #include "CEValues.h"
 
@@ -61,4 +53,4 @@ protected:
     std::vector<double> mData;
 };
 
-#endif // CEVALUESSTORED_H_
+#endif // CE_VALUES_STORED_H

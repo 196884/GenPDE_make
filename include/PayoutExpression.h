@@ -1,13 +1,5 @@
-//
-//  PayoutExpression.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PAYOUTEXPRESSION_H_
-#define PAYOUTEXPRESSION_H_
+#ifndef PAYOUT_EXPRESSION_H
+#define PAYOUT_EXPRESSION_H
 
 #include <iostream>
 
@@ -54,4 +46,4 @@ protected:
     virtual void print(std::ostream& stream) const = 0;
 };
 
-#endif // PAYOUTEXPRESSION_H_
+#endif // PAYOUT_EXPRESSION_H

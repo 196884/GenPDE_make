@@ -1,13 +1,5 @@
-//
-//  PEUnaryOperation.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PEUNARYOPERATION_H_
-#define PEUNARYOPERATION_H_
+#ifndef PE_UNARY_OPERATION_H
+#define PE_UNARY_OPERATION_H
 
 #include <iostream>
 
@@ -53,4 +45,4 @@ protected:
     PEPtr                 mPE;
 };
 
-#endif // PEUNARYOPERATION_H_
+#endif //  PE_UNARY_OPERATION_H

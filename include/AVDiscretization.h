@@ -1,13 +1,5 @@
-//
-//  AVDiscretization.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/31/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef AVDISCRETIZATION_H_
-#define AVDISCRETIZATION_H_
+#ifndef AV_DISCRETIZATION_H
+#define AV_DISCRETIZATION_H
 
 namespace GenPDE
 {
@@ -18,4 +10,4 @@ namespace GenPDE
     };
 }
 
-#endif AVDISCRETIZATION_H_
+#endif // AV_DISCRETIZATION_H

@@ -1,12 +1,5 @@
-/*
- * PlanesSolution1D.h
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
-
-#ifndef PLANESSOLUTION1D_H_
-#define PLANESSOLUTION1D_H_
+#ifndef PLANES_SOLUTION_1D_H
+#define PLANES_SOLUTION_1D_H
 
 /// \brief A class to represent a solution (along a set of planes) for a 1D PDE.
 /// Note that auxiliary memory is also stored, and can be used to handle Dirichlet
@@ -50,4 +43,4 @@ private:
 	boost::shared_ptr<std::vector<double> > mWorkingMemory;
 };
 
-#endif /* PLANESSOLUTION1D_H_ */
+#endif // PLANES_SOLUTION_1D_H

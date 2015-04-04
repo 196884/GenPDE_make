@@ -1,13 +1,5 @@
-//
-//  AVInterpolatorInterface.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/30/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef AVINTERPOLATORINTERFACE_H_
-#define AVINTERPOLATORINTERFACE_H_
+#ifndef AV_INTERPOLATOR_INTERFACE_H
+#define AV_INTERPOLATOR_INTERFACE_H
 
 class AVInterpolatorInterface
 {
@@ -19,4 +11,4 @@ public:
     virtual double interpolate(double x) const = 0;
 };
 
-#endif // AVINTERPOLATORINTERFACE_H_
+#endif // AV_INTERPOLATOR_INTERFACE_H

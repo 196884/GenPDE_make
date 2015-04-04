@@ -1,18 +1,22 @@
-//
-//  PDETradePricer.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/29/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
+#include "ChoiceEnums.h"
 #include "PDETradePricer.h"
+#include "CEValues.h"
+#include "TradeLeg.h"
+#include "PricingInstruction.h"
+#include "PayoutExpression.h"
+#include "PDEPricingModelInterface.h"
+#include "TradeRepresentation.h"
 
 void PDETradePricer::pricerInit(PricerUid uid, const TLPtr &trade_leg)
 {
     CEVConstPtr tlValue(trade_leg->evalCE(mPDEModel));
     CEVPtr      pricer(mPDEModel->addPricer(uid, tlValue->getVarMemoryLayout()));
     pricer->evalUnaryOperation(GenPDE::Id, tlValue);
+}
+
+void PDETradePricer::timeStepToNextDate() 
+{ 
+    mPDEModel->timeStepToNextDate();
 }
 
 void PDETradePricer::pricerAdd(

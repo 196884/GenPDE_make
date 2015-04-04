@@ -1,12 +1,5 @@
-/*
- * BlackScholesPDEUpdater.h
- *
- *  Created on: Nov 1, 2009
- *      Author: dupontr
- */
-
-#ifndef BLACKSCHOLESPDEUPDATER_H_
-#define BLACKSCHOLESPDEUPDATER_H_
+#ifndef BLACK_SCHOLES_PDE_UPDATER_H
+#define BLACK_SCHOLES_PDE_UPDATER_H
 
 #include "GpDate.h"
 #include "PDEUpdater1D.h"
@@ -57,4 +50,4 @@ private:
 	bool         mDone;
 };
 
-#endif /* BLACKSCHOLESPDEUPDATER_H_ */
+#endif // BLACK_SCHOLES_PDE_UPDATER_H

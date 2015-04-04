@@ -1,12 +1,7 @@
-//
-//  PIPricerAdd.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "PIPricerAdd.h"
+#include "PricerUid.h"
+#include "TradeLeg.h"
+#include "VariableDependencies.h"
 
 PIPricerAdd::PIPricerAdd(
     PricerUid         pricer_uid,

@@ -1,21 +1,19 @@
-//
-//  PDEPricingModelInterface.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/27/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PDEPRICINGMODELINTERFACE_H_
-#define PDEPRICINGMODELINTERFACE_H_
+#ifndef PDE_PRICING_MODEL_INTERFACE_H
+#define PDE_PRICING_MODEL_INTERFACE_H
 
 #include <boost/shared_ptr.hpp>
 
 #include "GpDate.h"
-#include "CEValues.h"
 #include "PricerUid.h"
+#include "VariableEnums.h"
 #include "MarketObservable.h"
 #include "TradeFixings.h"
+
+class CEValues;
+class TradeFixings;
+class VarDependencies;
+class AuxiliaryVariable;
+class AuxiliaryVariables;
 
 class PDEPricingModelInterface
 {
@@ -66,4 +64,4 @@ public:
     virtual void          renamePricer(PricerUid current_uid, PricerUid new_uid) = 0;
 };
 
-#endif // PDEPRICINGMODELINTERFACE_H_
+#endif // PDE_PRICING_MODEL_INTERFACE_H

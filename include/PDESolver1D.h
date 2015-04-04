@@ -1,21 +1,15 @@
-/*
- * PDESolver1D.h
- *
- *  Created on: Oct 30, 2009
- *      Author: dupontr
- */
-
-#ifndef PDESOLVER1D_H_
-#define PDESOLVER1D_H_
+#ifndef PDE_SOLVER_1D_H
+#define PDE_SOLVER_1D_H
 
 #include <vector>
 #include <map>
 #include <boost/shared_ptr.hpp>
 
-#include "PDEUpdater1D.h"
 #include "PDESolverInterfaceBase.h"
-#include "PlanesSolution1D.h"
 #include "PDESolver1DInterfaces.h"
+
+class PDEUpdater1D;
+class PlanesSolution1D;
 
 /// The main PDE solver class in 1D
 ///
@@ -145,4 +139,4 @@ private:
 	std::vector<double>       mVariableCoefs;
 };
 
-#endif /* PDESOLVER1D_H_ */
+#endif // PDE_SOLVER_1D_H

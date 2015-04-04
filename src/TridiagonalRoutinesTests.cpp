@@ -1,10 +1,3 @@
-/*
- * TridiagonalRoutinesTests.cpp
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
-
 #include <vector>
 #include <iostream>
 #include <ctime>

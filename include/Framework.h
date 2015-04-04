@@ -1,12 +1,5 @@
-/*
- * Framework.h
- *
- *  Created on: Oct 18, 2009
- *      Author: dupontr
- */
-
-#ifndef FRAMEWORK_H_
-#define FRAMEWORK_H_
+#ifndef FRAMEWORK_H
+#define FRAMEWORK_H
 
 #define USE_AVX_INSTRUCTIONS 0
 
@@ -16,4 +9,4 @@
 #include "Resources.h"
 //#include "Date.h"
 
-#endif /* FRAMEWORK_H_ */
+#endif // FRAMEWORK_H

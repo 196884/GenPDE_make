@@ -1,13 +1,5 @@
-//
-//  CEDiscontinuities.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef CEDISCONTINUITIES_H_
-#define CEDISCONTINUITIES_H_
+#ifndef CE_DISCONTINUITIES_H
+#define CE_DISCONTINUITIES_H
 
 /// Represents a discontinuity on a 1D (SV) grid
 class CEDiscontinuity1D
@@ -41,4 +33,4 @@ protected:
     double mDiffUpper;
 };
 
-#endif // CEDISCONTINUITIES_H_
+#endif // CE_DISCONTINUITIES_H

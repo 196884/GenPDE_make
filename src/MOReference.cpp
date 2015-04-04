@@ -1,14 +1,8 @@
-//
-//  MOReference.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "MOReference.h"
 #include "MOContext.h"
 #include "PDEPricingModelInterface.h"
+#include "CEValuesStored.h"
+#include "AuxiliaryVariable.h"
 
 void MOReference::print(std::ostream& stream) const
 {

@@ -1,20 +1,13 @@
-//
-//  PIPricerCond.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PIPRICERCOND_H_
-#define PIPRICERCOND_H_
+#ifndef PI_PRICER_COND_H
+#define PI_PRICER_COND_H
 
 #include <boost/shared_ptr.hpp>
 
 #include "PricingInstruction.h"
 #include "PricerUid.h"
-#include "TradeLeg.h"
-#include "PayoutExpression.h"
+
+class TradeLeg;
+class PayoutExpression;
 
 class PIPricerCond : public PricingInstruction
 {
@@ -46,5 +39,4 @@ protected:
     TLConstPtr mTL2;
 };
 
-#endif // PIPRICERCOND_H_
-
+#endif // PI_PRICER_COND_H

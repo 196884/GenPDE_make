@@ -1,10 +1,3 @@
-/*
- * IteratorsTests.cpp
- *
- *  Created on: Dec 17, 2009
- *      Author: dupontr
- */
-
 #include "Framework.h"
 #include "TestSuite.h"
 

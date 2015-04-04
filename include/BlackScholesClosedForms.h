@@ -1,12 +1,5 @@
-/*
- * BlackScholesClosedForms.h
- *
- *  Created on: Nov 1, 2009
- *      Author: dupontr
- */
-
-#ifndef BLACKSCHOLESCLOSEDFORMS_H_
-#define BLACKSCHOLESCLOSEDFORMS_H_
+#ifndef BLACK_SCHOLES_CLOSED_FORMS_H
+#define BLACK_SCHOLES_CLOSED_FORMS_H
 
 /// Computation of misc. closed forms in the Black-Scholes naive model
 class BlackScholes
@@ -59,4 +52,4 @@ public:
 	}
 };
 
-#endif /* BLACKSCHOLESCLOSEDFORMS_H_ */
+#endif // BLACK_SCHOLES_CLOSED_FORMS_H

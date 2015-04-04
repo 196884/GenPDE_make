@@ -1,12 +1,6 @@
-//
-//  MOContext1DFixed.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/25/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "MOContext1DFixed.h"
+#include "VariableDependencies.h"
+#include "CEValuesStored.h"
 
 MOContext1DFixed::MOContext1DFixed(MOUid uid, const std::vector<double>& values)
 :mUid(uid)

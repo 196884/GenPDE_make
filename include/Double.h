@@ -1,12 +1,5 @@
-/*
- * Double.h
- *
- *  Created on: Oct 31, 2009
- *      Author: dupontr
- */
-
-#ifndef DOUBLE_H_
-#define DOUBLE_H_
+#ifndef DOUBLE_H
+#define DOUBLE_H
 
 #include <cmath>
 #include <boost/math/distributions/normal.hpp> // for normal_distribution
@@ -42,4 +35,4 @@ public:
 	inline static bool isEqual(double a, double b, double c) { return abs(a-b) <= c; }
 };
 
-#endif /* DOUBLE_H_ */
+#endif // DOUBLE_H

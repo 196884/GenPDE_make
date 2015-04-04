@@ -1,13 +1,5 @@
-//
-//  CEValues.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef CEVALUES_H_
-#define CEVALUES_H_
+#ifndef CE_VALUES_H
+#define CE_VALUES_H
 
 #include <boost/shared_ptr.hpp>
 
@@ -794,4 +786,4 @@ void CEValues::evalUnaryOperationEx(
     }
 }
 
-#endif // CEVALUES_H_
+#endif // CE_VALUES_H

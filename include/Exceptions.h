@@ -1,12 +1,5 @@
-/*
- * Exceptions.h
- *
- *  Created on: Oct 18, 2009
- *      Author: dupontr
- */
-
-#ifndef EXCEPTIONS_H_
-#define EXCEPTIONS_H_
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
 
 #include <iostream>
 #include <sstream>
@@ -77,4 +70,4 @@ private:
 	std::string mWhat;
 };
 
-#endif /* EXCEPTIONS_H_ */
+#endif // EXCEPTIONS_H

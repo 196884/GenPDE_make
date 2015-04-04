@@ -1,13 +1,5 @@
-//
-//  AVInterpolatorNaturalCubic.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/30/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef AVINTERPOLATORNATURALCUBIC_H_
-#define AVINTERPOLATORNATURALCUBIC_H_
+#ifndef AV_INTERPOLATOR_NATURAL_CUBIC_H
+#define AV_INTERPOLATOR_NATURAL_CUBIC_H
 
 #include "InterpolationEnums.h"
 #include "AVInterpolatorInterface.h"
@@ -281,4 +273,4 @@ protected:
     std::vector<double>       mAuxY2;
 };
 
-#endif // AVINTERPOLATORNATURALCUBIC_H_
+#endif // AV_INTERPOLATOR_NATURAL_CUBIC_H

@@ -1,18 +1,11 @@
-//
-//  MOContext.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/22/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef MOCONTEXT_H_
-#define MOCONTEXT_H_
+#ifndef MO_CONTEXT_H
+#define MO_CONTEXT_H
 
 #include <boost/shared_ptr.hpp>
 
-#include "CEValuesStored.h"
 #include "MarketObservable.h"
+
+class CEValues;
 
 class MOContext
 {
@@ -23,4 +16,4 @@ public:
     virtual CEVConstPtr evalCE(MOUid uid) const = 0;
 };
 
-#endif // MOCONTEXT_H_
+#endif //  MO_CONTEXT_H

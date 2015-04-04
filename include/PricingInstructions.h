@@ -1,13 +1,5 @@
-//
-//  PricingInstructions.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/27/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PRICINGINSTRUCTIONS_H_
-#define PRICINGINSTRUCTIONS_H_
+#ifndef PRICING_INSTRUCTIONS_H
+#define PRICING_INSTRUCTIONS_H
 
 #include <boost/shared_ptr.hpp>
 #include <vector>
@@ -82,5 +74,4 @@ protected:
     std::map<GenPDE::Date, std::vector<PIPtr> > mInstructions;
 };
 
-
-#endif // PRICINGINSTRUCTIONS_H_
+#endif // PRICING_INSTRUCTIONS_H

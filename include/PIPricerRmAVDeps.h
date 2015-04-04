@@ -1,13 +1,5 @@
-//
-//  PIPricerRmAVDeps.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PIPRICERRMAVDEPS_H_
-#define PIPRICERRMAVDEPS_H_
+#ifndef PI_PRICER_RM_AVDEPS_H
+#define PI_PRICER_RM_AVDEPS_H
 
 #include <vector>
 #include <boost/shared_ptr.hpp>
@@ -38,5 +30,4 @@ protected:
     std::vector<GenPDE::VariableUID> mAVUids;
 };
 
-#endif // PIPRICERRMAVDEPS_H_
-
+#endif // PI_PRICER_RM_AVDEPS_H

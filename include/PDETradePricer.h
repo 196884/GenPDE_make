@@ -1,23 +1,20 @@
-//
-//  PDETradePricer.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/29/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PDETRADEPRICER_H_
-#define PDETRADEPRICER_H_
+#ifndef PDE_TRADE_PRICER_H
+#define PDE_TRADE_PRICER_H
 
 #include <boost/shared_ptr.hpp>
 
-#include "PDEPricingModelInterface.h"
-#include "PayoutExpression.h"
 #include "PricerUid.h"
-#include "TradeLeg.h"
-#include "TradeRepresentation.h"
-#include "PIPricerChoice.h"
-#include "PDEPricingModelInterface.h"
+#include "VariableEnums.h"
+#include "ChoiceEnums.h"
+
+class PDEPricingModelInterface;
+class PayoutExpression;
+class PricingInstruction;
+class MOContext;
+class AVContext;
+class CEValues;
+class TradeLeg;
+class TradeRepresentation;
 
 class PDETradePricer
 {
@@ -43,7 +40,7 @@ public:
     
     double price();
     
-    void timeStepToNextDate() { mPDEModel->timeStepToNextDate(); }
+    void timeStepToNextDate();
     
     void pricerInit(
         PricerUid       uid,
@@ -78,4 +75,4 @@ protected:
     TRPtr       mTradeRepresentation;
 };
 
-#endif // PDETRADEPRICER_H_
+#endif // PDE_TRADE_PRICER_H

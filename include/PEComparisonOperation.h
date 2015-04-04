@@ -1,13 +1,5 @@
-//
-//  PEComparisonOperation.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PECOMPARISONOPERATION_H_
-#define PECOMPARISONOPERATION_H_
+#ifndef PE_COMPARISON_OPERATION_H
+#define PE_COMPARISON_OPERATION_H
 
 #include <iostream>
 
@@ -56,4 +48,4 @@ protected:
     PEPtr                      mPE2;
 };
 
-#endif // PECOMPARISONOPERATION_H_
+#endif // PE_COMPARISON_OPERATION_H

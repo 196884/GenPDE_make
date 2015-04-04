@@ -1,11 +1,3 @@
-//
-//  FwdStartingCall.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/25/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include <vector>
 
 #include <boost/date_time/posix_time/posix_time.hpp>

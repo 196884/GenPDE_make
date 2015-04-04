@@ -1,11 +1,3 @@
-//
-//  ASRRawTests.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/31/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include <vector>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -19,6 +11,8 @@
 #include "PDETradePricer.h"
 #include "AVInterpolatorNaturalCubic.h"
 #include "AVInterpolatorLinear.h"
+#include "VariableDependencies.h"
+#include "CEValues.h"
 
 using std::vector;
 using std::cerr;

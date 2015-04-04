@@ -1,19 +1,12 @@
-//
-//  PIPricerAdd.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PIPRICERADD_H_
-#define PIPRICERADD_H_
+#ifndef PI_PRICER_ADD_H
+#define PI_PRICER_ADD_H
 
 #include <boost/shared_ptr.hpp>
 
 #include "PricingInstruction.h"
 #include "PricerUid.h"
-#include "TradeLeg.h"
+
+class TradeLeg;
 
 class PIPricerAdd : public PricingInstruction
 {
@@ -42,5 +35,4 @@ protected:
     TLConstPtr mTL2;
 };
 
-#endif // PIPRICERADD_H_
-
+#endif // PI_PRICER_ADD_H

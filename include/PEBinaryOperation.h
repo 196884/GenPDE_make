@@ -1,13 +1,5 @@
-//
-//  PEBinaryOperation.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PEBINARYOPERATION_H_
-#define PEBINARYOPERATION_H_
+#ifndef PE_BINARY_OPERATION_H
+#define PE_BINARY_OPERATION_H
 
 #include <iostream>
 
@@ -56,4 +48,4 @@ protected:
     PEPtr                  mPE2;
 };
 
-#endif // PEBINARYOPERATION_H_
+#endif // PE_BINARY_OPERATION_H

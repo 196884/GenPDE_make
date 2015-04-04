@@ -1,13 +1,5 @@
-//
-//  PDESolverInterfaceBase.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/29/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PDESOLVERINTERFACEBASE_H_
-#define PDESOLVERINTERFACEBASE_H_
+#ifndef PDE_SOLVER_INTERFACE_BASE_H
+#define PDE_SOLVER_INTERFACE_BASE_H
 
 #include <vector>
 
@@ -31,4 +23,4 @@ public:
 };
 
 
-#endif // PDESOLVERINTERFACEBASE_H_
+#endif // PDE_SOLVER_INTERFACE_BASE_H

@@ -1,13 +1,5 @@
-//
-//  AuxiliaryVariable.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef AUXILIARYVARIABLE_H_
-#define AUXILIARYVARIABLE_H_
+#ifndef AUXILIARY_VARIABLE_H
+#define AUXILIARY_VARIABLE_H
 
 #include <vector>
 #include <boost/shared_ptr.hpp>
@@ -64,4 +56,4 @@ protected:
     AVMap m_avMap;
 };
 
-#endif // AUXILIARYVARIABLE_H_
+#endif // AUXILIARY_VARIABLE_H

@@ -1,14 +1,7 @@
-//
-//  AVReference.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "AVReference.h"
 #include "AVContext.h"
 #include "PDEPricingModelInterface.h"
+#include "CEValues.h"
 
 void AVReference::print(std::ostream& stream) const
 {

@@ -1,11 +1,3 @@
-//
-//  PDETradePricer_DigitalCall_Tests.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include <boost/shared_ptr.hpp>
 
 #include <boost/date_time/posix_time/posix_time.hpp>

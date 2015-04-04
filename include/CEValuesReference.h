@@ -1,13 +1,5 @@
-//
-//  CEValuesReference.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/29/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef CEVALUESREFERENCE_H_
-#define CEVALUESREFERENCE_H_
+#ifndef CE_VALUES_REFERENCE_H
+#define CE_VALUES_REFERENCE_H
 
 #include "CEValues.h"
 
@@ -82,5 +74,4 @@ protected:
     size_t              mInnerSVStride;
 };
 
-#endif // CEVALUESREFERENCE_H_
-
+#endif // CE_VALUES_REFERENCE_H

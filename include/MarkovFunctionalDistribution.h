@@ -1,12 +1,5 @@
-/*
- * MarkovFunctionalDistribution.h
- *
- *  Created on: Nov 17, 2009
- *      Author: dupontr
- */
-
-#ifndef MARKOVFUNCTIONALDISTRIBUTION_H_
-#define MARKOVFUNCTIONALDISTRIBUTION_H_
+#ifndef MARKOV_FUNCTIONAL_DISTRIBUTION_H
+#define MARKOV_FUNCTIONAL_DISTRIBUTION_H
 
 #include <boost/shared_ptr.hpp>
 #include "VolatilityParametrization.h"
@@ -42,4 +35,4 @@ private:
 	double              mUpperValue;
 };
 
-#endif /* MARKOVFUNCTIONALDISTRIBUTION_H_ */
+#endif // MARKOV_FUNCTIONAL_DISTRIBUTION_H

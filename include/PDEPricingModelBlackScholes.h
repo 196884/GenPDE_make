@@ -1,13 +1,5 @@
-//
-//  PDEPricingModelBlackScholes.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/30/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PDEPRICINGMODELBLACKSCHOLES_H_
-#define PDEPRICINGMODELBLACKSCHOLES_H_
+#ifndef PDE_PRICING_MODEL_BLACK_SCHOLES_H
+#define PDE_PRICING_MODEL_BLACK_SCHOLES_H
 
 #include "PDEPricingModelBase.h"
 #include "PDEUpdater1D.h"
@@ -81,4 +73,4 @@ protected:
     bool                mCoeffsSet;
 };
 
-#endif // PDEPRICINGMODELBLACKSCHOLES_H_
+#endif // PDE_PRICING_MODEL_BLACK_SCHOLES_H

@@ -1,13 +1,5 @@
-//
-//  PDEPricerSolutionStorage.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/31/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PDEPRICERSOLUTIONSTORAGE_H_
-#define PDEPRICERSOLUTIONSTORAGE_H_
+#ifndef PDE_PRICER_SOLUTION_STORAGE_H
+#define PDE_PRICER_SOLUTION_STORAGE_H
 
 #include <map>
 
@@ -36,4 +28,4 @@ private:
     std::map<PricerUid, PricerValues> mAllPricerValues;
 };
 
-#endif // PDEPRICERSOLUTIONSTORAGE_H_
+#endif // PDE_PRICER_SOLUTION_STORAGE_H

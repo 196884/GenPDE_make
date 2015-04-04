@@ -1,13 +1,5 @@
-//
-//  AVInterpolatorLinear.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/30/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef AVINTERPOLATORLINEAR_H_
-#define AVINTERPOLATORLINEAR_H_
+#ifndef AV_INTERPOLATOR_LINEAR_H
+#define AV_INTERPOLATOR_LINEAR_H
 
 #include "AVInterpolatorInterface.h"
 #include "InterpolationEnums.h"
@@ -164,4 +156,4 @@ protected:
     const double*             mY;
 };
 
-#endif // AVINTERPOLATORLINEAR_H_
+#endif // AV_INTERPOLATOR_LINEAR_H

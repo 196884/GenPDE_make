@@ -1,12 +1,6 @@
-//
-//  PIPricerMult.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "PIPricerMult.h"
+#include "PayoutExpression.h"
+#include "TradeLeg.h"
 
 PIPricerMult::PIPricerMult(
     PricerUid         pricer_uid,

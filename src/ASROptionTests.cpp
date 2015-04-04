@@ -1,11 +1,3 @@
-//
-//  ASROptionTests.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 3/15/15.
-//  Copyright (c) 2015 Regis Dupont. All rights reserved.
-//
-
 #include <vector>
 
 #include <boost/date_time/posix_time/posix_time.hpp>

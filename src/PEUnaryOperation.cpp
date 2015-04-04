@@ -1,11 +1,3 @@
-//
-//  PEUnaryOperation.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/21/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "PEUnaryOperation.h"
 
 #include "CEValuesStored.h"

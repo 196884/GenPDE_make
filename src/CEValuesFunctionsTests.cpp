@@ -1,11 +1,3 @@
-//
-//  CEValuesFunctionsTests.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/1/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include <vector>
 
 #include "Framework.h"

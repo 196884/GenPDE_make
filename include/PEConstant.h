@@ -1,13 +1,5 @@
-//
-//  PEConstant.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PECONSTANT_H_
-#define PECONSTANT_H_
+#ifndef PE_CONSTANT_H
+#define PE_CONSTANT_H
 
 #include <iostream>
 
@@ -43,4 +35,4 @@ protected:
     double mValue;
 };
 
-#endif // PECONSTANT_H_
+#endif // PE_CONSTANT_H

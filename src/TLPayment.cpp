@@ -1,11 +1,3 @@
-//
-//  TLPayment.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/26/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "TLPayment.h"
 #include "CEValuesStored.h"
 

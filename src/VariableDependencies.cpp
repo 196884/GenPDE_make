@@ -1,11 +1,3 @@
-//
-//  VariableDependencies.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 9/11/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "VariableDependencies.h"
 
 std::ostream& operator<<(std::ostream& stream, const VarDependencies& deps)

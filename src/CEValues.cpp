@@ -1,11 +1,3 @@
-//
-//  CEValues.cpp
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/24/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
 #include "CEValues.h"
 #include "AVInterpolatorNaturalCubic.h"
 #include "AVInterpolatorLinear.h"

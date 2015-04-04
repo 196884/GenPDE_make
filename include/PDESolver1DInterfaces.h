@@ -1,13 +1,5 @@
-//
-//  PDESolver1DInterfaces.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/24/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef PDESOLVER1DINTERFACES_H_
-#define PDESOLVER1DINTERFACES_H_
+#ifndef PDE_SOLVER_1D_INTERFACES_H
+#define PDE_SOLVER_1D_INTERFACES_H
 
 #include <vector> 
 
@@ -25,4 +17,4 @@ public:
     virtual void   setTimeScaling(double time_scaling) = 0;
 };
 
-#endif // PDESOLVER1DINTERFACES_H_
+#endif // PDE_SOLVER_1D_INTERFACES_H

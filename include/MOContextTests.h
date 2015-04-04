@@ -1,19 +1,16 @@
-//
-//  MOContextTests.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/22/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef MOCONTEXTTESTS_H_
-#define MOCONTEXTTESTS_H_
+#ifndef MO_CONTEXT_TESTS_H
+#define MO_CONTEXT_TESTS_H
 
 #include <map>
 #include <utility>
 #include <vector>
 
 #include "MOContext.h"
+#include "VariableEnums.h"
+#include "VariableDependencies.h"
+#include "CEValuesStored.h"
+
+class VarDependencies;
 
 class MOContextTest : public MOContext
 {
@@ -81,4 +78,4 @@ protected:
     std::map<MOUid, CEVPtr> mValues;
 };
 
-#endif // MOCONTEXTTESTS_H_
+#endif // MO_CONTEXT_TESTS_H

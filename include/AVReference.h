@@ -1,13 +1,5 @@
-//
-//  AVReference.h
-//  GenPDE
-//
-//  Created by Regis Dupont on 8/20/14.
-//  Copyright (c) 2014 Regis Dupont. All rights reserved.
-//
-
-#ifndef AVREFERENCE_H_
-#define AVREFERENCE_H_
+#ifndef AV_REFERENCE_H
+#define AV_REFERENCE_H
 
 #include <iostream>
 
@@ -44,4 +36,4 @@ protected:
     GenPDE::VariableUID mUid;
 };
 
-#endif // AVREFERENCE_H_
+#endif // AV_REFERENCE_H
