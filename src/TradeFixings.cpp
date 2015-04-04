@@ -78,7 +78,34 @@ boost::optional<Choice::Choice> ChoiceFixings::getFixing(
 
 std::ostream& operator<<(std::ostream& os, const ChoiceFixings& fixings)
 {
-    os << "Not implemented" << std::endl;
+    // Argh...
+    os << "<ChoiceFixings>" << std::endl;
+    for(size_t i=0; i<2; ++i)
+    {
+        const std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> >& map1 = fixings.mFixings[i];
+        std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> >::const_iterator itCurr1 = map1.begin();
+        std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> >::const_iterator itEnd1  = map1.end();
+        for(; itEnd1 != itCurr1; ++itCurr1)
+        {
+            Choice::Uid cUid                                   = itCurr1->first;
+            const std::map<GenPDE::Date, Choice::Choice>& map2 = itCurr1->second;
+            std::map<GenPDE::Date, Choice::Choice>::const_iterator itCurr2 = map2.begin();
+            std::map<GenPDE::Date, Choice::Choice>::const_iterator itEnd2  = map2.end();
+            for(; itEnd2 != itCurr2; ++itCurr2)
+            {
+                os << "<ChoiceFixing choiceId=\""
+                   << cUid
+                   << "\" chooser=\""
+                   << ((i == Choice::Chooser_Us) ? "Us" : "Client")
+                   << "\" date=\""
+                   << GenPDE::dateToString(itCurr2->first)
+                   << "\" choice=\""
+                   << ((itCurr2->second == Choice::Choice_Leg0) ? "Leg0" : "Leg1")
+                   << "\"/>" << std::endl;
+            }
+        }
+    }
+    os << "</ChoiceFixings>" << std::endl;
     return os;
 }
 

@@ -28,29 +28,30 @@ protected:
 public:
     FixingsParserBase()
     {
-        mDateAsStr = qi::repeat(8)[qi::char_("0-9")];
-        mDate    = mDateAsStr[qi::_val = phx::bind(&GenPDE::dateFromString, qi::_1)];
-        mChooser =   qi::string("Us")[qi::_val = Choice::Chooser_Us]
-                   | qi::string("Client")[qi::_val = Choice::Chooser_Client];
-        mChoice  =   qi::string("None")[qi::_val = Choice::Choice_None]
-                         | qi::string("Leg0")[qi::_val = Choice::Choice_Leg0]
-                         | qi::string("Leg1")[qi::_val = Choice::Choice_Leg1];
-        mChoiceId = +(~qi::char_('"'));
+        mDateAsStr    = qi::repeat(8)[qi::char_("0-9")];
+        mDate         = mDateAsStr[qi::_val = phx::bind(&GenPDE::dateFromString, qi::_1)];
+        mChooser      =   qi::string("Us")[qi::_val = Choice::Chooser_Us]
+                        | qi::string("Client")[qi::_val = Choice::Chooser_Client];
+        mChoice       =   qi::string("None")[qi::_val = Choice::Choice_None]
+                        | qi::string("Leg0")[qi::_val = Choice::Choice_Leg0]
+                        | qi::string("Leg1")[qi::_val = Choice::Choice_Leg1];
+        mChoiceId     = +(~qi::char_('"'));
 
-        mMOFixing = ("<MOFixing uid=\"" >> qi::uint_ >> "\" date=\"" >> mDate >> "\" value=\"" >> qi::double_ >> "\"/>")
-                    [phx::bind(&TradeFixings::addMOFixing, qi::_r1, qi::_1, qi::_2, qi::_3)];
+        mMOFixing     = ("<MOFixing uid=\"" >> qi::uint_ >> "\" date=\"" >> mDate >> "\" value=\"" >> qi::double_ >> "\"/>")
+                        [phx::bind(&TradeFixings::addMOFixing, qi::_r1, qi::_1, qi::_2, qi::_3)];
 
-        //mChoiceFixing = qi::lexeme["<ChoiceFixing choiceId=\"" >> mChoiceId >> "\" chooser=\"" >> mChooser >> "\" date=\"" >> mDate >> "\" choice=\"" >> mChoice >> "\"/>"][phx::bind(&TradeFixings::addChoiceFixing, qi::_r1, qi::_1, qi::_2, qi::_3, qi::_4)];
+        mChoiceFixing = ("<ChoiceFixing choiceId=\"" >> mChoiceId >> "\" chooser=\"" >> mChooser >> "\" date=\"" >> mDate >> "\" choice=\"" >> mChoice >> "\"/>")
+                        [phx::bind(&TradeFixings::addChoiceFixing, qi::_r1, qi::_1, qi::_2, qi::_3, qi::_4)];
 
         mFixings  = (
             (qi::eps[qi::_val = phx::construct<TradeFixings*>(phx::new_<TradeFixings>())] >>
             "<TradeFixings>"         >>
             "<MOFixings>")           >>
-            mMOFixing(qi::_val)      >>
+            *mMOFixing(qi::_val)     >>
             "</MOFixings>"           >>
-            //"<ChoiceFixings>"        >>
-            //*mChoiceFixing(qi::_val) >>
-            //"</ChoiceFixings>"       >>
+            "<ChoiceFixings>"        >>
+            *mChoiceFixing(qi::_val) >>
+            "</ChoiceFixings>"       >>
             "</TradeFixings>"
         );
     }

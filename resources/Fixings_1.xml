@@ -1,5 +1,12 @@
 <TradeFixings>
 <MOFixings>
 <MOFixing uid="1" date="20010101" value="100.23"/>
+<MOFixing uid="2" date="20010101" value="14.31"/>
+<MOFixing uid="2" date="20020101" value="24.31"/>
+<MOFixing uid="1" date="20010102" value="101.23"/>
 </MOFixings>
+<ChoiceFixings>
+<ChoiceFixing choiceId="EarlyTerminate?" chooser="Us" date="20010201" choice="Leg0"/>
+<ChoiceFixing choiceId="EarlyTerminate?" chooser="Client" date="20010301" choice="Leg1"/>
+</ChoiceFixings>
 </TradeFixings>
