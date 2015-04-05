@@ -5,16 +5,17 @@
 #include "PDEUpdater1D.h"
 #include "PDESolver1D.h"
 #include "AVContext.h"
+#include "BSModelParameters.h"
 
-class PDEPricingModelBlackScholes : public PDEPricingModelBase, public PDEUpdater1D
+class PDEPricingModelBlackScholes : public PDEPricingModelBase
+                                  , public PDEUpdater1D
+                                  , public MOFixingsIfc
 {
 public:
     PDEPricingModelBlackScholes(
         const GenPDE::Date&              pricing_date,
         
-        double                           spot,
-        double                           risk_free_rate,
-        double                           volatility,
+        const BSModelParameters&         model_params,
         
         double                           max_timestep_length,
         double                           nb_rannacher_steps,
@@ -26,9 +27,9 @@ public:
         AVDiscretizationPolicy*          av_disc_policy = NULL
     )
     :PDEPricingModelBase(pricing_date, max_timestep_length, nb_rannacher_steps, max_rannacher_step_length, av_disc_policy)
-    ,mSpot(spot)
-    ,mRiskFreeRate(risk_free_rate)
-    ,mVolatility(volatility)
+    ,mSpot(model_params.getSpot())
+    ,mRiskFreeRate(model_params.getRiskFreeRate())
+    ,mVolatility(model_params.getVolatility())
     ,mSpaceGridSize(space_grid_size)
     ,mSpaceGridNbStdDevs(space_grid_nb_std_devs)
     ,mSVDeps(GenPDE::VT_StateVariable, 0, space_grid_size)
@@ -40,8 +41,12 @@ public:
     virtual void setupForTrade(
         const std::vector<GenPDE::Date>& trade_dates,
         const AuxiliaryVariables&        auxiliary_variables,
-        const FixingsPtr&                fixings
+        const MOFixingsIfc*              mo_fixings
     );
+
+    virtual double        getVariance(const GenPDE::Date& to_date) const;
+    virtual double        getSpot() const; // at the pricing date
+    virtual CEValuesCPtr  getFixing( MOUid mo_uid, const GenPDE::Date& date ) const;
    
     virtual CEVConstPtr   discountFactorCE(const GenPDE::Date& to_date) const;
     virtual CEVConstPtr   marketObservableCE(MOUid uid) const;

@@ -21,16 +21,33 @@ void PDEPricingModelBlackScholes::setupSpaceGrid(const std::vector<double>& time
 void PDEPricingModelBlackScholes::setupForTrade(
     const std::vector<GenPDE::Date>& trade_dates,
     const AuxiliaryVariables&        auxiliary_variables,
-    const FixingsPtr&                fixings
+    const MOFixingsIfc*              mo_fixings
 )
 {
-    mFixings   = fixings;
-    if( NULL != m_avDiscretizationPolicy )
+    resetForTrade();
+    m_moFixings = mo_fixings;
+    setDeterministicAVs( *this, auxiliary_variables, m_avContext );
+    m_moFixings = mo_fixings;
+    switch( m_avDiscretizationPolicy->getType() )
     {
-        mAVContext = m_avDiscretizationPolicy->discretizeAVs(*this, auxiliary_variables);
-    } else {
-        mAVContext = new AVContext();
-    }
+        case AVDiscretizationPolicy::Type_None:
+            break;
+        case AVDiscretizationPolicy::Type_Hardcoded:
+            {
+                AVDP_Hardcoded& avdp = static_cast<AVDP_Hardcoded&>( *m_avDiscretizationPolicy );
+                avdp.setAVDiscretizations( auxiliary_variables, m_avContext );
+            }
+            break;
+        case AVDiscretizationPolicy::Type_Sum:
+            {
+                const AVDP_Sum& avdp = static_cast<const AVDP_Sum&>( *m_avDiscretizationPolicy );
+                AVDP::discretizeSum<PDEPricingModelBlackScholes>( avdp, auxiliary_variables, *this, m_avContext );
+            }
+            break;
+        default:
+            Exception::raise( "PDEPricingModelBlackScholes::setupForTrade", "unhandled AVDiscretizationPolicy" );
+    };
+
     std::vector<double> timeGrid;
     setupTimeGrid(mPricingDate, trade_dates, timeGrid);
     setupSpaceGrid(timeGrid);
@@ -39,6 +56,32 @@ void PDEPricingModelBlackScholes::setupForTrade(
         timeGrid,
         this
     ));
+}
+
+double PDEPricingModelBlackScholes::getVariance(const GenPDE::Date& to_date) const
+{
+    if( to_date <= mPricingDate )
+        return 0;
+    double dfTenor(((double) GenPDE::dateDifferenceInDays(to_date, mCurrentDate)) / GenPDE::NbDaysPerYear);
+    return mVolatility * mVolatility * dfTenor;
+}
+
+double PDEPricingModelBlackScholes::getSpot() const
+{
+    return mSpot;
+}
+
+PDEPricingModelBlackScholes::CEVConstPtr   PDEPricingModelBlackScholes::getFixing( MOUid mo_uid, const GenPDE::Date& date ) const
+{
+    CEVConstPtr result = m_moFixings->getFixing( mo_uid, date );
+    if( result )
+        return result;
+    if( 1 == mo_uid && mPricingDate == date )
+    {
+        result = CEVConstPtr( new CEValuesStored( mSpot ) );
+        return result;
+    }
+    return CEVConstPtr();
 }
      
 PDEPricingModelBlackScholes::CEVConstPtr   PDEPricingModelBlackScholes::discountFactorCE(const GenPDE::Date& to_date) const
@@ -64,10 +107,10 @@ PDEPricingModelBlackScholes::CEVConstPtr   PDEPricingModelBlackScholes::marketOb
     if( uid != 1 )
         Exception::raise("PDEPricingModelBlackScholes::marketObservableCE", "Only MO with Uid 1 is supported by this model");
     
-    boost::optional<double> fixing(mFixings->getMOFixing(uid, mCurrentDate));
+    CEVConstPtr fixing = m_moFixings->getFixing( uid, mCurrentDate );
     if( fixing )
-        return boost::shared_ptr<CEValues>(new CEValuesStored(*fixing));
-    
+        return fixing;
+
     if( mCurrentDate == mPricingDate )
         return boost::shared_ptr<CEValues>(new CEValuesStored(mSpot));
     

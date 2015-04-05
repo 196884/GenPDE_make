@@ -23,14 +23,14 @@ public:
         double                                           max_timestep_length,
         size_t                                           nb_rannacher_steps,
         double                                           max_rannacher_step_length,
-        AVDiscretizationPolicy*                          av_disc_policy            = NULL
+        AVDiscretizationPolicy*                          av_disc_policy
     )
-    :mMaxTimestepLength(max_timestep_length)
-    ,mNbRannacherSteps(nb_rannacher_steps)
-    ,mMaxRannacherStepLength(max_rannacher_step_length)
-    ,m_avDiscretizationPolicy( av_disc_policy )
-    ,mAVContext(NULL)
-    ,mPricingDate(pricing_date)
+    :mMaxTimestepLength(       max_timestep_length       )
+    ,mNbRannacherSteps(        nb_rannacher_steps        )
+    ,mMaxRannacherStepLength(  max_rannacher_step_length )
+    ,m_avDiscretizationPolicy( av_disc_policy            )
+    ,m_moFixings(              NULL                      )
+    ,mPricingDate(             pricing_date              )
     {}
     
     virtual ~PDEPricingModelBase();
@@ -39,10 +39,10 @@ public:
     virtual GenPDE::Date  getCurrentDate() const { return mCurrentDate; }
     virtual bool          timeStepToNextDate();
     
-    virtual CEVPtr        addPricer(PricerUid uid, const VarDependencies& av_deps);
-    virtual CEVPtr        getPricer(PricerUid uid);
-    virtual CEVConstPtr   getPricer(PricerUid uid) const;
-    virtual void          removePricer(PricerUid uid);
+    virtual CEVPtr        addPricer(    PricerUid uid , const VarDependencies& av_deps);
+    virtual CEVPtr        getPricer(    PricerUid uid );
+    virtual CEVConstPtr   getPricer(    PricerUid uid ) const;
+    virtual void          removePricer( PricerUid uid );
     /// The following two methods are specifically designed to be used when removing
     /// AVDependencies, b/c we don't want to change the PricerUid in that case, so
     /// we use a temporary PricerUid.
@@ -61,11 +61,19 @@ protected:
     
     virtual const VarDependencies& getSVDependencies() const = 0;
     
-    virtual boost::shared_ptr<PDESolverInterfaceBase> getSolver() = 0;
+    virtual boost::shared_ptr<      PDESolverInterfaceBase> getSolver()       = 0;
     virtual boost::shared_ptr<const PDESolverInterfaceBase> getSolver() const = 0;
     
     virtual void collapseAllPricerValues();
-    
+
+    /// Routine to evaluate 'past' AVs based on fixings:
+    virtual void setDeterministicAVs(
+        const MOFixingsIfc&       mo_fixings,
+        const AuxiliaryVariables& av_defs,
+        AVContext&                av_context // set during the call
+    );
+
+    virtual void resetForTrade();
     
 protected:
     double                                          mMaxTimestepLength;
@@ -74,8 +82,8 @@ protected:
 
     AVDiscretizationPolicy*                         m_avDiscretizationPolicy;
     
-    FixingsPtr                                      mFixings;
-    AVContext*                                      mAVContext;
+    const MOFixingsIfc*                             m_moFixings;
+    AVContext                                       m_avContext;
     
     std::vector<GenPDE::Date>                       mAllDates; // trade dates and pricing date
     size_t                                          mCurrentDateIndex; // in mAllDates;

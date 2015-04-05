@@ -8,9 +8,9 @@
 
 REGISTER_TEST(FixingsParsing1)
 {
-    std::string file("../resources/Fixings_1.xml");
-    boost::shared_ptr<const TradeFixings> pe(GenPDEParser::parseFixings(file, true));
-    TEST(pe);
+    std::string file("../resources/MO_Fixings_1.xml");
+    boost::shared_ptr<const MOFixingsIfc> moFixings( GenPDEParser::parseMOFixings( file, true ) );
+    TEST( moFixings );
 }
 
 

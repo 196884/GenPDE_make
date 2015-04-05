@@ -30,7 +30,7 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
     const size_t nbRannacher(4);
     
     // For now, we hardcode the discretization of the AVs:
-    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
+    AVDP_Hardcoded* avDisc(new AVDP_Hardcoded());
     for(size_t i=1; i<365; ++i)
     {
         double tenor      = ((double) i) / ((double) 365);
@@ -44,11 +44,10 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
         avDisc->setAVDiscretizationValues(i, avValues);
     }
     
+    BSModelParameters bsModelParams( spot, rate, volatility );
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
-        spot,
-        rate,
-        volatility,
+        bsModelParams,
         3,
         nbRannacher,
         0.3,
@@ -57,7 +56,8 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
         avDisc
     ));
     
-    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation));
+    boost::shared_ptr<MOFixingsStore> moFixings( new MOFixingsStore() );
+    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation, moFixings));
     double price(pricer->price());
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;

@@ -25,18 +25,20 @@ protected:
     typedef boost::shared_ptr<const AuxiliaryVariables>  AVsPtr;
 
     typedef boost::shared_ptr<PDEPricingModelInterface>    ModelIfcPtr;
-    typedef boost::shared_ptr<const TradeFixings>          FixingsPtr;
+    typedef boost::shared_ptr<const MOFixingsIfc>          MOFixingsPtr;
+    typedef boost::shared_ptr<const ChoiceFixings>         ChoiceFixingsPtr;
     
 public:
-    static PEPtr  parsePayoutExpression(   const std::string& s, bool is_file = false);
-    static TLPtr  parseTradeLeg(           const std::string& s, bool is_file = false);
-    static PIPtr  parsePricingInstruction( const std::string& s, bool is_file = false);
-    static TRPtr  parseTradeRepresentation(const std::string& s, bool is_file = false);
-    static AVsPtr parseAuxiliaryVariables( const std::string& s, bool is_file = false);
+    static PEPtr  parsePayoutExpression(        const std::string& s, bool is_file = false);
+    static TLPtr  parseTradeLeg(                const std::string& s, bool is_file = false);
+    static PIPtr  parsePricingInstruction(      const std::string& s, bool is_file = false);
+    static TRPtr  parseTradeRepresentation(     const std::string& s, bool is_file = false);
+    static AVsPtr parseAuxiliaryVariables(      const std::string& s, bool is_file = false);
     
-    static ModelIfcPtr parsePDEModel(      const std::string& s, bool is_file = false);
+    static ModelIfcPtr parsePDEModel(           const std::string& s, bool is_file = false);
 
-    static FixingsPtr  parseFixings(       const std::string& s, bool is_file = false);
+    static MOFixingsPtr     parseMOFixings(     const std::string& s, bool is_file = false);
+    static ChoiceFixingsPtr parseChoiceFixings( const std::string& s, bool is_file = false);
 
 private:
     static TRParserBase<std::string::const_iterator>          m_tradeParserString;

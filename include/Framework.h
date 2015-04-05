@@ -7,6 +7,7 @@
 #include "Double.h"
 #include "Constants.h"
 #include "Resources.h"
+#include "Logger.h"
 //#include "Date.h"
 
 #endif // FRAMEWORK_H

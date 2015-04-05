@@ -39,7 +39,7 @@ REGISTER_TEST_MANUAL(ASROption1)
     const size_t nbRannacher(4);
     
     // For now, we hardcode the discretization of the AVs:
-    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
+    AVDP_Hardcoded* avDisc(new AVDP_Hardcoded());
     boost::shared_ptr<const AuxiliaryVariables> avs = tradeRepresentation->getAuxiliaryVariables();
     boost::shared_ptr<const AuxiliaryVariable>  av0 = avs->getAuxiliaryVariable(0);
     std::vector<double> avValues0(1, 100.0);
@@ -62,11 +62,10 @@ REGISTER_TEST_MANUAL(ASROption1)
         prevDate              = thisDate;
     }
     
+    BSModelParameters bsModelParams( spot, rate, volatility);
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
-        spot,
-        rate,
-        volatility,
+        bsModelParams,
         3,
         nbRannacher,
         0.3,
@@ -75,7 +74,8 @@ REGISTER_TEST_MANUAL(ASROption1)
         avDisc
     ));
     
-    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation));
+    boost::shared_ptr<const MOFixingsStore> moFixings( new MOFixingsStore() );
+    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer( model, tradeRepresentation, moFixings ));
     double price(pricer->price());
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;

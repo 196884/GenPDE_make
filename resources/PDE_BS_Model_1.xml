@@ -8,6 +8,7 @@
 <MaxRannacherStepLength value="0.3"/>
 <SpaceGridSize value="500"/>
 <SpaceGridNbStdDevs value="5"/>
+<AVDiscretizationPolicy type="None"/>
 </PDEPricingModelBlackScholes>
 
 

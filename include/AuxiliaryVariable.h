@@ -39,6 +39,7 @@ class AuxiliaryVariables
 public:
     typedef boost::shared_ptr< const AuxiliaryVariable > AVConstPtr;
     typedef std::map< GenPDE::VariableUID, AVConstPtr >  AVMap;
+    typedef std::vector< GenPDE::VariableUID >           AVUidVector;
 
 public:
     AuxiliaryVariables() {}
@@ -48,12 +49,19 @@ public:
 
     // Returns the vector of all UIDs, ordered such that if AV_a appears before AV_b,
     // Then AV_a cannot depend (even indirectly) on AV_b
-    void getUids(std::vector<GenPDE::VariableUID>& uids) const;
+    const AVUidVector& getUids()  const;
 
-    size_t getNbAVs() const;
+    size_t             getNbAVs() const;
 
 protected:
-    AVMap m_avMap;
+    // Helper function to do the topological sort at construction time
+    void topoSort();
+
+protected:
+    AVMap       m_avMap;
+
+    // Topologically sorted:
+    AVUidVector m_avUidVector;
 };
 
 #endif // AUXILIARY_VARIABLE_H

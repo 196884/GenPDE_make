@@ -1,24 +1,50 @@
 #ifndef TRADE_FIXINGS_H
 #define TRADE_FIXINGS_H
 
-#include <boost/optional.hpp>
 #include <map>
+#include <boost/shared_ptr.hpp>
+#include <boost/optional.hpp>
 
 #include "GpDate.h"
 #include "MarketObservable.h"
 #include "ChoiceEnums.h"
 
-class MOFixings
+class CEValues;
+
+/// The interface for providing Market Observable fixings:
+class MOFixingsIfc
 {
 public:
-    void                    addFixing(MOUid mo_uid, const GenPDE::Date& date, double value);
+    typedef boost::shared_ptr<       CEValues > CEValuesPtr;
+    typedef boost::shared_ptr< const CEValues > CEValuesCPtr;
 
-    boost::optional<double> getFixing(MOUid mo_uid, const GenPDE::Date& date) const;
+public:
+    virtual ~MOFixingsIfc() {}
+
+    virtual CEValuesCPtr getFixing( MOUid mo_uid, const GenPDE::Date& date ) const = 0;
+};
+
+/// Basic implementation that stores the data
+class MOFixingsStore : public MOFixingsIfc
+{
+public:
+    MOFixingsStore() {}
+    
+    virtual ~MOFixingsStore() {}
+
+    // MOFixingsIfc
+    ///////////////
+    virtual CEValuesCPtr getFixing( MOUid mo_uid, const GenPDE::Date& date ) const;
+
+    void                 addFixing( MOUid mo_uid, const GenPDE::Date& date, double value );
    
-    friend std::ostream& operator<<(std::ostream& stream, const MOFixings& fixings);
+    friend std::ostream& operator<<(std::ostream& stream, const MOFixingsStore& fixings);
 
 protected:
-    std::map<MOUid, std::map<GenPDE::Date, double> > mFixings;
+    typedef std::map< GenPDE::Date, double >         DatedValues;
+    typedef std::map< MOUid, DatedValues >           FixingsMap;
+
+    FixingsMap                                       m_fixings;
 };
 
 class ChoiceFixings
@@ -41,44 +67,6 @@ public:
    
 protected:
     std::map<Choice::Uid, std::map<GenPDE::Date, Choice::Choice> > mFixings[2];
-};
-
-class TradeFixings
-{
-protected:
-    typedef boost::shared_ptr<MOFixings>     MOFixingsPtr;
-    typedef boost::shared_ptr<ChoiceFixings> ChoiceFixingsPtr;
-    
-public:
-    TradeFixings();
-
-    TradeFixings(
-        const MOFixingsPtr&     mo_fixings,
-        const ChoiceFixingsPtr& choice_fixings
-    );
-    
-    void                    addMOFixing(MOUid mo_uid, const GenPDE::Date& date, double value);
-    boost::optional<double> getMOFixing(MOUid mo_uid, const GenPDE::Date& date) const;
-    
-    void                            addChoiceFixing(
-        const Choice::Uid&  uid,
-        Choice::Chooser     chooser,
-        const GenPDE::Date& date,
-        Choice::Choice      choice
-    );
-    boost::optional<Choice::Choice> getChoiceFixing(
-        const Choice::Uid&  uid,
-        Choice::Chooser     chooser,
-        const GenPDE::Date& date
-    ) const;
-    
-    static boost::shared_ptr<const TradeFixings> NoFixings;
-
-    friend std::ostream& operator<<(std::ostream& stream, const TradeFixings& fixings);
-    
-protected:
-    MOFixingsPtr     mMOFixings;
-    ChoiceFixingsPtr mChoiceFixings;
 };
 
 #endif // TRADE FIXINGS_H

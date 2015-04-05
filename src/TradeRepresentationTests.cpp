@@ -16,7 +16,7 @@ REGISTER_TEST(AVsParsing1)
     ss << "<AV uid=\"5\" date=\"20120103\"><MORef uid=\"2\"/></AV>";
     ss << "<AV uid=\"7\" date=\"20120104\"><MORef uid=\"1\"/></AV>";
     ss << "<AV uid=\"11\" date=\"20120105\"><MORef uid=\"1\"/></AV>";
-    ss << "<AV uid=\"13\" date=\"20120105\"><MORef uid=\"2\"/></AV>";
+    ss << "<AV uid=\"13\" date=\"20120106\"><MORef uid=\"2\"/></AV>";
     ss << "</AuxiliaryVariables>";
     std::string s(ss.str());
     boost::shared_ptr<const AuxiliaryVariables> avs1 = GenPDEParser::parseAuxiliaryVariables(s);

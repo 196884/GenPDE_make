@@ -24,7 +24,7 @@ public:
 
     virtual CEVConstPtr evalFromFixings(
         const GenPDE::Date&       date,
-        const TradeFixings&       fixings,
+        const MOFixingsIfc&       mo_fixings,
         const AuxiliaryVariables& av_defs,
         AVContext&                av_context // updated by the call
     ) const;

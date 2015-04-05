@@ -60,6 +60,16 @@ public:
         const double* ptr = getDataPtr();
         return ptr[index];
     }
+
+    virtual double           getValue() const
+    {
+        Exception::check(
+            1 == mVarMemLayout.getSize(),
+            "CEValues::getValue",
+            "single value expected"
+        );
+        return *getDataPtr();
+    }
     
     virtual void setValue(
         const VarBindings& var_bindings,
@@ -74,24 +84,24 @@ public:
     virtual double*          getDataPtr() = 0;
     virtual const double*    getDataPtr() const = 0;
     
-    void evalBinaryOperation(
+    virtual void evalBinaryOperation(
         GenPDE::BinaryOperator  op,
         CEVConstPtr             arg1,
         CEVConstPtr             arg2
     );
     
-    void evalComparisonOperation(
+    virtual void evalComparisonOperation(
         GenPDE::ComparisonOperator  op,
         CEVConstPtr                 arg1,
         CEVConstPtr                 arg2
     );
     
-    void evalUnaryOperation(
+    virtual void evalUnaryOperation(
         GenPDE::UnaryOperator   op,
         CEVConstPtr             arg
     );
     
-    void evalConditional(
+    virtual void evalConditional(
         CEVConstPtr             cond,
         CEVConstPtr             arg1,
         CEVConstPtr             arg2

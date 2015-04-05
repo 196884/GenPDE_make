@@ -34,18 +34,18 @@ PEConditional::CEVConstPtr PEConditional::evalCE(
 
 PEConditional::CEVConstPtr PEConditional::evalFromFixings(
     const GenPDE::Date&       date,
-    const TradeFixings&       fixings,
+    const MOFixingsIfc&       mo_fixings,
     const AuxiliaryVariables& av_defs,
     AVContext&                av_context // updated by the call
 ) const
 {
-    CEVConstPtr cond = mCond->evalFromFixings(date, fixings, av_defs, av_context);
+    CEVConstPtr cond = mCond->evalFromFixings(date, mo_fixings, av_defs, av_context);
     if( !cond )
         return cond;
-    CEVConstPtr arg1 = mPE1->evalFromFixings( date, fixings, av_defs, av_context);
+    CEVConstPtr arg1 = mPE1->evalFromFixings( date, mo_fixings, av_defs, av_context);
     if( !arg1 )
         return arg1;
-    CEVConstPtr arg2 = mPE2->evalFromFixings( date, fixings, av_defs, av_context);
+    CEVConstPtr arg2 = mPE2->evalFromFixings( date, mo_fixings, av_defs, av_context);
     if( !arg2 )
         return arg2;
     boost::shared_ptr<CEValues> result(new CEValuesStored(cond, arg1, arg2));

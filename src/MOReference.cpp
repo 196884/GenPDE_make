@@ -26,13 +26,10 @@ MOReference::CEVConstPtr MOReference::evalCE(
 
 MOReference::CEVConstPtr MOReference::evalFromFixings(
     const GenPDE::Date&       date,
-    const TradeFixings&       fixings,
+    const MOFixingsIfc&       mo_fixings,
     const AuxiliaryVariables& av_defs,
     AVContext&                av_context // updated by the call
 ) const
 {
-    boost::optional<double> fixing = fixings.getMOFixing(mUid, date);
-    if( !fixing )
-        return CEVConstPtr();
-    return boost::shared_ptr<CEValues>(new CEValuesStored(*fixing));
+    return mo_fixings.getFixing( mUid, date );
 }

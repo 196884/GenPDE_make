@@ -15,6 +15,7 @@ class AVContext;
 class CEValues;
 class TradeLeg;
 class TradeRepresentation;
+class MOFixingsIfc;
 
 class PDETradePricer
 {
@@ -28,14 +29,17 @@ protected:
     typedef boost::shared_ptr<const CEValues>            CEVConstPtr;
     typedef boost::shared_ptr<const TradeLeg>            TLPtr;
     typedef boost::shared_ptr<const TradeRepresentation> TRPtr;
+    typedef boost::shared_ptr<const MOFixingsIfc>        MOFixingsPtr;
     
 public:
     PDETradePricer(
-        const PDEModelPtr& pde_model,
-        const TRPtr&       trade_representation
+        const PDEModelPtr&  pde_model,
+        const TRPtr&        trade_representation,
+        const MOFixingsPtr& mo_fixings
     )
-    :mPDEModel(pde_model)
-    ,mTradeRepresentation(trade_representation)
+    :mPDEModel(            pde_model )
+    ,mTradeRepresentation( trade_representation )
+    ,mMOFixings(           mo_fixings           )
     {}
     
     double price();
@@ -71,8 +75,9 @@ public:
     void pricerRemove(PricerUid uid);
 
 protected:
-    PDEModelPtr mPDEModel;
-    TRPtr       mTradeRepresentation;
+    PDEModelPtr  mPDEModel;
+    TRPtr        mTradeRepresentation;
+    MOFixingsPtr mMOFixings;
 };
 
 #endif // PDE_TRADE_PRICER_H

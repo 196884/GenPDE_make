@@ -46,7 +46,9 @@ int main(int argc, char* argv[])
         boost::shared_ptr<const TradeRepresentation> trade(GenPDEParser::parseTradeRepresentation(payoutFile, true));
         boost::shared_ptr<PDEPricingModelInterface>  model(GenPDEParser::parsePDEModel(modelFile, true));
         boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
-        boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, trade));
+        // FIXME: Add the fixings here
+        boost::shared_ptr<MOFixingsStore> moFixings( new MOFixingsStore() );
+        boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer( model, trade, moFixings ));
         boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
         if( vm.count("timing") )
             std::cout << "Total pricing time: "

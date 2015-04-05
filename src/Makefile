@@ -21,6 +21,7 @@ CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -O3 -MMD $(INCLUDES)
 
 TARGET = $(BIN_DIR)/GenPDETest
 
+CPPFILES += GenPDEParser.cpp
 CPPFILES += ASROptionTests.cpp
 CPPFILES += ASRRawTests.cpp
 CPPFILES += ASRTests.cpp
@@ -29,6 +30,7 @@ CPPFILES += AVDiscretizationPolicy.cpp
 CPPFILES += AVInterpolatorTests.cpp
 CPPFILES += AVReference.cpp
 CPPFILES += AuxiliaryVariable.cpp
+CPPFILES += BSModelParameters.cpp
 CPPFILES += CEValues.cpp
 CPPFILES += CEValuesFunctionsTests.cpp
 CPPFILES += CEValuesStored.cpp
@@ -39,7 +41,6 @@ CPPFILES += DateTests.cpp
 CPPFILES += DateTimeTests.cpp
 CPPFILES += FixingsParserTests.cpp
 CPPFILES += FwdStartingCall.cpp
-CPPFILES += GenPDEParser.cpp
 CPPFILES += GenPDEParserTests.cpp
 CPPFILES += GpDate.cpp
 CPPFILES += IteratorsTests.cpp

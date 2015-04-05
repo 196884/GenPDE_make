@@ -32,15 +32,15 @@ PEBinaryOperation::CEVConstPtr PEBinaryOperation::evalCE(
 
 PEBinaryOperation::CEVConstPtr PEBinaryOperation::evalFromFixings(
     const GenPDE::Date&       date,
-    const TradeFixings&       fixings,
+    const MOFixingsIfc&       mo_fixings,
     const AuxiliaryVariables& av_defs,
     AVContext&                av_context
 ) const
 {
-    CEVConstPtr arg1 = mPE1->evalFromFixings(date, fixings, av_defs, av_context);
+    CEVConstPtr arg1 = mPE1->evalFromFixings(date, mo_fixings, av_defs, av_context);
     if( !arg1 )
         return arg1;
-    CEVConstPtr arg2 = mPE2->evalFromFixings(date, fixings, av_defs, av_context);
+    CEVConstPtr arg2 = mPE2->evalFromFixings(date, mo_fixings, av_defs, av_context);
     if( !arg2 )
         return arg2;
     boost::shared_ptr<CEValues> result(new CEValuesStored(arg1, arg2));

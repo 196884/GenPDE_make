@@ -25,7 +25,7 @@ AVReference::CEVConstPtr AVReference::evalCE(
 
 AVReference::CEVConstPtr AVReference::evalFromFixings(
     const GenPDE::Date&       date,
-    const TradeFixings&       fixings,
+    const MOFixingsIfc&       mo_fixings,
     const AuxiliaryVariables& av_defs,
     AVContext&                av_context // updated by the call
 ) const
@@ -34,7 +34,7 @@ AVReference::CEVConstPtr AVReference::evalFromFixings(
     if( result )
         return result;
 
-    result = av_defs.getAuxiliaryVariable(mUid)->getDefinition()->evalFromFixings(date, fixings, av_defs, av_context);
+    result = av_defs.getAuxiliaryVariable(mUid)->getDefinition()->evalFromFixings(date, mo_fixings, av_defs, av_context);
     if( result )
     {
         std::vector<double> value(1, *result->getDataPtr());

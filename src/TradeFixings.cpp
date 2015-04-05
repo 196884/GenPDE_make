@@ -1,28 +1,33 @@
 #include "TradeFixings.h"
+#include "CEValuesStored.h"
 
-boost::shared_ptr<const TradeFixings> TradeFixings::NoFixings = boost::shared_ptr<TradeFixings>(new TradeFixings());
-
-void MOFixings::addFixing(MOUid mo_uid, const GenPDE::Date& date, double value)
+MOFixingsStore::CEValuesCPtr MOFixingsStore::getFixing(
+    MOUid               mo_uid,
+    const GenPDE::Date& date
+) const
 {
-    mFixings[mo_uid][date] = value;
+    FixingsMap::const_iterator it1 = m_fixings.find( mo_uid );
+    if( it1 == m_fixings.end() )
+        return CEValuesPtr();
+    
+    const DatedValues& datedValues = it1->second;
+    DatedValues::const_iterator it2 = datedValues.find( date );
+    if( it2 == datedValues.end() )
+        return CEValuesPtr();
+
+    return CEValuesPtr(new CEValuesStored( it2->second ) );
 }
 
-boost::optional<double> MOFixings::getFixing(MOUid mo_uid, const GenPDE::Date& date) const
+void MOFixingsStore::addFixing(MOUid mo_uid, const GenPDE::Date& date, double value)
 {
-    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator it = mFixings.find(mo_uid);
-    if( it == mFixings.end() )
-        return boost::optional<double>();
-    std::map<GenPDE::Date, double>::const_iterator it2 = it->second.find(date);
-    if( it2 == it->second.end() )
-        return boost::optional<double>();
-    return it2->second;
+    m_fixings[mo_uid][date] = value;
 }
 
-std::ostream& operator<<(std::ostream& os, const MOFixings& fixings)
+std::ostream& operator<<(std::ostream& os, const MOFixingsStore& fixings)
 {
     os << "<MOFixings>" << std::endl;
-    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itCurr = fixings.mFixings.begin();
-    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itEnd  = fixings.mFixings.end();
+    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itCurr = fixings.m_fixings.begin();
+    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itEnd  = fixings.m_fixings.end();
     for(; itEnd != itCurr; ++itCurr )
     {
         MOUid uid = itCurr->first;
@@ -101,54 +106,3 @@ std::ostream& operator<<(std::ostream& os, const ChoiceFixings& fixings)
     return os;
 }
 
-TradeFixings::TradeFixings()
-{
-    mMOFixings     = boost::shared_ptr<MOFixings>(new MOFixings());
-    mChoiceFixings = boost::shared_ptr<ChoiceFixings>(new ChoiceFixings());
-}
-    
-TradeFixings::TradeFixings(
-    const MOFixingsPtr&     mo_fixings,
-    const ChoiceFixingsPtr& choice_fixings
-)
-:mMOFixings(mo_fixings)
-,mChoiceFixings(choice_fixings)
-{}
-    
-void TradeFixings::addMOFixing(MOUid mo_uid, const GenPDE::Date& date, double value)
-{
-    mMOFixings->addFixing(mo_uid, date, value);
-}
-
-boost::optional<double> TradeFixings::getMOFixing(MOUid mo_uid, const GenPDE::Date& date) const
-{
-    return mMOFixings->getFixing(mo_uid, date);
-}
-    
-void TradeFixings::addChoiceFixing(
-    const Choice::Uid&  uid,
-    Choice::Chooser     chooser,
-    const GenPDE::Date& date,
-    Choice::Choice      choice
-)
-{
-    mChoiceFixings->addFixing(uid, chooser, date, choice);
-}
-
-boost::optional<Choice::Choice> TradeFixings::getChoiceFixing(
-    const Choice::Uid&  uid,
-    Choice::Chooser     chooser,
-    const GenPDE::Date& date
-) const
-{
-    return mChoiceFixings->getFixing(uid, chooser, date);
-}
-
-std::ostream& operator<<(std::ostream& os, const TradeFixings& fixings)
-{
-    os << "<TradeFixings>" << std::endl
-       << *(fixings.mMOFixings)
-       << *(fixings.mChoiceFixings)
-       << "</TradeFixings>" << std::endl;
-    return os;
-}

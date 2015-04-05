@@ -10,6 +10,7 @@
 #include "GpDate.h"
 #include "PDEPricingModelInterface.h"
 #include "PDEPricingModelBlackScholes.h"
+#include "BSModelParameters.h"
 
 #include <boost/spirit/include/qi.hpp>
 #include <boost/phoenix.hpp>
@@ -30,19 +31,34 @@ public:
         mDateAsStr = qi::repeat(8)[qi::char_("0-9")];
         mDate      = mDateAsStr[qi::_val = phx::bind(&GenPDE::dateFromString, qi::_1)];
 
+        mAVDPNone  = (
+            qi::string("<AVDiscretizationPolicy type=\"None\"/>")
+        )[qi::_val = phx::construct<AVDiscretizationPolicy*>(phx::new_<AVDP_None>())];
+
+        mAVDisc    = (
+            mAVDPNone
+        );
+
+        mBSModelParams  = (
+            qi::lexeme["<Spot value=\""                   >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<RiskFreeRate value=\""           >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<Volatility value=\""             >> qi::double_ >> "\"/>" ]
+        )[qi::_val = phx::construct<BSModelParameters>(qi::_1, qi::_2, qi::_3)];
+
         mBSModel   = (
             "<PDEPricingModelBlackScholes>"                                          >>
             qi::lexeme["<PricingDate value=\""            >> mDate       >> "\"/>" ] >>
-            qi::lexeme["<Spot value=\""                   >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<RiskFreeRate value=\""           >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<Volatility value=\""             >> qi::double_ >> "\"/>" ] >>
+            mBSModelParams                                                           >>
             qi::lexeme["<MaxTimestepLength value=\""      >> qi::double_ >> "\"/>" ] >>
             qi::lexeme["<NbRannacherSteps value=\""       >> qi::double_ >> "\"/>" ] >>
             qi::lexeme["<MaxRannacherStepLength value=\"" >> qi::double_ >> "\"/>" ] >>
             qi::lexeme["<SpaceGridSize value=\""          >> qi::ulong_  >> "\"/>" ] >>
             qi::lexeme["<SpaceGridNbStdDevs value=\""     >> qi::double_ >> "\"/>" ] >>
+            mAVDisc                                                                  >>
+            //(qi::eps[qi::_val = phx::construct<AVDP_None*>(phx::new_<AVDP_None>())]) >>
             "</PDEPricingModelBlackScholes>"
-        )[qi::_val = phx::construct<ModelIfcPtr>(phx::new_<PDEPricingModelBlackScholes>(qi::_1, qi::_2, qi::_3, qi::_4, qi::_5, qi::_6, qi::_7, qi::_8, qi::_9))];
+        //)[qi::_val = phx::construct<ModelIfcPtr>(phx::new_<PDEPricingModelBlackScholes>(qi::_1, qi::_2, qi::_3, qi::_4, qi::_5, qi::_6, qi::_7))];
+        )[qi::_val = phx::construct<ModelIfcPtr>(phx::new_<PDEPricingModelBlackScholes>(qi::_1, qi::_2, qi::_3, qi::_4, qi::_5, qi::_6, qi::_7, qi::_8))];
 
         mModel     = mBSModel;
     }
@@ -71,8 +87,11 @@ protected:
     qi::rule<Iterator, std::string()>                 mDateAsStr;
     qi::rule<Iterator, GenPDE::Date()>                mDate;
 
-    qi::rule<Iterator, ModelIfcPtr(), qi::space_type> mBSModel;
-    qi::rule<Iterator, ModelIfcPtr(), qi::space_type> mModel;
+    qi::rule<Iterator, AVDiscretizationPolicy*(), qi::space_type> mAVDPNone;
+    qi::rule<Iterator, AVDiscretizationPolicy*(), qi::space_type> mAVDisc;
+    qi::rule<Iterator, BSModelParameters(),       qi::space_type> mBSModelParams;
+    qi::rule<Iterator, ModelIfcPtr(),             qi::space_type> mBSModel;
+    qi::rule<Iterator, ModelIfcPtr(),             qi::space_type> mModel;
 };
 
 #endif // MODEL_PARSER_BASE_H

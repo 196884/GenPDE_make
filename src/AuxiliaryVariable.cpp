@@ -7,6 +7,7 @@ AuxiliaryVariables::AuxiliaryVariables(const std::vector<AVConstPtr>& avs)
 {
     for(AVConstPtr av : avs)
         m_avMap[av->getUid()] = av;
+    topoSort();
 }
 
 AuxiliaryVariables::AVConstPtr AuxiliaryVariables::getAuxiliaryVariable(GenPDE::VariableUID uid) const
@@ -17,7 +18,7 @@ AuxiliaryVariables::AVConstPtr AuxiliaryVariables::getAuxiliaryVariable(GenPDE::
     return it->second;
 }
 
-void AuxiliaryVariables::getUids(std::vector<GenPDE::VariableUID>& uids) const
+void AuxiliaryVariables::topoSort()
 {
     // For now, we assume that there are no 2 AVs with the same date
     // (throwing if it's not the case).
@@ -48,9 +49,14 @@ void AuxiliaryVariables::getUids(std::vector<GenPDE::VariableUID>& uids) const
             "Could not order AVs by dependencies"
         );
 
-    uids.resize(nbAVs);
+    m_avUidVector.resize(nbAVs);
     for(currIdx = 0; currIdx < nbAVs; ++currIdx)
-        uids[currIdx] = avs[currIdx]->getUid();
+        m_avUidVector[currIdx] = avs[currIdx]->getUid();
+}
+
+const AuxiliaryVariables::AVUidVector& AuxiliaryVariables::getUids() const
+{
+    return m_avUidVector;
 }
 
 size_t AuxiliaryVariables::getNbAVs() const

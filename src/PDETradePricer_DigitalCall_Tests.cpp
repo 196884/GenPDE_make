@@ -28,19 +28,21 @@ REGISTER_TEST(PDETradePricer_DigitalCall_1)
 	const double stdDevMultiple(5.0);
     const size_t nbRannacher(4);
     
+    AVDP_None* avDisc = new AVDP_None();
+    BSModelParameters bsModelParams( spot, rate, volatility );
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
-        spot,
-        rate,
-        volatility,
+        bsModelParams,
         3,
         nbRannacher,
         0.3,
         nbSpaceNodes,
-        stdDevMultiple
+        stdDevMultiple,
+        avDisc
     ));
-    
-    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation));
+
+    boost::shared_ptr<MOFixingsStore> moFixings( new MOFixingsStore() );
+    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation, moFixings ));
     double price(pricer->price());
     double cf = BlackScholes::digitalCallPV(spot, rate, volatility, 1.0, spot);
     //boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();

@@ -7,12 +7,13 @@
 
 #include "GpDate.h"
 #include "AuxiliaryVariable.h"
+#include "CEValues.h"
 #include "PDEPricingModelBlackScholes.h"
 #include "PDETradePricer.h"
 #include "AVInterpolatorNaturalCubic.h"
 #include "AVInterpolatorLinear.h"
 #include "VariableDependencies.h"
-#include "CEValues.h"
+#include "TradeFixings.h"
 
 using std::vector;
 using std::cerr;
@@ -66,23 +67,24 @@ REGISTER_TEST(ASRRaw1)
             values[j] = ((double) (i+1)) * Double::exp(avLower + j * avStep);
         }
     }
+    AVDP_None* avDisc( new AVDP_None() );
+    BSModelParameters bsModelParams( spot, rate, volatility);
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
-        spot,
-        rate,
-        volatility,
+        bsModelParams,
         3,
         nbRannacher,
         0.3,
         nbSpaceNodes,
-        stdDevMultiple
+        stdDevMultiple,
+        avDisc
     ));
     AuxiliaryVariables avs; // Dummy
-    boost::shared_ptr<TradeFixings> noFixings(new TradeFixings());
+    MOFixingsStore* noFixings( new MOFixingsStore() );
     model->setupForTrade(dates, avs, noFixings);
     boost::shared_ptr<const CEValues> moValues(model->marketObservableCE(1));
     const double* const spaceGridPtrBegin(moValues->getDataPtr());
-    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, boost::shared_ptr<TradeRepresentation>()));
+    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, boost::shared_ptr<TradeRepresentation>(), boost::shared_ptr<const MOFixingsStore>(noFixings)));
     
     VarDependencies avDepsPlanes(GenPDE::VT_AuxiliaryVariable, 1, nbPlanes);
     double* solPtr(model->addPricer(1, avDepsPlanes)->getDataPtr());

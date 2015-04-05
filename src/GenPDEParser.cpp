@@ -2,12 +2,12 @@
 
 #include "GenPDEParser.h"
 
-TRParserBase<std::string::const_iterator>          GenPDEParser::m_tradeParserString;
-TRParserBase<boost::spirit::istream_iterator>      GenPDEParser::m_tradeParserFile;
-ModelParserBase<std::string::const_iterator>       GenPDEParser::m_modelParserString;
-ModelParserBase<boost::spirit::istream_iterator>   GenPDEParser::m_modelParserFile;
-FixingsParserBase<std::string::const_iterator>     GenPDEParser::m_fixingsParserString;
-FixingsParserBase<boost::spirit::istream_iterator> GenPDEParser::m_fixingsParserFile;
+TRParserBase<std::string::const_iterator>                GenPDEParser::m_tradeParserString;
+TRParserBase<boost::spirit::istream_iterator>            GenPDEParser::m_tradeParserFile;
+ModelParserBase<std::string::const_iterator>             GenPDEParser::m_modelParserString;
+ModelParserBase<boost::spirit::istream_iterator>         GenPDEParser::m_modelParserFile;
+FixingsParserBase<std::string::const_iterator>           GenPDEParser::m_fixingsParserString;
+FixingsParserBase<boost::spirit::istream_iterator>       GenPDEParser::m_fixingsParserFile;
 
 GenPDEParser::PEPtr  GenPDEParser::parsePayoutExpression(const std::string& pe, bool is_file)
 {
@@ -87,7 +87,7 @@ GenPDEParser::ModelIfcPtr GenPDEParser::parsePDEModel(const std::string& model, 
         return m_modelParserString.parseModel(model.begin(), model.end());
 }
 
-GenPDEParser::FixingsPtr GenPDEParser::parseFixings(const std::string& model, bool is_file)
+GenPDEParser::MOFixingsPtr GenPDEParser::parseMOFixings(const std::string& model, bool is_file)
 {
     if( is_file )
     {
@@ -95,9 +95,22 @@ GenPDEParser::FixingsPtr GenPDEParser::parseFixings(const std::string& model, bo
         in.unsetf(std::ios::skipws);
         boost::spirit::istream_iterator begin(in);
         boost::spirit::istream_iterator end;
-        return m_fixingsParserFile.parseFixings(begin, end);
+        return m_fixingsParserFile.parseMOFixings(begin, end);
     } else
-        return m_fixingsParserString.parseFixings(model.begin(), model.end());
+        return m_fixingsParserString.parseMOFixings(model.begin(), model.end());
+}
+
+GenPDEParser::ChoiceFixingsPtr GenPDEParser::parseChoiceFixings(const std::string& model, bool is_file)
+{
+    if( is_file )
+    {
+        std::ifstream in(model);
+        in.unsetf(std::ios::skipws);
+        boost::spirit::istream_iterator begin(in);
+        boost::spirit::istream_iterator end;
+        return m_fixingsParserFile.parseChoiceFixings(begin, end);
+    } else
+        return m_fixingsParserString.parseChoiceFixings(model.begin(), model.end());
 }
 
 

@@ -51,7 +51,7 @@ REGISTER_TEST(ASR1)
     double av1Step  = 2 * avStdDevMultiple * stdDev1 / (nbPlanes - 1);
     for(size_t i=0; i<nbPlanes; ++i)
         av1Values[i] = Double::exp(av1Lower + i * av1Step);
-    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
+    AVDP_Hardcoded* avDisc(new AVDP_Hardcoded());
     avDisc->setAVDiscretizationValues(1, av1Values);
     for(size_t i=2; i<dates.size()-1; ++i)
     {
@@ -106,11 +106,10 @@ REGISTER_TEST(ASR1)
     	logSpotGrid[i] = lowerBoundary + i * ds;
     	spotGrid[i]    = Double::exp(logSpotGrid[i]);
     }
+    BSModelParameters bsModelParams( spot, rate, volatility);
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
-        spot,
-        rate,
-        volatility,
+        bsModelParams,
         3,
         nbRannacher,
         0.3,
@@ -119,13 +118,14 @@ REGISTER_TEST(ASR1)
         avDisc
     ));
     boost::shared_ptr<AuxiliaryVariables> avsPtr(new AuxiliaryVariables(avs));
-    model->setupForTrade(dates, *avsPtr, TradeFixings::NoFixings);
+    MOFixingsStore* noFixings( new MOFixingsStore() );
+    model->setupForTrade(dates, *avsPtr, noFixings );
     boost::shared_ptr<TradeRepresentation> trade(new TradeRepresentation(
         boost::shared_ptr<DatedPricingInstructions>(),
         boost::shared_ptr<TradeLeg>(),
         avsPtr
     ));
-    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, trade));
+    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, trade, boost::shared_ptr<MOFixingsStore>( noFixings )));
     
     solverTradePricer->pricerInit(1, payoutLeg);
     
@@ -184,7 +184,7 @@ REGISTER_TEST(ASR2)
     for(size_t i=0; i<nbPlanes; ++i)
         av1Values[i] = Double::exp(av1Lower + i * av1Step);
 
-    AVDiscretizationPolicyHardcoded* avDisc(new AVDiscretizationPolicyHardcoded());
+    AVDP_Hardcoded* avDisc(new AVDP_Hardcoded());
     avDisc->setAVDiscretizationValues(1, av1Values);
     for(size_t i=2; i<dates.size()-1; ++i)
     {
@@ -282,11 +282,10 @@ REGISTER_TEST(ASR2)
     	logSpotGrid[i] = lowerBoundary + i * ds;
     	spotGrid[i]    = Double::exp(logSpotGrid[i]);
     }
+    BSModelParameters bsModelParams( spot, rate, volatility);
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
-        spot,
-        rate,
-        volatility,
+        bsModelParams,
         3,
         nbRannacher,
         0.3,
@@ -294,14 +293,15 @@ REGISTER_TEST(ASR2)
         stdDevMultiple,
         avDisc
     ));
+    MOFixingsStore* noFixings( new MOFixingsStore() );
     boost::shared_ptr<AuxiliaryVariables> avsPtr(new AuxiliaryVariables(avs));
-    model->setupForTrade(dates, *avsPtr);
+    model->setupForTrade(dates, *avsPtr, noFixings );
     boost::shared_ptr<TradeRepresentation> trade(new TradeRepresentation(
         boost::shared_ptr<DatedPricingInstructions>(),
         boost::shared_ptr<TradeLeg>(),
         avsPtr
     ));
-    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, trade));
+    boost::shared_ptr<PDETradePricer> solverTradePricer(new PDETradePricer(model, trade, boost::shared_ptr<MOFixingsStore>( noFixings )));
     
     solverTradePricer->pricerInit(nbDaysTotal, payoutLeg);
     size_t currentPricer(nbDaysTotal);

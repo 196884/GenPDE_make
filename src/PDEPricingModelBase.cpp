@@ -1,9 +1,9 @@
 #include "PDEPricingModelBase.h"
 #include "CEValuesReference.h"
+#include "PayoutExpression.h"
 
 PDEPricingModelBase::~PDEPricingModelBase()
 {
-    delete mAVContext;
     delete m_avDiscretizationPolicy;
 }
 
@@ -197,7 +197,7 @@ PDEPricingModelBase::CEVPtr PDEPricingModelBase::addTempPricer(const VarDependen
 
 PDEPricingModelBase::CEVConstPtr   PDEPricingModelBase::auxiliaryVariableCE(GenPDE::VariableUID av_uid) const
 {
-    return mAVContext->evalCE(av_uid);
+    return m_avContext.evalCE(av_uid);
 }
 
 void PDEPricingModelBase::renamePricer(PricerUid current_uid, PricerUid new_uid)
@@ -228,5 +228,33 @@ void PDEPricingModelBase::collapseAllPricerValues()
     }
     // To be sure the other values don't get used, we delete them:
     mPricerToDetails.clear();
+}
+
+void PDEPricingModelBase::setDeterministicAVs(
+    const MOFixingsIfc&       mo_fixings,
+    const AuxiliaryVariables& av_defs,
+    AVContext&                av_context
+)
+{
+    const AuxiliaryVariables::AVUidVector& avUids = av_defs.getUids();
+    for( GenPDE::VariableUID avUid : avUids )
+    {
+        AVConstPtr av = av_defs.getAuxiliaryVariable( avUid );
+        av_context.setAVDiscretizationValues(
+            avUid,
+            av->getDefinition()->evalFromFixings(
+                av->getDate(),
+                mo_fixings,
+                av_defs,
+                av_context
+            )
+        );
+    }
+}
+
+void PDEPricingModelBase::resetForTrade()
+{
+    m_avContext.clear();
+    m_moFixings = NULL;
 }
 

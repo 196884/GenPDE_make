@@ -22,8 +22,8 @@ template <typename Iterator>
 class FixingsParserBase
 {
 protected:
-    typedef boost::shared_ptr<TradeFixings>       FixingsPtr;
-    typedef boost::shared_ptr<const TradeFixings> FixingsCPtr;
+    typedef boost::shared_ptr< const MOFixingsIfc >  MOFixingsCPtr;
+    typedef boost::shared_ptr< const ChoiceFixings > ChoiceFixingsCPtr;
 
 public:
     FixingsParserBase()
@@ -38,31 +38,33 @@ public:
         mChoiceId     = +(~qi::char_('"'));
 
         mMOFixing     = ("<MOFixing uid=\"" >> qi::uint_ >> "\" date=\"" >> mDate >> "\" value=\"" >> qi::double_ >> "\"/>")
-                        [phx::bind(&TradeFixings::addMOFixing, qi::_r1, qi::_1, qi::_2, qi::_3)];
+                        [phx::bind(&MOFixingsStore::addFixing, qi::_r1, qi::_1, qi::_2, qi::_3)];
 
         mChoiceFixing = ("<ChoiceFixing choiceId=\"" >> mChoiceId >> "\" chooser=\"" >> mChooser >> "\" date=\"" >> mDate >> "\" choice=\"" >> mChoice >> "\"/>")
-                        [phx::bind(&TradeFixings::addChoiceFixing, qi::_r1, qi::_1, qi::_2, qi::_3, qi::_4)];
+                        [phx::bind(&ChoiceFixings::addFixing, qi::_r1, qi::_1, qi::_2, qi::_3, qi::_4)];
 
-        mFixings  = (
-            (qi::eps[qi::_val = phx::construct<TradeFixings*>(phx::new_<TradeFixings>())] >>
-            "<TradeFixings>"         >>
-            "<MOFixings>")           >>
+        mMOFixings    = (
+            qi::eps[qi::_val = phx::construct<MOFixingsStore*>(phx::new_<MOFixingsStore>())] >>
+            "<MOFixings>"            >>
             *mMOFixing(qi::_val)     >>
-            "</MOFixings>"           >>
+            "</MOFixings>"      
+        );
+
+        mChoiceFixings = (
+            qi::eps[qi::_val = phx::construct<ChoiceFixings*>(phx::new_<ChoiceFixings>())] >>
             "<ChoiceFixings>"        >>
             *mChoiceFixing(qi::_val) >>
-            "</ChoiceFixings>"       >>
-            "</TradeFixings>"
+            "</ChoiceFixings>"
         );
     }
 
-    FixingsCPtr parseFixings(Iterator first, Iterator last)
+    MOFixingsCPtr parseMOFixings( Iterator first, Iterator last )
     {
-        TradeFixings* result;
+        MOFixingsStore* result;
         bool r = qi::phrase_parse(
             first,
             last,
-            mFixings,
+            mMOFixings,
             qi::space,
             result
         );
@@ -71,8 +73,27 @@ public:
             std::cerr << "Stopped at:" << std::endl << std::string(first, last) << std::endl;
             Exception::raise("GenPDEParser::parseFixings", "Could not parse TradeFixings");
         }
-        return FixingsCPtr(result);
+        return MOFixingsCPtr(result);
     }
+
+    ChoiceFixingsCPtr parseChoiceFixings( Iterator first, Iterator last )
+    {
+        ChoiceFixings* result;
+        bool r = qi::phrase_parse(
+            first,
+            last,
+            mChoiceFixings,
+            qi::space,
+            result
+        );
+        if( !r )
+        {
+            std::cerr << "Stopped at:" << std::endl << std::string(first, last) << std::endl;
+            Exception::raise("GenPDEParser::parseFixings", "Could not parse TradeFixings");
+        }
+        return ChoiceFixingsCPtr(result);
+    }
+
 
 protected:
     qi::rule<Iterator, std::string()                   > mDateAsStr;
@@ -80,9 +101,12 @@ protected:
     qi::rule<Iterator, Choice::Chooser()               > mChooser;
     qi::rule<Iterator, Choice::Choice()                > mChoice;
     qi::rule<Iterator, Choice::Uid()                   > mChoiceId;
-    qi::rule<Iterator, TradeFixings*(),     qi::space_type> mFixings;
-    qi::rule<Iterator, void(TradeFixings*), qi::space_type> mMOFixing;
-    qi::rule<Iterator, void(TradeFixings*), qi::space_type> mChoiceFixing;
+
+    qi::rule<Iterator, MOFixingsStore*(),      qi::space_type> mMOFixings;
+    qi::rule<Iterator, void(MOFixingsStore*),  qi::space_type> mMOFixing;
+
+    qi::rule<Iterator, ChoiceFixings*(),       qi::space_type> mChoiceFixings;
+    qi::rule<Iterator, void(ChoiceFixings*),   qi::space_type> mChoiceFixing;
 };
 
 #endif // FIXINGS_PARSER_BASE_H
