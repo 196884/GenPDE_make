@@ -70,8 +70,11 @@ int main(int argc, char* argv[])
             moFixings = boost::shared_ptr<const MOFixingsStore>( new MOFixingsStore() );
         }
         boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
+
         boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer( model, trade, moFixings ));
+        double price = pricer->price();
         boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
+
         if( vm.count("timing") )
             std::cout << "Total pricing time: "
                       << (mst2 - mst0).total_microseconds()
@@ -82,7 +85,7 @@ int main(int argc, char* argv[])
                       << "us)"
                       << std::endl;
 
-        std::cout << "Price: " << pricer->price() << std::endl;
+        std::cout << "Price: " << price << std::endl;
     }
     catch(std::exception& e)
     {
