@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
         ("fixings,f", po::value<std::string>(&moFixingsFile),          "specify market observable fixings" )
         ("choices,c", po::value<std::string>(&choiceFixingsFile),      "specify choice fixings" )
         ("timing,t", "display timing information" )
-        ("logging,l", po::value<std::string>(&loggingLevel)->required(), "logging level (None, Error, Warning, Info, Debug), None by default" )
+        ("logging,l", po::value<std::string>(&loggingLevel),           "logging level (None, Error, Warning, Info, Debug), None by default" )
     ;
 
     po::variables_map vm;
