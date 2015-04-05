@@ -23,7 +23,7 @@ REGISTER_TEST_MANUAL(ASROption1)
     
     //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
     
-    std::string file("../resources/ASROption.xml");
+    std::string file("../resources/ASROption_01_trade.xml");
     boost::shared_ptr<const TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(file, true));
     
     boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
@@ -91,10 +91,10 @@ REGISTER_TEST_MANUAL(ASROption2)
     
     //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
     
-    std::string tradeFile("../resources/ASROption.xml");
+    std::string tradeFile("../resources/ASROption_01_trade.xml");
     boost::shared_ptr<const TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(tradeFile, true));
 
-    std::string modelFile( "../resources/ASROption2_model.xml" );
+    std::string modelFile( "../resources/ASROption_01_model.xml" );
     boost::shared_ptr<PDEPricingModelInterface> model(GenPDEParser::parsePDEModel(modelFile, true));
     
     boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
