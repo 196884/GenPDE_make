@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# Prices the same trade for a set of values of model parameters
+# (provided via param files, see below)
+
 PRICING_EXE=../bin/GenPDEPricer
 
-MODEL_FILE=../resources/ASROption_01_model.xml
+MODEL_FILE=ASROption_01_model.xml
 TRADE_FILE=../resources/ASROption_01_trade.xml
 
 OUT_FILE=out_file
@@ -16,11 +19,10 @@ PARAM_NAME_2=SpaceGridSize
 TMP_MODEL_FILE_1=model_1.tmp.xml
 TMP_MODEL_FILE_2=model_2.tmp.xml
 
-#RESULT=`${PRICING_EXE} -p ${TRADE_FILE} -m ${MODEL_FILE} | sed -e 's/Price: //'`
-#echo "Priced (${RESULT})"
-
-mv ${OUT_FILE} ${OUT_FILE}.bak
-rm -fr ${OUT_FILE}
+if [ -e ${OUT_FILE} ]
+then
+    mv ${OUT_FILE} ${OUT_FILE}.bak
+fi
 
 while read PARAM_VALUE_1
 do

@@ -24,8 +24,8 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
 	const double spot(100.0);
 	const double rate(0.05);
 	const double volatility(0.25);
-	const size_t nbSpaceNodes(1000);
-    const size_t nbPlanes(1000);
+	const size_t nbSpaceNodes(500);
+    const size_t nbPlanes(250);
 	const double stdDevMultiple(5.0);
     const size_t nbRannacher(4);
     
@@ -56,7 +56,6 @@ REGISTER_TEST_MANUAL(PDETradePricer_AsianCall_1)
     boost::shared_ptr<MOFixingsStore> moFixings( new MOFixingsStore() );
     boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer(model, tradeRepresentation, moFixings));
     double price(pricer->price());
-    delete avDisc;
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;
     std::cout << "Price: " << price << std::endl;

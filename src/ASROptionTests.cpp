@@ -76,7 +76,6 @@ REGISTER_TEST_MANUAL(ASROption1)
     boost::shared_ptr<const MOFixingsStore> moFixings( new MOFixingsStore() );
     boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer( model, tradeRepresentation, moFixings ));
     double price(pricer->price());
-    delete avDisc;
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;
     std::cout << "Price: " << price << std::endl;

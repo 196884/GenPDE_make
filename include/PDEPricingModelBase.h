@@ -80,7 +80,7 @@ protected:
     size_t                                          mNbRannacherSteps;
     double                                          mMaxRannacherStepLength;
 
-    const AVDiscretizationPolicy*                   m_avDiscretizationPolicy;
+    std::unique_ptr<const AVDiscretizationPolicy>   m_avDiscretizationPolicy;
     
     const MOFixingsIfc*                             m_moFixings;
     AVContext                                       m_avContext;

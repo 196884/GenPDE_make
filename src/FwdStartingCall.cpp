@@ -97,7 +97,6 @@ REGISTER_TEST(FwdStartingCall1)
     //TEST_EQ(model->getPricer(1)->getAVDependencies().getNbConfigurations(), 1);
     //TEST_EQ(model->getPricer(1)->getSVDependencies().getNbConfigurations(), 1);
     double v = *(model->getPricer(1)->getDataPtr());
-    delete avDisc;
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     cerr << "Time: " << (mst2 - mst1).total_microseconds() << endl;
     double c = BlackScholes::callPV(spot, rate, volatility, tenor - fwdStart, spot);

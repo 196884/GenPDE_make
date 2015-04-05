@@ -44,13 +44,13 @@ void PDEPricingModelBlackScholes::setupForTrade(
             break;
         case AVDiscretizationPolicy::Type_Hardcoded:
             {
-                const AVDP_Hardcoded* avdp = static_cast<const AVDP_Hardcoded*>( m_avDiscretizationPolicy );
+                const AVDP_Hardcoded* avdp = static_cast<const AVDP_Hardcoded*>( m_avDiscretizationPolicy.get() );
                 avdp->setAVDiscretizations( auxiliary_variables, m_avContext );
             }
             break;
         case AVDiscretizationPolicy::Type_Sum:
             {
-                const AVDP_Sum* avdp = static_cast<const AVDP_Sum*>( m_avDiscretizationPolicy );
+                const AVDP_Sum* avdp = static_cast<const AVDP_Sum*>( m_avDiscretizationPolicy.get() );
                 AVDP::discretizeSum<PDEPricingModelBlackScholes>( *avdp, auxiliary_variables, *this, m_avContext );
             }
             break;

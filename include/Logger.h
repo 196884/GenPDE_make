@@ -7,6 +7,20 @@
 class Logger
 {
 public:
+    enum Level
+    {
+        None    = 0,
+        Info    = 1,
+        Warning = 2,
+        Debug   = 3
+    };
+
+public:
+    void setLevel( Level level )
+    {
+        m_level = level;
+    }
+
     void log( const char* msg )
     {
         std::cerr << m_linePrefix << msg << std::endl;
@@ -45,8 +59,8 @@ private:
     Logger( const Logger& );
 
 private:
+    Level       m_level;
     std::string m_linePrefix;
 };
 
 #endif //  LOGGER_H
-

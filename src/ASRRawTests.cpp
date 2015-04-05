@@ -176,7 +176,6 @@ REGISTER_TEST(ASRRaw1)
     // Final timestepping:
     model->timeStepToNextDate();
     double v = *(model->getPricer(1)->getDataPtr());
-    delete avDisc;
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     
     cerr << "Time: " << (mst2 - mst1).total_microseconds() << endl;
