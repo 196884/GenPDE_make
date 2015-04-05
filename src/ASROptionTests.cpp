@@ -33,10 +33,12 @@ REGISTER_TEST_MANUAL(ASROption1)
 	const double spot(100.0);
 	const double rate(0.05);
 	const double volatility(0.25);
-	const size_t nbSpaceNodes(1000);
-    const size_t nbPlanes(1000);
+	const size_t nbSpaceNodes(500);
 	const double stdDevMultiple(5.0);
     const size_t nbRannacher(4);
+
+    const size_t nbPlanes(250);
+    const double stdDevMultPlanes(4.0);
     
     // For now, we hardcode the discretization of the AVs:
     AVDP_Hardcoded* avDisc(new AVDP_Hardcoded());
@@ -52,8 +54,8 @@ REGISTER_TEST_MANUAL(ASROption1)
         GenPDE::Date thisDate = av->getDate();
         totalTenor           += GenPDE::dateDifferenceInDays(thisDate, prevDate) / 365.0;
         double stdDev         = volatility * Double::sqrt(totalTenor);
-        double width          = 2 * stdDevMultiple * stdDev;
-        double lowerBound     = Double::log(i * spot) - 0.5 * width;
+        double width          = 2 * stdDevMultPlanes * stdDev;
+        double lowerBound     = Double::log((i + 1) * spot) - 0.5 * width;
         double ds             = width / ((double) (nbPlanes-1));
         std::vector<double> avValues(nbPlanes);
         for(size_t j=0; j<nbPlanes; ++j)
@@ -78,5 +80,31 @@ REGISTER_TEST_MANUAL(ASROption1)
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;
     std::cout << "Price: " << price << std::endl;
+    TEST_EQ_DBL( price, 0.976813, 1e-5 );
+    //double cf = BlackScholes::callPV(spot, rate, volatility / Double::sqrt(3), 1.0, 100);
+}
+
+REGISTER_TEST_MANUAL(ASROption2)
+{
+    // Payout:
+    // S_T / Max( A_T, 90 )
+    
+    //boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
+    
+    std::string tradeFile("../resources/ASROption.xml");
+    boost::shared_ptr<const TradeRepresentation> tradeRepresentation(GenPDEParser::parseTradeRepresentation(tradeFile, true));
+
+    std::string modelFile( "../resources/ASROption2_model.xml" );
+    boost::shared_ptr<PDEPricingModelInterface> model(GenPDEParser::parsePDEModel(modelFile, true));
+    
+    boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
+
+    boost::shared_ptr<const MOFixingsStore> moFixings( new MOFixingsStore() );
+    boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer( model, tradeRepresentation, moFixings ));
+    double price(pricer->price());
+    boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
+    std::cout << "Finished pricing (" << (mst2 - mst1).total_microseconds() << ")" << std::endl;
+    std::cout << "Price: " << price << std::endl;
+    TEST_EQ_DBL( price, 0.976813, 1e-5 );
     //double cf = BlackScholes::callPV(spot, rate, volatility / Double::sqrt(3), 1.0, 100);
 }

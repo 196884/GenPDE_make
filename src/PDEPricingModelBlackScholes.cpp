@@ -26,8 +26,18 @@ void PDEPricingModelBlackScholes::setupForTrade(
 {
     resetForTrade();
     m_moFixings = mo_fixings;
+
+    std::vector<double> timeGrid;
+    setupTimeGrid(mPricingDate, trade_dates, timeGrid);
+    setupSpaceGrid(timeGrid);
+    mSolver                 = boost::shared_ptr<PDESolverInterfaceBase>(new PDESolver1D(
+        mLogSpotGrid,
+        timeGrid,
+        this
+    ));
+
+    // Discretization of AVs:
     setDeterministicAVs( *this, auxiliary_variables, m_avContext );
-    m_moFixings = mo_fixings;
     switch( m_avDiscretizationPolicy->getType() )
     {
         case AVDiscretizationPolicy::Type_None:
@@ -47,22 +57,13 @@ void PDEPricingModelBlackScholes::setupForTrade(
         default:
             Exception::raise( "PDEPricingModelBlackScholes::setupForTrade", "unhandled AVDiscretizationPolicy" );
     };
-
-    std::vector<double> timeGrid;
-    setupTimeGrid(mPricingDate, trade_dates, timeGrid);
-    setupSpaceGrid(timeGrid);
-    mSolver                 = boost::shared_ptr<PDESolverInterfaceBase>(new PDESolver1D(
-        mLogSpotGrid,
-        timeGrid,
-        this
-    ));
 }
 
 double PDEPricingModelBlackScholes::getVariance(const GenPDE::Date& to_date) const
 {
     if( to_date <= mPricingDate )
         return 0;
-    double dfTenor(((double) GenPDE::dateDifferenceInDays(to_date, mCurrentDate)) / GenPDE::NbDaysPerYear);
+    double dfTenor(((double) GenPDE::dateDifferenceInDays(to_date, mPricingDate)) / GenPDE::NbDaysPerYear);
     return mVolatility * mVolatility * dfTenor;
 }
 

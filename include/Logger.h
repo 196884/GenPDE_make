@@ -30,6 +30,11 @@ public:
         return s_logger;
     }
 
+    const std::string& getPrefix() const
+    {
+        return m_linePrefix;
+    }
+
 private:
     Logger()
     :m_linePrefix( "GenPDE::Logger - " )

@@ -90,9 +90,8 @@ namespace AVDP
             {
                 // The AV should be known already:
                 knownSum = currentValue->getValue(); // throws if not single value
-
             } else {
-                if( 0 == currentValue->getVarMemoryLayout().getSize() )
+                if( !currentValue )
                 {
                     // The point is in the future: we need to discretize
                     double variance   = model.getVariance(avDate);

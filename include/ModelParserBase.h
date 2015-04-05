@@ -36,8 +36,16 @@ public:
             qi::string("<AVDiscretizationPolicy type=\"None\"/>")
         )[qi::_val = phx::construct<AVDiscretizationPolicy*>(phx::new_<AVDP_None>())];
 
+        mAVDPSum   = (
+            qi::string("<AVDiscretizationPolicy type=\"Sum\">")                      >>
+            "<NbValues value=\"" >> qi::uint_ >> "\"/>"                              >>
+            "<NbStdDevs value=\"" >> qi::double_ >> "\"/>"                           >>
+            "</AVDiscretizationPolicy>"
+        )[qi::_val = phx::construct<AVDiscretizationPolicy*>(phx::new_<AVDP_Sum>(qi::_2, qi::_3))];
+
         mAVDisc    = (
-            mAVDPNone
+              mAVDPNone
+            | mAVDPSum
         );
 
         mBSModelParams  = (
@@ -91,6 +99,7 @@ protected:
     qi::rule<Iterator, GenPDE::Date()>                mDate;
 
     qi::rule<Iterator, AVDiscretizationPolicy*(), qi::space_type> mAVDPNone;
+    qi::rule<Iterator, AVDiscretizationPolicy*(), qi::space_type> mAVDPSum;
     qi::rule<Iterator, AVDiscretizationPolicy*(), qi::space_type> mAVDisc;
     qi::rule<Iterator, BSModelParameters(),       qi::space_type> mBSModelParams;
     qi::rule<Iterator, PDEParameters1D(),         qi::space_type> mPDEParams1D;
