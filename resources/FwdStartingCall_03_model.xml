@@ -1,0 +1,14 @@
+<PDEPricingModelBlackScholes>
+<PricingDate value="20020101"/>
+<Spot value="100.00"/>
+<RiskFreeRate value="0.05"/>
+<Volatility value="0.25"/>
+<MaxTimestepLength value="3"/>
+<NbRannacherSteps value="4"/>
+<MaxRannacherStepLength value="0.3"/>
+<SpaceGridSize value="500"/>
+<SpaceGridNbStdDevs value="5"/>
+<AVDiscretizationPolicy type="None"/>
+</PDEPricingModelBlackScholes>
+
+

@@ -230,23 +230,48 @@ void PDEPricingModelBase::collapseAllPricerValues()
 
 void PDEPricingModelBase::setDeterministicAVs(
     const MOFixingsIfc&       mo_fixings,
-    const AuxiliaryVariables& av_defs,
-    AVContext&                av_context
+    const AuxiliaryVariables& av_defs
 )
 {
     const AuxiliaryVariables::AVUidVector& avUids = av_defs.getUids();
     for( GenPDE::VariableUID avUid : avUids )
     {
         AVConstPtr av = av_defs.getAuxiliaryVariable( avUid );
-        av_context.setAVDiscretizationValues(
+        m_avContext.setAVDiscretizationValues(
             avUid,
             av->getDefinition()->evalFromFixings(
                 av->getDate(),
                 mo_fixings,
                 av_defs,
-                av_context
+                m_avContext
             )
         );
+    }
+}
+
+void PDEPricingModelBase::checkAVDiscretizations( const AuxiliaryVariables& av_defs ) const
+{
+    const AuxiliaryVariables::AVUidVector& avUids = av_defs.getUids();
+    for( GenPDE::VariableUID avUid : avUids )
+    {
+        CEVConstPtr avValues = m_avContext.evalCE( avUid );
+        if( !avValues )
+        {
+            Exception::raise("PDEPricingModelBase::checkAVDiscretizations", "Found a deterministic AV with no discretized values");
+        }
+        
+        // Logging too... should be conditional on the logging level
+        AVConstPtr av = av_defs.getAuxiliaryVariable( avUid );
+        const GenPDE::Date& avDate = av->getDate();
+        const VarMemoryLayout& vd = avValues->getVarMemoryLayout();
+        size_t nbValues = vd.getSize();
+        const double* valuesPtr = avValues->getDataPtr();
+        std::ostringstream ss;
+        ss << "PDEPricingModelBase::checkAVDiscretizations - AV["
+           << avUid << "] date[" << GenPDE::dateToString( avDate )
+           << "] nbValues[" << nbValues << "] range["
+           << valuesPtr[0] << ", " << valuesPtr[nbValues-1] << "]";
+        Logger::instance()->log( Logger::Info, ss.str().c_str() );
     }
 }
 

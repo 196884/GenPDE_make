@@ -56,7 +56,7 @@ public:
 
         mPDEParams1D    = (
             qi::lexeme["<MaxTimestepLength value=\""      >> qi::double_ >> "\"/>" ] >>
-            qi::lexeme["<NbRannacherSteps value=\""       >> qi::double_ >> "\"/>" ] >>
+            qi::lexeme["<NbRannacherSteps value=\""       >> qi::uint_   >> "\"/>" ] >>
             qi::lexeme["<MaxRannacherStepLength value=\"" >> qi::double_ >> "\"/>" ] >>
             qi::lexeme["<SpaceGridSize value=\""          >> qi::ulong_  >> "\"/>" ] >>
             qi::lexeme["<SpaceGridNbStdDevs value=\""     >> qi::double_ >> "\"/>" ]

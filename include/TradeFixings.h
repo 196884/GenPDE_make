@@ -22,6 +22,11 @@ public:
     virtual ~MOFixingsIfc() {}
 
     virtual CEValuesCPtr getFixing( MOUid mo_uid, const GenPDE::Date& date ) const = 0;
+
+    friend std::ostream& operator<<( std::ostream& os, const MOFixingsIfc& fixings );
+
+protected:
+    virtual void dump( std::ostream& os ) const;
 };
 
 /// Basic implementation that stores the data
@@ -38,7 +43,8 @@ public:
 
     void                 addFixing( MOUid mo_uid, const GenPDE::Date& date, double value );
    
-    friend std::ostream& operator<<(std::ostream& stream, const MOFixingsStore& fixings);
+protected:
+    virtual void dump( std::ostream& os ) const;
 
 protected:
     typedef std::map< GenPDE::Date, double >         DatedValues;

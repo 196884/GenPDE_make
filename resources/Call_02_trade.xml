@@ -1,0 +1,22 @@
+<TradeRepresentation>
+        <DatedPricingInstructions>
+                <PricingInstructions date="20020101">
+                        <PricerInit uid="1">
+                                <Payment date="20020101">
+                                        <BinOp op="Max">
+                                                <BinOp op="Sub">
+                                                        <MORef uid="1"/>
+                                                        <Const value="110"/>
+                                                </BinOp>
+                                                <Const value="0"/>
+                                        </BinOp>
+                                </Payment>
+                        </PricerInit>
+                </PricingInstructions>
+        </DatedPricingInstructions>
+        <MainTradeLeg>
+            <PricerRef uid="1"/>
+        </MainTradeLeg>
+        <AuxiliaryVariables>
+        </AuxiliaryVariables>
+</TradeRepresentation>

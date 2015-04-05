@@ -99,7 +99,9 @@ double PDETradePricer::price()
 {
     boost::shared_ptr<const DatedPricingInstructions> datedPricingInstructions(mTradeRepresentation->getDatedPricingInstructions());
     std::vector<GenPDE::Date>                         tradeDates(datedPricingInstructions->getInstructionDates());
+    Logger::instance()->log( Logger::Info, "PDETradePrice::price - setting up model for trade" );
     mPDEModel->setupForTrade( tradeDates, *mTradeRepresentation->getAuxiliaryVariables(), mMOFixings.get() );
+    Logger::instance()->log( Logger::Info, "PDETradePrice::price - model set up" );
     GenPDE::Date                                      currentDate(mPDEModel->getCurrentDate());
     std::vector<PIPtr> instructions(datedPricingInstructions->getPricingInstructions(currentDate));
     for(const PIPtr& instruction : instructions )

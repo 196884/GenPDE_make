@@ -10,9 +10,10 @@ public:
     enum Level
     {
         None    = 0,
-        Info    = 1,
+        Error   = 1,
         Warning = 2,
-        Debug   = 3
+        Info    = 3,
+        Debug   = 4
     };
 
 public:
@@ -21,16 +22,30 @@ public:
         m_level = level;
     }
 
-    void log( const char* msg )
+    void log( Level level, const char* msg )
     {
-        std::cerr << m_linePrefix << msg << std::endl;
-    }
-
-    std::ostream& getStream( bool with_prefix = true )
-    {
-        if( with_prefix )
+        if( level > None && level <= m_level )
+        {
             std::cerr << m_linePrefix;
-        return std::cerr;
+            switch( level )
+            {
+                case Info:
+                    std::cerr << "INFO:    ";
+                    break;
+                case Error:
+                    std::cerr << "ERROR:   ";
+                    break;
+                case Warning:
+                    std::cerr << "WARNING: ";
+                    break;
+                case Debug:
+                    std::cerr << "DEBUG:   ";
+                    break;
+                default:
+                    break;
+            }
+            std::cerr << msg << std::endl;
+        }
     }
 
     static Logger* instance()
@@ -51,7 +66,8 @@ public:
 
 private:
     Logger()
-    :m_linePrefix( "GenPDE::Logger - " )
+    :m_level(      None                )
+    ,m_linePrefix( "GenPDE::Logger - " )
     {}
 
     ~Logger();

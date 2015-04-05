@@ -21,14 +21,20 @@ int main(int argc, char* argv[])
 {
     std::string payoutFile;
     std::string modelFile;
+    std::string moFixingsFile;
+    std::string choiceFixingsFile;
+    std::string loggingLevel( "None" );
 
     namespace po = boost::program_options;
     po::options_description desc( "GenPDEPricer options" );
     desc.add_options()
         ("help,h", "Display help")
-        ("payout,p", po::value<std::string>(&payoutFile)->required(), "specify payout file")
-        ("model,m",  po::value<std::string>(&modelFile )->required(), "specify model file" )
+        ("payout,p",  po::value<std::string>(&payoutFile)->required(), "specify payout file"               )
+        ("model,m",   po::value<std::string>(&modelFile )->required(), "specify model file"                )
+        ("fixings,f", po::value<std::string>(&moFixingsFile),          "specify market observable fixings" )
+        ("choices,c", po::value<std::string>(&choiceFixingsFile),      "specify choice fixings" )
         ("timing,t", "display timing information" )
+        ("logging,l", po::value<std::string>(&loggingLevel)->required(), "logging level (None, Error, Warning, Info, Debug), None by default" )
     ;
 
     po::variables_map vm;
@@ -42,12 +48,28 @@ int main(int argc, char* argv[])
         }
         po::notify(vm);
 
+        if( "Error" == loggingLevel )
+            Logger::instance()->setLevel( Logger::Error );
+        else if( "Warning" == loggingLevel )
+            Logger::instance()->setLevel( Logger::Warning );
+        else if( "Info" == loggingLevel )
+            Logger::instance()->setLevel( Logger::Info );
+        else if( "Debug" == loggingLevel )
+            Logger::instance()->setLevel( Logger::Debug );
+        else
+            Logger::instance()->setLevel( Logger::None );
+
         boost::posix_time::ptime mst0 = boost::posix_time::microsec_clock::local_time();
         boost::shared_ptr<const TradeRepresentation> trade(GenPDEParser::parseTradeRepresentation(payoutFile, true));
         boost::shared_ptr<PDEPricingModelInterface>  model(GenPDEParser::parsePDEModel(modelFile, true));
+        boost::shared_ptr<const MOFixingsIfc> moFixings( new MOFixingsStore() );
+        if( vm.count("fixings") > 0 )
+        {
+            moFixings = GenPDEParser::parseMOFixings(moFixingsFile, true);
+        } else {
+            moFixings = boost::shared_ptr<const MOFixingsStore>( new MOFixingsStore() );
+        }
         boost::posix_time::ptime mst1 = boost::posix_time::microsec_clock::local_time();
-        // FIXME: Add the fixings here
-        boost::shared_ptr<MOFixingsStore> moFixings( new MOFixingsStore() );
         boost::shared_ptr<PDETradePricer> pricer(new PDETradePricer( model, trade, moFixings ));
         boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
         if( vm.count("timing") )

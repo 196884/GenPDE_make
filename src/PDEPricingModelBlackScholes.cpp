@@ -24,6 +24,11 @@ void PDEPricingModelBlackScholes::setupForTrade(
     const MOFixingsIfc*              mo_fixings
 )
 {
+    Logger::instance()->log( Logger::Info, "PDEPricingModelBlackScholes::setupForTrade" );
+    std::ostringstream ss;
+    ss << "Using fixings: " << std::endl << *mo_fixings;
+    Logger::instance()->log( Logger::Info, ss.str().c_str() );
+
     resetForTrade();
     m_moFixings = mo_fixings;
 
@@ -37,7 +42,7 @@ void PDEPricingModelBlackScholes::setupForTrade(
     ));
 
     // Discretization of AVs:
-    setDeterministicAVs( *this, auxiliary_variables, m_avContext );
+    setDeterministicAVs( *this, auxiliary_variables );
     switch( m_avDiscretizationPolicy->getType() )
     {
         case AVDiscretizationPolicy::Type_None:
@@ -57,6 +62,7 @@ void PDEPricingModelBlackScholes::setupForTrade(
         default:
             Exception::raise( "PDEPricingModelBlackScholes::setupForTrade", "unhandled AVDiscretizationPolicy" );
     };
+    checkAVDiscretizations( auxiliary_variables );
 }
 
 double PDEPricingModelBlackScholes::getVariance(const GenPDE::Date& to_date) const

@@ -1,6 +1,17 @@
 #include "TradeFixings.h"
 #include "CEValuesStored.h"
 
+std::ostream& operator<<( std::ostream& os, const MOFixingsIfc& fixings )
+{
+    fixings.dump( os );
+    return os;
+}
+
+void MOFixingsIfc::dump( std::ostream& os ) const 
+{
+    os << "MOFixingsIfc - dump not implemented" << std::endl;
+}
+
 MOFixingsStore::CEValuesCPtr MOFixingsStore::getFixing(
     MOUid               mo_uid,
     const GenPDE::Date& date
@@ -23,11 +34,11 @@ void MOFixingsStore::addFixing(MOUid mo_uid, const GenPDE::Date& date, double va
     m_fixings[mo_uid][date] = value;
 }
 
-std::ostream& operator<<(std::ostream& os, const MOFixingsStore& fixings)
+void MOFixingsStore::dump( std::ostream& os ) const
 {
     os << "<MOFixings>" << std::endl;
-    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itCurr = fixings.m_fixings.begin();
-    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itEnd  = fixings.m_fixings.end();
+    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itCurr = m_fixings.begin();
+    std::map<MOUid, std::map<GenPDE::Date, double> >::const_iterator itEnd  = m_fixings.end();
     for(; itEnd != itCurr; ++itCurr )
     {
         MOUid uid = itCurr->first;
@@ -45,7 +56,6 @@ std::ostream& operator<<(std::ostream& os, const MOFixingsStore& fixings)
                << std::endl;
     }
     os << "</MOFixings>" << std::endl;
-    return os;
 }
 
 void ChoiceFixings::addFixing(

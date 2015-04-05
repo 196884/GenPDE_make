@@ -5,13 +5,13 @@
                 <Payment date="20020701">
                     <BinOp op="Div">
                         <MORef uid="1"/>
-                        <BinOp op="Max">
+                        <BinOp op="Min">
                             <BinOp op="Div">
                                 <BinOp op="Add">
                                     <MORef uid="1"/>
                                     <AVRef uid="125"/>
                                 </BinOp>
-                                <Const value="127"/>
+                                <Const value="107"/>
                             </BinOp>
                             <Const value="90"/>
                         </BinOp>

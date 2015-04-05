@@ -11,7 +11,7 @@ PDEParameters1D::PDEParameters1D()
 
 PDEParameters1D::PDEParameters1D(
     double max_timestep_length,
-    double nb_rannacher_steps,
+    size_t nb_rannacher_steps,
     double max_rannacher_step_length,
     size_t space_grid_size,
     double space_grid_nb_std_devs
@@ -31,7 +31,7 @@ double PDEParameters1D::getMaxTimestepLength()      const
     return m_maxTimestepLength;
 }
 
-double PDEParameters1D::getNbRannacherSteps()       const
+size_t PDEParameters1D::getNbRannacherSteps()       const
 {
     return m_nbRannacherSteps;
 }

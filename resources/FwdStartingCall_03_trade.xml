@@ -1,0 +1,34 @@
+<TradeRepresentation>
+    <DatedPricingInstructions>
+        <PricingInstructions date="20030101">
+            <PricerInit uid="1">
+                <Payment date="20030101">
+                    <BinOp op="Max">
+                        <BinOp op="Sub">
+                            <BinOp op="Mul">
+                                <BinOp op="Div">
+                                    <MORef uid="1"/>
+                                    <AVRef uid="1"/>
+                                </BinOp>
+                                <Const value="1.1"/>
+                            </BinOp>
+                            <Const value="1"/>
+                        </BinOp>
+                        <Const value="0"/>
+                    </BinOp>
+                </Payment>
+            </PricerInit>
+        </PricingInstructions>
+        <PricingInstructions date="20020101">
+            <PricerRmAVDeps uid="1" AVs="1"/>
+        </PricingInstructions>
+    </DatedPricingInstructions>
+    <MainTradeLeg>
+        <PricerRef uid="1"/>
+    </MainTradeLeg>
+    <AuxiliaryVariables>
+        <AV uid="1" date="20020101">
+            <MORef uid="1"/>
+        </AV>
+    </AuxiliaryVariables>
+</TradeRepresentation>

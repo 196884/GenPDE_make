@@ -67,11 +67,15 @@ protected:
     virtual void collapseAllPricerValues();
 
     /// Routine to evaluate 'past' AVs based on fixings:
+    /// (sets m_avContext)
     virtual void setDeterministicAVs(
         const MOFixingsIfc&       mo_fixings,
-        const AuxiliaryVariables& av_defs,
-        AVContext&                av_context // set during the call
+        const AuxiliaryVariables& av_defs
     );
+
+    /// Check that all AVs with a date <= pricing date have discretization values
+    /// (throws otherwise)
+    virtual void checkAVDiscretizations( const AuxiliaryVariables& av_defs ) const;
 
     virtual void resetForTrade();
     
