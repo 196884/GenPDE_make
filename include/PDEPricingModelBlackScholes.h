@@ -6,6 +6,7 @@
 #include "PDESolver1D.h"
 #include "AVContext.h"
 #include "BSModelParameters.h"
+#include "PDEParameters1D.h"
 
 class PDEPricingModelBlackScholes : public PDEPricingModelBase
                                   , public PDEUpdater1D
@@ -14,28 +15,26 @@ class PDEPricingModelBlackScholes : public PDEPricingModelBase
 public:
     PDEPricingModelBlackScholes(
         const GenPDE::Date&              pricing_date,
-        
         const BSModelParameters&         model_params,
-        
-        double                           max_timestep_length,
-        double                           nb_rannacher_steps,
-        double                           max_rannacher_step_length,
-        
-        size_t                           space_grid_size,
-        double                           space_grid_nb_std_devs,
-
-        AVDiscretizationPolicy*          av_disc_policy = NULL
+        const PDEParameters1D&           pde_params,
+        const AVDiscretizationPolicy*    av_disc_policy
     )
-    :PDEPricingModelBase(pricing_date, max_timestep_length, nb_rannacher_steps, max_rannacher_step_length, av_disc_policy)
-    ,mSpot(model_params.getSpot())
-    ,mRiskFreeRate(model_params.getRiskFreeRate())
-    ,mVolatility(model_params.getVolatility())
-    ,mSpaceGridSize(space_grid_size)
-    ,mSpaceGridNbStdDevs(space_grid_nb_std_devs)
-    ,mSVDeps(GenPDE::VT_StateVariable, 0, space_grid_size)
-    ,mSpotGrid(space_grid_size)
-    ,mLogSpotGrid(space_grid_size)
-    ,mCoeffsSet(false)
+    :PDEPricingModelBase(
+        pricing_date, 
+        pde_params.getMaxTimestepLength(),
+        pde_params.getNbRannacherSteps(),
+        pde_params.getMaxRannacherStepLength(),
+        av_disc_policy
+    )
+    ,mSpot(               model_params.getSpot()                                     )
+    ,mRiskFreeRate(       model_params.getRiskFreeRate()                             )
+    ,mVolatility(         model_params.getVolatility()                               )
+    ,mSpaceGridSize(      pde_params.getSpaceGridSize()                            )
+    ,mSpaceGridNbStdDevs( pde_params.getSpaceGridNbStdDevs()                         )
+    ,mSVDeps(             GenPDE::VT_StateVariable, 0, pde_params.getSpaceGridSize() )
+    ,mSpotGrid(           pde_params.getSpaceGridSize()                              )
+    ,mLogSpotGrid(        pde_params.getSpaceGridSize()                              )
+    ,mCoeffsSet(          false                                                      )
     {}
     
     virtual void setupForTrade(

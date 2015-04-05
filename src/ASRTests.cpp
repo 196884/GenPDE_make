@@ -107,14 +107,11 @@ REGISTER_TEST(ASR1)
     	spotGrid[i]    = Double::exp(logSpotGrid[i]);
     }
     BSModelParameters bsModelParams( spot, rate, volatility);
+    PDEParameters1D   pdeParams1D( 3, nbRannacher, 0.3, nbSpaceNodes, stdDevMultiple );
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
         bsModelParams,
-        3,
-        nbRannacher,
-        0.3,
-        nbSpaceNodes,
-        stdDevMultiple,
+        pdeParams1D,
         avDisc
     ));
     boost::shared_ptr<AuxiliaryVariables> avsPtr(new AuxiliaryVariables(avs));
@@ -136,6 +133,7 @@ REGISTER_TEST(ASR1)
     }
     solverTradePricer->timeStepToNextDate();
     double v = *(model->getPricer(1)->getDataPtr());
+    delete avDisc;
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     
     cerr << "Time: " << (mst2 - mst1).total_microseconds() << endl;
@@ -283,14 +281,11 @@ REGISTER_TEST(ASR2)
     	spotGrid[i]    = Double::exp(logSpotGrid[i]);
     }
     BSModelParameters bsModelParams( spot, rate, volatility);
+    PDEParameters1D   pdeParams1D( 3, nbRannacher, 0.3, nbSpaceNodes, stdDevMultiple );
     boost::shared_ptr<PDEPricingModelInterface> model(new PDEPricingModelBlackScholes(
         d0,
         bsModelParams,
-        3,
-        nbRannacher,
-        0.3,
-        nbSpaceNodes,
-        stdDevMultiple,
+        pdeParams1D,
         avDisc
     ));
     MOFixingsStore* noFixings( new MOFixingsStore() );
@@ -320,6 +315,7 @@ REGISTER_TEST(ASR2)
     }
     solverTradePricer->timeStepToNextDate();
     double v = *(model->getPricer(currentPricer)->getDataPtr());
+    delete avDisc;
     boost::posix_time::ptime mst2 = boost::posix_time::microsec_clock::local_time();
     
     cerr << "Time: " << (mst2 - mst1).total_microseconds() << endl;

@@ -1,9 +1,9 @@
 #include "BSModelParameters.h"
 
 BSModelParameters::BSModelParameters()
-:m_spot()
-,m_riskFreeRate()
-,m_volatility()
+:m_spot(         0 )
+,m_riskFreeRate( 0 )
+,m_volatility(   0 )
 {}
 
 BSModelParameters::BSModelParameters(

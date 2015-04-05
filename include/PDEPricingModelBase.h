@@ -23,7 +23,7 @@ public:
         double                                           max_timestep_length,
         size_t                                           nb_rannacher_steps,
         double                                           max_rannacher_step_length,
-        AVDiscretizationPolicy*                          av_disc_policy
+        const AVDiscretizationPolicy*                    av_disc_policy
     )
     :mMaxTimestepLength(       max_timestep_length       )
     ,mNbRannacherSteps(        nb_rannacher_steps        )
@@ -80,7 +80,7 @@ protected:
     size_t                                          mNbRannacherSteps;
     double                                          mMaxRannacherStepLength;
 
-    AVDiscretizationPolicy*                         m_avDiscretizationPolicy;
+    const AVDiscretizationPolicy*                   m_avDiscretizationPolicy;
     
     const MOFixingsIfc*                             m_moFixings;
     AVContext                                       m_avContext;

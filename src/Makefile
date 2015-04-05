@@ -1,7 +1,9 @@
 CC = clang
-BOOST_HEADERS = /Users/regisdupont/Documents/Code/boost_1_56_0
-BOOST_LIBS = /Users/regisdupont/Documents/Code/boost_1_56_0/bin.v2/libs/date_time/build/darwin-4.2.1/release/link-static/threading-multi
-BOOST_LIBS = /Users/regisdupont/Documents/Code/boost_1_56_0/bin.v2/libs/program_options/build/darwin-4.2.1/release/link-static/threading-multi
+#BOOST_HEADERS = /Users/regisdupont/Documents/Code/boost_1_56_0
+BOOST_HEADERS = /usr/local/include
+BOOST_LIBS = /usr/local/lib
+#BOOST_LIBS = /Users/regisdupont/Documents/Code/boost_1_56_0/bin.v2/libs/date_time/build/darwin-4.2.1/release/link-static/threading-multi
+#BOOST_LIBS = /Users/regisdupont/Documents/Code/boost_1_56_0/bin.v2/libs/program_options/build/darwin-4.2.1/release/link-static/threading-multi
 
 LFLAGS += -L $(BOOST_LIBS)
 LFLAGS += -lboost_date_time
@@ -16,12 +18,11 @@ BIN_DIR = ../bin
 INCLUDES += -I $(BOOST_HEADERS)
 INCLUDES += -I $(HDR_DIR)
 
-CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -O3 -MMD $(INCLUDES)
-#CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -g -MMD $(INCLUDES)
+#CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -O3 -MMD $(INCLUDES)
+CPPFLAGS = --std=c++11 -Wall -stdlib=libc++ -g -MMD $(INCLUDES)
 
 TARGET = $(BIN_DIR)/GenPDETest
 
-CPPFILES += GenPDEParser.cpp
 CPPFILES += ASROptionTests.cpp
 CPPFILES += ASRRawTests.cpp
 CPPFILES += ASRTests.cpp
@@ -41,6 +42,7 @@ CPPFILES += DateTests.cpp
 CPPFILES += DateTimeTests.cpp
 CPPFILES += FixingsParserTests.cpp
 CPPFILES += FwdStartingCall.cpp
+CPPFILES += GenPDEParser.cpp
 CPPFILES += GenPDEParserTests.cpp
 CPPFILES += GpDate.cpp
 CPPFILES += IteratorsTests.cpp
@@ -51,6 +53,7 @@ CPPFILES += MarkovFunctionalDistribution.cpp
 CPPFILES += MarkovFunctionalTests.cpp
 CPPFILES += ModelParserTests.cpp
 CPPFILES += PDECallPricingTests.cpp
+CPPFILES += PDEParameters1D.cpp
 CPPFILES += PDEPricerSolutionStorage.cpp
 CPPFILES += PDEPricingModelBase.cpp
 CPPFILES += PDEPricingModelBlackScholes.cpp

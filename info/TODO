@@ -1,4 +1,3 @@
-* Add more options to GenPDETest (auto tests, all tests, specified tests,...)
 * Add variables to the trade representation
 * Enable auto-discretization of AVs (naive for now, but need to use fixings though)
 * Implement AVDiscretization policies for most of the usual cases (well, running sum for one)

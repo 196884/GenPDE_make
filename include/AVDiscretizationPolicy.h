@@ -10,6 +10,7 @@ class AVDiscretizationPolicy
 {
 public:
     enum Type {
+        Type_Unknown   = -1,
         Type_None      = 0,
         Type_Hardcoded = 1,
         Type_Sum       = 2,
@@ -17,7 +18,7 @@ public:
     };
 
 public:
-    AVDiscretizationPolicy( Type type );
+    AVDiscretizationPolicy( Type type = Type_Unknown );
     virtual ~AVDiscretizationPolicy() {}
 
     Type getType() const;

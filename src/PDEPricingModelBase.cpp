@@ -3,9 +3,7 @@
 #include "PayoutExpression.h"
 
 PDEPricingModelBase::~PDEPricingModelBase()
-{
-    delete m_avDiscretizationPolicy;
-}
+{}
 
 void PDEPricingModelBase::setupTimeGrid(
     const GenPDE::Date&              pricing_date,
