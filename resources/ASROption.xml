@@ -1153,7 +1153,7 @@
             </BinOp>
         </AV>
         <AV uid="0" date="20020101">
-            <MORef uid="0"/>
+            <MORef uid="1"/>
         </AV>
     </AuxiliaryVariables>
 </TradeRepresentation>
