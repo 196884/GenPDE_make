@@ -45,6 +45,8 @@ CPPFILES += FwdStartingCall.cpp
 CPPFILES += GenPDEParser.cpp
 CPPFILES += GenPDEParserTests.cpp
 CPPFILES += GpDate.cpp
+CPPFILES += GpThreadPool.cpp
+CPPFILES += GpThreadPoolTests.cpp
 CPPFILES += IteratorsTests.cpp
 CPPFILES += MOContext1DFixed.cpp
 CPPFILES += MOContextTests.cpp
@@ -111,7 +113,7 @@ test: all
 	$(BIN_DIR)/GenPDETest
 
 $(BIN_DIR)/Sandbox: $(SRC_DIR)/Sandbox.cpp
-	$(CC) $(CPPFLAGS) $(LFLAGS) -o $(BIN_DIR)/Sandbox $(SRC_DIR)/Sandbox.cpp
+	$(CC) $(CPPFLAGS) -ftemplate-depth=2000 $(LFLAGS) -o $(BIN_DIR)/Sandbox $(SRC_DIR)/Sandbox.cpp
 
 sb: $(BIN_DIR)/Sandbox
 	$(BIN_DIR)/Sandbox
